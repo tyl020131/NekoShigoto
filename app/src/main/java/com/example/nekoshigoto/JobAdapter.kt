@@ -2,6 +2,7 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.JobViewModel
@@ -13,7 +14,7 @@ class JobAdapter(private val jobList : ArrayList<JobViewModel>) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_list,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
         return MyViewHolder(itemView)
     }
 
@@ -29,6 +30,17 @@ class JobAdapter(private val jobList : ArrayList<JobViewModel>) :
         holder.location.text = currentItem.location
         holder.mode.text = currentItem.mode
 
+        holder.fav.setOnClickListener{
+
+            if(it.getTag() == R.drawable.saved){
+                holder.fav.setImageResource(R.drawable.favorite);
+                holder.fav.setTag(R.drawable.favorite);
+            }
+            else{
+                holder.fav.setImageResource(R.drawable.saved);
+                holder.fav.setTag(R.drawable.saved);
+            }
+        };
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -37,5 +49,6 @@ class JobAdapter(private val jobList : ArrayList<JobViewModel>) :
         val vacancy : TextView = itemView.findViewById(R.id.vacancy)
         val location : TextView = itemView.findViewById(R.id.location)
         val mode : TextView = itemView.findViewById(R.id.mode)
+        val fav : ImageButton = itemView.findViewById(R.id.fav)
     }
 }
