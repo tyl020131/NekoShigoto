@@ -25,6 +25,7 @@ android {
         customDebugType {
             debuggable true
         }
+
     }
     buildFeatures {
         dataBinding true
