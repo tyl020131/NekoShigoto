@@ -4,4 +4,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+    <style name="button" parent="">
+        <item name="fontFamily">@font/lexend</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    <style name="button_light" parent="button">
+        <item name="android:textColor">@color/color1</item>
+    </style>
+    <style name="button_dark" parent="button">
+        <item name="android:textColor">@color/color5</item>
+    </style>
 </resources>
