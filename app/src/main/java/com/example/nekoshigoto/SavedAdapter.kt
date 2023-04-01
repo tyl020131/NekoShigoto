@@ -9,17 +9,13 @@ import com.example.nekoshigoto.JobViewModel
 import com.example.nekoshigoto.R
 import com.google.android.material.imageview.ShapeableImageView
 
-class JobAdapter(private val jobList : ArrayList<JobViewModel>) :
-    RecyclerView.Adapter<JobAdapter.MyViewHolder>() {
+class SavedAdapter(private val jobList : ArrayList<JobViewModel>) :
+    RecyclerView.Adapter<SavedAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
         return MyViewHolder(itemView)
-    }
-
-    override fun getItemCount(): Int {
-        return jobList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -30,17 +26,17 @@ class JobAdapter(private val jobList : ArrayList<JobViewModel>) :
         holder.location.text = currentItem.location
         holder.mode.text = currentItem.mode
 
-        holder.fav.setOnClickListener{
+        holder.fav.setImageResource(R.drawable.favorite);
+        holder.fav.setOnClickListener {
+            jobList.removeAt(position)
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, jobList.size)
+            holder.itemView.setVisibility(View.GONE)
 
-            if(it.getTag() == R.drawable.saved){
-                holder.fav.setImageResource(R.drawable.favorite);
-                holder.fav.setTag(R.drawable.favorite);
-            }
-            else{
-                holder.fav.setImageResource(R.drawable.saved);
-                holder.fav.setTag(R.drawable.saved);
-            }
         };
+    }
+    override fun getItemCount(): Int {
+        return jobList.size
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
