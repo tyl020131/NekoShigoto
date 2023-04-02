@@ -39,6 +39,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -53,5 +55,7 @@ dependencies {
 
     // for adding cardview
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "com.github.lisawray.groupie:groupie:2.10.0"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:2.10.0"
 
 }
