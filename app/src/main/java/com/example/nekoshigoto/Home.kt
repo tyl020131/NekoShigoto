@@ -31,13 +31,18 @@ class Home : AppCompatActivity() {
                     loadFragment(ActivityFragment())
                     true
                 }
-                R.id.saved -> {
+                R.id.consultation -> {
                     newPosition = 3
+                    loadFragment(ConsulationFragment())
+                    true
+                }
+                R.id.saved -> {
+                    newPosition = 4
                     loadFragment(SavedFragment())
                     true
                 }
                 else ->{
-                    newPosition = 4
+                    newPosition = 5
                     loadFragment(ProfileFragment())
                     true
                 }
