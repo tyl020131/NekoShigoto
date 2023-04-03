@@ -25,6 +25,7 @@ android {
         customDebugType {
             debuggable true
         }
+
     }
     buildFeatures {
         dataBinding true
@@ -37,6 +38,8 @@ android {
         jvmTarget = '1.8'
     }
 }
+
+
 
 dependencies {
 
@@ -52,5 +55,7 @@ dependencies {
 
     // for adding cardview
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "com.github.lisawray.groupie:groupie:2.10.0"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:2.10.0"
 
 }
