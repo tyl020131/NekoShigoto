@@ -7,28 +7,28 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.Job
 import com.example.nekoshigoto.R
+import com.example.nekoshigoto.User
 import com.google.android.material.imageview.ShapeableImageView
 
-class JobAdapter(private val jobList : ArrayList<Job>) :
-    RecyclerView.Adapter<JobAdapter.MyViewHolder>() {
+class UserAdapter(private val userList : ArrayList<User>) :
+    RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.user_list,parent,false)
         return MyViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return jobList.size
+        return userList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = jobList[position];
+        val currentItem = userList[position];
         holder.propic.setImageResource(currentItem.image)
-        holder.company.text = currentItem.company
-        holder.vacancy.text = currentItem.vacancy
+        holder.name.text = currentItem.name
+        holder.position.text = currentItem.position
         holder.location.text = currentItem.location
-        holder.mode.text = currentItem.mode
 
         holder.fav.setOnClickListener{
 
@@ -45,10 +45,9 @@ class JobAdapter(private val jobList : ArrayList<Job>) :
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)
-        val company : TextView = itemView.findViewById(R.id.company_name)
-        val vacancy : TextView = itemView.findViewById(R.id.vacancy)
+        val name : TextView = itemView.findViewById(R.id.user_name)
+        val position : TextView = itemView.findViewById(R.id.position)
         val location : TextView = itemView.findViewById(R.id.location)
-        val mode : TextView = itemView.findViewById(R.id.mode)
         val fav : ImageButton = itemView.findViewById(R.id.fav)
     }
 }
