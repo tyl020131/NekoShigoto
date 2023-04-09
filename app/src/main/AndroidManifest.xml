@@ -12,6 +12,9 @@
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31">
         <activity
+            android:name=".SetupProfile"
+            android:exported="false" />
+        <activity
             android:name=".UploadResume"
             android:exported="false" />
         <activity
@@ -22,24 +25,24 @@
             android:exported="false" />
         <activity
             android:name=".GetStarted"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
+
         </activity>
 
         <meta-data

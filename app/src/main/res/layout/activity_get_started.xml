@@ -64,7 +64,7 @@
         android:id="@+id/button"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:text="Sign In As Employee"
+        android:text="Sign In As Job Seeker"
         android:background="@drawable/button_light"
         style="@style/button_light"
         app:layout_constraintBottom_toTopOf="@+id/button2"

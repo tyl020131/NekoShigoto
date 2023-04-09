@@ -39,7 +39,7 @@ android {
     }
 }
 
-
+def latestVersion = "1.0.7"
 
 dependencies {
 
@@ -57,5 +57,15 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "com.github.lisawray.groupie:groupie:2.10.0"
     implementation "com.github.lisawray.groupie:groupie-viewbinding:2.10.0"
+
+    //for adding circleview
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+
+    //image picker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+    //for country picker
+    implementation "com.github.nkuppan:country:${latestVersion}"
+    implementation 'com.github.fasilthottathil:CountrySelectionDialog:1.0.5'
 
 }
