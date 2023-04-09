@@ -21,6 +21,19 @@ class ModeAdapter(private val modeList : ArrayList<String>) :
         val currentItem = modeList[position];
         holder.mode_item.text = currentItem.toString()
 
+        holder.mode_item.setOnClickListener {
+            if(it.getTag() == "NotSelected"){
+                it.tag = "Selected";
+                it.setBackgroundDrawable(it.resources.getDrawable(R.drawable.filter_item_selected) )
+                holder.mode_item.setTextColor(it.resources.getColor(R.color.white))
+            }
+            else{
+                it.tag = "NotSelected";
+                it.background = it.resources.getDrawable(R.drawable.filter_item_notselected)
+                holder.mode_item.setTextColor(it.resources.getColor(R.color.black))
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {

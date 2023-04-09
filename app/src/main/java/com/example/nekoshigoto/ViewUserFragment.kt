@@ -3,6 +3,7 @@ package com.example.nekoshigoto
 import FieldAdapter
 import JobAdapter
 import ModeAdapter
+import UserAdapter
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,9 +22,9 @@ import com.google.android.material.slider.RangeSlider
 import com.google.android.material.slider.Slider
 
 
-class HomeFragment : Fragment() {
+class ViewUserFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
-    private lateinit var jobList : ArrayList<Job>
+    private lateinit var userList : ArrayList<User>
     private lateinit var dialogRecyclerView: RecyclerView
     private lateinit var modeList : ArrayList<String>
     private lateinit var fieldRecyclerView: RecyclerView
@@ -38,16 +39,16 @@ class HomeFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_view_user, container, false)
 
         imageId = arrayOf(
             R.drawable.kunkun
         )
-        newRecyclerView = view.findViewById(R.id.jobs)
+        newRecyclerView = view.findViewById(R.id.vacancies)
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
 
-        jobList = arrayListOf<Job>()
+        userList = arrayListOf<User>()
         loadData()
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
@@ -67,7 +68,6 @@ class HomeFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.customer_filter_dialog)
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         fieldRecyclerView = dialog.findViewById(R.id.fieldRecycler)
         dialogRecyclerView = dialog.findViewById(R.id.modeRecycler)
@@ -113,12 +113,12 @@ class HomeFragment : Fragment() {
         fieldRecyclerView.adapter = FieldAdapter(fieldList)
     }
     private fun loadData(){
-        jobList.add(Job(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
-        jobList.add(Job(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
+        userList.add(User(imageId[0],"Wong Zhi Hern", "Product Designer","Penang, Malaysia"))
+        userList.add(User(imageId[0],"Wong Chee Keong","Tyre Mechanic","Johor, Malaysia"))
 
 
 
-        newRecyclerView.adapter = JobAdapter(jobList)
+        newRecyclerView.adapter = UserAdapter(userList)
     }
 
 

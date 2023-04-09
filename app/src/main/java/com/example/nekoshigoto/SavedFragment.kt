@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SavedFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
-    private lateinit var jobList : ArrayList<JobViewModel>
+    private lateinit var jobList : ArrayList<Job>
     lateinit var imageId : Array<Int>
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class SavedFragment : Fragment() {
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
 
-        jobList = arrayListOf<JobViewModel>()
+        jobList = arrayListOf<Job>()
         loadData()
 
         return view;
@@ -42,9 +42,9 @@ class SavedFragment : Fragment() {
     }
 
     private fun loadData(){
-        jobList.add(JobViewModel(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
-        jobList.add(JobViewModel(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
-        jobList.add(JobViewModel(imageId[0],"Ikun Company","Chef","Penang, Malaysia","Full-Time"))
+        jobList.add(Job(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
+        jobList.add(Job(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
+        jobList.add(Job(imageId[0],"Ikun Company","Chef","Penang, Malaysia","Full-Time"))
 
 
 
