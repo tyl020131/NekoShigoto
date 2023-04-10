@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -35,6 +36,12 @@ class SavedFragment : Fragment() {
 
         jobList = arrayListOf<Job>()
         loadData()
+
+        val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
+
+        filterBtn.setOnClickListener {
+            FilterJobDialog(requireContext())
+        }
 
         return view;
 
