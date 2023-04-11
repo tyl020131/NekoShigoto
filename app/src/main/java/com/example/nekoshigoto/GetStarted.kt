@@ -16,6 +16,10 @@ class GetStarted : AppCompatActivity() {
             val intent = Intent(this, EmployeeLogin::class.java)
             startActivity(intent)
         }
+        button2.setOnClickListener{
+            val intent = Intent(this, CompanyLogin::class.java)
+            startActivity(intent)
+        }
     }
 
 }

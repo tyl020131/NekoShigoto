@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color1"
+            android:orientation="vertical"
+            tools:context=".SetupProfile">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/uploadImage"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:src="@drawable/upload" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Full Name"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Email"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Contact No"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextContact"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Address"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Country"
+                android:textColor="@color/color5" />
+
+            <TextView
+                android:id="@+id/editTextCountry"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Select Country"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:fontFamily="@font/inter_medium"
+                android:text="State"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextState"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/business"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:fontFamily="@font/inter_medium"
+                android:text="Business"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextBusiness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button2"
+                style="@style/button_dark"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_dark"
+                android:backgroundTint="@color/color2"
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintVertical_bias="0.5" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
+
+
