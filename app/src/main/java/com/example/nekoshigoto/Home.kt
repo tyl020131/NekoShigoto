@@ -2,6 +2,7 @@ package com.example.nekoshigoto
 
 import JobAdapter
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,36 @@ class Home : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         loadFragment(HomeFragment())
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        val selectedItem = intent.getIntExtra("selectedItem", 0)
+        bottomNav.menu.findItem(selectedItem)?.isChecked = true
+
+        if(selectedItem != 0)
+        {
+            when(selectedItem) {
+                R.id.home -> {
+                    newPosition = 1
+                    loadFragment(HomeFragment())
+                                    }
+                R.id.activity -> {
+                    newPosition = 2
+                    loadFragment(ActivityFragment())
+                                    }
+                R.id.consultation -> {
+                    newPosition = 3
+                    loadFragment(ConsulationFragment())
+                                    }
+                R.id.saved -> {
+                    newPosition = 4
+                    loadFragment(SavedFragment())
+                                    }
+                else ->{
+                    newPosition = 5
+                    loadFragment(ProfileFragment())
+                }
+            }
+
+        }
+
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {

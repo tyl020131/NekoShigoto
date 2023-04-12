@@ -3,4 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_salary_range">RM0.00 - RM100000.00</string>
+    <string-array name="education_array">
+        <item>Select Your Education Level...</item>
+        <item>Secondary School</item>
+        <item>Diploma</item>
+        <item>Bachelor\'s degree</item>
+        <item>Master\'s degree</item>
+
+    </string-array>
 </resources>
