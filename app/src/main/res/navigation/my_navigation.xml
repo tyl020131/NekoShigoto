@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_vacancy"
+    app:startDestination="@id/vacancyFragment">
+
+    <fragment
+        android:id="@+id/vacancyFragment"
+        android:name="com.example.nekoshigoto.VacancyFragment"
+        android:label="VacancyFragment" >
+        <action
+            android:id="@+id/action_vacancyFragment_to_submitVacancyFragment"
+            app:destination="@id/submitVacancyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/submitVacancyFragment"
+        android:name="com.example.nekoshigoto.SubmitVacancyFragment"
+        android:label="SubmitVacancyFragment" >
+        <action
+            android:id="@+id/action_submitVacancyFragment_to_vacancyFragment"
+            app:destination="@id/vacancyFragment" />
+    </fragment>
+</navigation>

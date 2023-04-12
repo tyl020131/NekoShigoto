@@ -1,8 +1,8 @@
 package com.example.nekoshigoto
 
 import FieldAdapter
-import JobAdapter
 import ModeAdapter
+import VacancyAdapter
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexWrap
@@ -21,9 +22,9 @@ import com.google.android.material.slider.RangeSlider
 import com.google.android.material.slider.Slider
 
 
-class HomeFragment : Fragment() {
+class VacancyFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
-    private lateinit var jobList : ArrayList<Job>
+    private lateinit var VacancyList : ArrayList<Job>
     lateinit var imageId : Array<Int>
 
     override fun onCreateView(
@@ -34,22 +35,27 @@ class HomeFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_vacancy, container, false)
 
         imageId = arrayOf(
             R.drawable.kunkun
         )
-        newRecyclerView = view.findViewById(R.id.jobs)
+        newRecyclerView = view.findViewById(R.id.vacancies)
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
 
-        jobList = arrayListOf<Job>()
+        VacancyList = arrayListOf<Job>()
         loadData()
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
         filterBtn.setOnClickListener {
-            FilterJobDialog(requireContext())
+            //showDialog()
+        }
+
+        val create_button : Button = view.findViewById(R.id.create_vacancy_btn)
+        create_button.setOnClickListener {
+            this.findNavController().navigate(R.id.action_vacancyFragment_to_submitVacancyFragment)
         }
 
 
@@ -59,14 +65,13 @@ class HomeFragment : Fragment() {
     }
 
 
-
     private fun loadData(){
-        jobList.add(Job(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
-        jobList.add(Job(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
+        VacancyList.add(Job(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
+        VacancyList.add(Job(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
 
 
 
-        newRecyclerView.adapter = JobAdapter(jobList)
+        newRecyclerView.adapter = VacancyAdapter(VacancyList)
     }
 
 

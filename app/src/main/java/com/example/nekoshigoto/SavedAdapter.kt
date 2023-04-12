@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nekoshigoto.JobViewModel
+import com.example.nekoshigoto.Job
 import com.example.nekoshigoto.R
 import com.google.android.material.imageview.ShapeableImageView
 
-class SavedAdapter(private val jobList : ArrayList<JobViewModel>) :
+class SavedAdapter(private val jobList : ArrayList<Job>) :
     RecyclerView.Adapter<SavedAdapter.MyViewHolder>() {
 
 

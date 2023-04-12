@@ -18,8 +18,10 @@ class EmployeeLogin : AppCompatActivity() {
             val intent = Intent(this, EmployeeRegister::class.java)
             startActivity(intent)
         }
-//        getSupportFragmentManager()
-//            .beginTransaction()
-//            .replace(R.id.fragment_container, EmployeeLogin()).commit()
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(this, SetupProfile::class.java)
+            startActivity(intent)
+        }
+
     }
 }

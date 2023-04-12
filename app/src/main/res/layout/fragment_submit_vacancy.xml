@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color1"
+        tools:context=".Home">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="272dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            style="@style/filter_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="28dp"
+                            android:text="Submit Vacancy"
+                            android:textColor="@color/color5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="170dp"
+                            android:layout_marginTop="28dp"
+                            android:layout_marginEnd="170dp"
+                            android:background="@drawable/border_radius"
+                            android:src="@mipmap/kunkun"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            style="@style/filter_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="142dp"
+                            android:layout_marginTop="27dp"
+                            android:layout_marginEnd="143dp"
+                            android:text="Ikun Company"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+                        <TextView
+                            style="@style/filter_choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="23dp"
+                            android:text="What Are You looking For ?"
+                            android:textColor="@color/color5"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/positiontv"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Position" />
+
+                            <EditText
+                                android:id="@+id/enter_position"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:ems="10"
+                                android:hint="Position...."
+                                android:inputType="textPersonName"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/color2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/field"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Field" />
+
+                            <EditText
+                                android:id="@+id/enter_field"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:ems="10"
+                                android:hint="Field..."
+                                android:inputType="textPersonName"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/color2" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/mode"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Working Mode" />
+
+                            <RadioGroup
+                                android:id="@+id/my_mode"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/ft_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="true"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Full-Time"
+                                    android:textColor="@color/white" />
+
+                                <RadioButton
+                                    android:id="@+id/ptradio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Part-Time"
+                                    android:textColor="@color/white" />
+
+                                <RadioButton
+                                    android:id="@+id/flradio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Freelance"
+                                    android:textColor="@color/white" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/gender"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Gender" />
+
+                            <RadioGroup
+                                android:id="@+id/my_gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/male_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="true"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Male"
+                                    android:textColor="@color/white" />
+
+                                <RadioButton
+                                    android:id="@+id/female_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Female"
+                                    android:textColor="@color/white" />
+
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="15dp">
+
+                            <TextView
+                                android:id="@+id/salary"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Salary"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.google.android.material.slider.Slider
+                                android:id="@+id/normalContinuousSlider"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="32dp"
+                                android:layout_marginTop="2dp"
+                                android:value="0"
+                                android:valueFrom="0"
+                                android:valueTo="100000"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/salary"
+                                app:values="@array/slider_values" />
+
+                            <TextView
+                                android:id="@+id/salary_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginEnd="24dp"
+                                android:text="@string/default_salary_range"
+                                android:textColor="@color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/salary" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/desc"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:inputType="textMultiLine"
+                                android:text="Description" />
+
+                            <EditText
+                                android:id="@+id/desc_val"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:ems="10"
+                                android:hint="Description........"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/color2" />
+                    </LinearLayout>
+
+                        <Button
+                            android:id="@+id/submit_vacancy_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Submit" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

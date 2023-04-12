@@ -8,32 +8,33 @@
             name="message"
             type="com.example.nekoshigoto.Chat" />
     </data>
-<androidx.cardview.widget.CardView
-    style="@style/sender_content"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/color5"
-    app:contentPaddingTop="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/jobb"
+    <androidx.cardview.widget.CardView
+        style="@style/sender_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:paddingBottom="3dp">
+        app:cardBackgroundColor="@color/color1"
+        app:contentPaddingTop="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/jobb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingBottom="3dp">
 
 
-        <TextView
-            android:id="@+id/msg"
-            style="@style/receiver_content"
-            android:maxWidth="150dp"
-            android:text="@{message.content}"
+            <TextView
+                android:id="@+id/msg"
+                style="@style/receiver_content"
+                android:maxWidth="150dp"
+                android:text="@{message.content}"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

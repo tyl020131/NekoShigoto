@@ -2,4 +2,6 @@
 <resources>
     <dimen name="button_width">163dp</dimen>
     <dimen name="button_height">41dp</dimen>
+    <dimen name="form_margin_left">20dp</dimen>
+    <dimen name="form_margin_bot">16dp</dimen>
 </resources>

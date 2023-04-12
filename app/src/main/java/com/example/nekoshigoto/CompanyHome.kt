@@ -1,55 +1,55 @@
 package com.example.nekoshigoto
 
-import JobAdapter
-import android.os.Bundle
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
-class Home : AppCompatActivity() {
-
+class CompanyHome : AppCompatActivity() {
     lateinit var bottomNav : BottomNavigationView
     var newPosition = 0;
     var startingPosition = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        loadFragment(HomeFragment())
+        setContentView(R.layout.activity_company_home)
+
+        loadFragment(VacancyFragment())
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     newPosition = 1
-                    loadFragment(HomeFragment())
+                    loadFragment(VacancyFragment())
                     true
                 }
-                R.id.activity -> {
+                R.id.explore -> {
                     newPosition = 2
-                    loadFragment(ActivityFragment())
+                    loadFragment(ViewUserFragment())
                     true
                 }
-                R.id.consultation -> {
+               else -> {
                     newPosition = 3
                     loadFragment(ConsulationFragment())
-                    true
-                }
-                R.id.saved -> {
-                    newPosition = 4
-                    loadFragment(SavedFragment())
-                    true
-                }
-                else ->{
-                    newPosition = 5
-                    loadFragment(ProfileFragment())
                     true
                 }
             }
         }
 
+        setSession()
 
+
+
+    }
+
+    private fun setSession(){
+        val sharedPreferences: SharedPreferences = getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+
+        val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+
+        myEdit.putString("CompanyEmail", "ikunjiji@gmail.com")
+        myEdit.commit()
 
 
     }
@@ -81,6 +81,4 @@ class Home : AppCompatActivity() {
 
         return false;
     }
-
-
 }
