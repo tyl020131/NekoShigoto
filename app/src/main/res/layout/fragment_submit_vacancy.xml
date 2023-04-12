@@ -92,7 +92,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/field2"
+                                android:id="@+id/positiontv"
                                 style="@style/filter_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                                 android:text="Position" />
 
                             <EditText
-                                android:id="@+id/editTextTextPersonName"
+                                android:id="@+id/enter_position"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -127,13 +127,18 @@
                                 android:layout_marginTop="8dp"
                                 android:text="Field" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/fieldRecycler"
+                            <EditText
+                                android:id="@+id/enter_field"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp" />
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:ems="10"
+                                android:hint="Field..."
+                                android:inputType="textPersonName"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/color2" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -150,13 +155,49 @@
                                 android:layout_marginTop="8dp"
                                 android:text="Working Mode" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/modeRecycler"
+                            <RadioGroup
+                                android:id="@+id/my_mode"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp" />
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/ft_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="true"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Full-Time"
+                                    android:textColor="@color/white" />
+
+                                <RadioButton
+                                    android:id="@+id/ptradio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Part-Time"
+                                    android:textColor="@color/white" />
+
+                                <RadioButton
+                                    android:id="@+id/flradio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Freelance"
+                                    android:textColor="@color/white" />
+
+                            </RadioGroup>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -171,43 +212,37 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="8dp"
-                                android:text="Working Mode" />
+                                android:text="Gender" />
 
                             <RadioGroup
+                                android:id="@+id/my_gender"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="0dp"
-                                android:layout_marginEnd="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:orientation="horizontal">
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                <RadioButton
+                                    android:id="@+id/male_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="true"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Male"
+                                    android:textColor="@color/white" />
 
-                                    <RadioButton
-                                        android:id="@+id/male_radio"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:buttonTint="#0355F3"
-                                        android:checked="true"
-                                        android:fontFamily="@font/inter_bold"
-                                        android:text="Male"
-                                        android:textColor="@color/white"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <RadioButton
-                                        android:id="@+id/female_radio"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="26dp"
-                                        android:buttonTint="#0355F3"
-                                        android:checked="false"
-                                        android:fontFamily="@font/inter_bold"
-                                        android:text="Female"
-                                        android:textColor="@color/white"
-                                        app:layout_constraintStart_toEndOf="@+id/male_radio"
-                                        app:layout_constraintTop_toTopOf="parent" />
-                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <RadioButton
+                                    android:id="@+id/female_radio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="26dp"
+                                    android:buttonTint="#0355F3"
+                                    android:checked="false"
+                                    android:fontFamily="@font/inter_bold"
+                                    android:text="Female"
+                                    android:textColor="@color/white" />
 
                             </RadioGroup>
                         </LinearLayout>
@@ -224,16 +259,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="8dp"
-                                android:text="Expected Salary"
+                                android:text="Salary"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <com.google.android.material.slider.RangeSlider
-                                android:id="@+id/continuousRangeSlider"
+                            <com.google.android.material.slider.Slider
+                                android:id="@+id/normalContinuousSlider"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="32dp"
                                 android:layout_marginTop="2dp"
+                                android:value="0"
                                 android:valueFrom="0"
                                 android:valueTo="100000"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -254,8 +290,36 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+                        <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/desc"
+                                style="@style/filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
+                                android:inputType="textMultiLine"
+                                android:text="Description" />
+
+                            <EditText
+                                android:id="@+id/desc_val"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:ems="10"
+                                android:hint="Description........"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/color2" />
+                    </LinearLayout>
+
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/submit_vacancy_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Submit" />

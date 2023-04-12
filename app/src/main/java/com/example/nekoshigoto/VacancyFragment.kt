@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexWrap
@@ -50,6 +51,11 @@ class VacancyFragment : Fragment() {
 
         filterBtn.setOnClickListener {
             //showDialog()
+        }
+
+        val create_button : Button = view.findViewById(R.id.create_vacancy_btn)
+        create_button.setOnClickListener {
+            this.findNavController().navigate(R.id.action_vacancyFragment_to_submitVacancyFragment)
         }
 
 
