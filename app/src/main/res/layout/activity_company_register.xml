@@ -50,114 +50,28 @@
                 android:paddingRight="5dp" />
 
             <TextView
-                android:id="@+id/gender"
+                android:id="@+id/emailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/form_margin_left"
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:fontFamily="@font/inter_medium"
-                android:text="Gender"
+                android:text="Email"
                 android:textColor="@color/color5" />
 
-            <LinearLayout
-                android:id="@+id/radioButtonLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/color1"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="@dimen/form_margin_left"
-                    android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot">
-
-                    <RadioButton
-                        android:id="@+id/male"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Male"
-                        android:textColor="@color/color5" />
-
-                    <RadioButton
-                        android:id="@+id/female"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Female"
-                        android:textColor="@color/color5" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/nationality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Nationality"
-                android:textColor="@color/color5" />
-
-            <LinearLayout
-                android:id="@+id/radioButtonLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:background="@color/color1"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/nationalityGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/form_margin_left"
-                    android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Malaysian"
-                        android:textColor="@color/color5" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Non-Malaysian"
-                        android:textColor="@color/color5" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Date of Birth"
-                android:textColor="@color/color5" />
-
-            <TextView
-                android:id="@+id/editTextDob"
+            <EditText
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="@dimen/form_margin_left"
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="Click here to select DOB"
-                android:textSize="18sp" />
+                android:paddingRight="5dp" />
 
             <TextView
                 android:id="@+id/contact"
@@ -184,26 +98,28 @@
                 android:paddingRight="5dp" />
 
             <TextView
-                android:id="@+id/icno"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/form_margin_left"
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:fontFamily="@font/inter_medium"
-                android:text="IC No / Passport No"
+                android:text="Address"
                 android:textColor="@color/color5" />
 
             <EditText
-                android:id="@+id/editTextIcno"
+                android:id="@+id/editTextAddress"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
                 android:layout_marginStart="@dimen/form_margin_left"
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:background="@color/color5"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp" />
 
@@ -228,7 +144,7 @@
                 android:background="@color/color5"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="Click here to select country"
+                android:text="Select Country"
                 android:textSize="18sp" />
 
             <TextView
@@ -236,8 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
+                android:layout_marginEnd="@dimen/form_margin_left"
                 android:fontFamily="@font/inter_medium"
                 android:text="State"
                 android:textColor="@color/color5" />
@@ -255,6 +171,34 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp" />
 
+            <TextView
+                android:id="@+id/business"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:fontFamily="@font/inter_medium"
+                android:text="Business"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextBusiness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button2"
                 style="@style/button_dark"
@@ -265,30 +209,13 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/button_dark"
                 android:backgroundTint="@color/color2"
-                android:text="Edit" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/saveButton"
-                style="@style/button_dark"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/button_dark"
-                android:backgroundTint="@color/color2"
-                android:text="Save" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/qualificationButton"
-                style="@style/button_light"
-                android:background="@drawable/button_light"
-                android:text="Qualification"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintVertical_bias="0.5" />
 
 
         </LinearLayout>

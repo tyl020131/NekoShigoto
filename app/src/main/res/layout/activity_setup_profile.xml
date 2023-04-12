@@ -265,30 +265,13 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/button_dark"
                 android:backgroundTint="@color/color2"
-                android:text="Edit" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/saveButton"
-                style="@style/button_dark"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/button_dark"
-                android:backgroundTint="@color/color2"
-                android:text="Save" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/qualificationButton"
-                style="@style/button_light"
-                android:background="@drawable/button_light"
-                android:text="Qualification"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintVertical_bias="0.5" />
 
 
         </LinearLayout>
