@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "556050602464",
+    "project_id": "nekoshigoto-6c7d7",
+    "storage_bucket": "nekoshigoto-6c7d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556050602464:android:8a620551ba04d5fba17385",
+        "android_client_info": {
+          "package_name": "com.example.nekoshigoto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556050602464-n755cjrghdinu1hnsadu0tgf1mladjmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz_CA4iIA0p8IC_89ddavtFST5xxf1UKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556050602464-n755cjrghdinu1hnsadu0tgf1mladjmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

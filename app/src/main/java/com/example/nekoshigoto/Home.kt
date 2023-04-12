@@ -90,20 +90,20 @@ class Home : AppCompatActivity() {
             if(startingPosition == newPosition){
                 getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
             }
             if(startingPosition > newPosition) {
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_right_exit )
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
 
             }
             if(startingPosition < newPosition) {
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
 
             }
             startingPosition = newPosition;

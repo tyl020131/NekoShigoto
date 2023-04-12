@@ -8,12 +8,14 @@
     android:background="@color/color1"
     tools:context=".Home">
 
-    <FrameLayout
-        android:id="@+id/container"
+    <fragment
+        android:id="@+id/Container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNav"
-        />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/my_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

@@ -1,5 +1,7 @@
 package com.example.nekoshigoto
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,7 +37,19 @@ class CompanyHome : AppCompatActivity() {
             }
         }
 
+        setSession()
 
+
+
+    }
+
+    private fun setSession(){
+        val sharedPreferences: SharedPreferences = getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+
+        val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+
+        myEdit.putString("CompanyEmail", "ikunjiji@gmail.com")
+        myEdit.commit()
 
 
     }
@@ -45,20 +59,20 @@ class CompanyHome : AppCompatActivity() {
             if(startingPosition == newPosition){
                 getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
             }
             if(startingPosition > newPosition) {
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_right_exit )
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
 
             }
             if(startingPosition < newPosition) {
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
-                    .replace(R.id.container, fragment).commit();
+                    .replace(R.id.Container, fragment).commit();
 
             }
             startingPosition = newPosition;
