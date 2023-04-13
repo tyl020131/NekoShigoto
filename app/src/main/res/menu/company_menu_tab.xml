@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/vacancyFragment"
         android:icon="@drawable/home"
         android:title="My Vacancy" />
 
     <item
-        android:id="@+id/explore"
+        android:id="@+id/viewUserFragment"
         android:icon="@drawable/explore"
         android:title="Explore" />
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile"
         android:title="Profile" />
 </menu>

@@ -4,6 +4,9 @@ import JobAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,9 +20,11 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        loadFragment(HomeFragment())
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        bottomNav.setOnItemSelectedListener {
+
+        val navController = this.findNavController(R.id.Container)
+        bottomNav.setupWithNavController(navController)
+        /*bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     newPosition = 1
@@ -47,7 +52,7 @@ class Home : AppCompatActivity() {
                     true
                 }
             }
-        }
+        }*/
 
 
 
