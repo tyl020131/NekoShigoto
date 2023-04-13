@@ -20,4 +20,63 @@
             android:id="@+id/action_submitVacancyFragment_to_vacancyFragment"
             app:destination="@id/vacancyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/consulationFragment"
+        android:name="com.example.nekoshigoto.ConsulationFragment"
+        android:label="ConsulationFragment" >
+        <action
+            android:id="@+id/action_consulationFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_consulationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_consulationFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.nekoshigoto.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.nekoshigoto.SavedFragment"
+        android:label="SavedFragment" >
+        <action
+            android:id="@+id/action_savedFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment" />
+        <action
+            android:id="@+id/action_savedFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_savedFragment_to_consulationFragment2"
+            app:destination="@id/consulationFragment" />
+        <action
+            android:id="@+id/action_savedFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.nekoshigoto.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment" />
+    </fragment>
 </navigation>
