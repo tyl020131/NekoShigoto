@@ -120,7 +120,7 @@ class SetupProfile : AppCompatActivity() {
 
         binding.button2.setOnClickListener{
             val intent = Intent(this, Home::class.java)
-            intent.putExtra("selectedItem", com.example.nekoshigoto.R.id.saved)
+            //intent.putExtra("selectedItem", com.example.nekoshigoto.R.id.saved)
             startActivity(intent)
         }
     }
