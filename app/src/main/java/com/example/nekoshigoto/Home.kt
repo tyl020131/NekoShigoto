@@ -1,12 +1,10 @@
 package com.example.nekoshigoto
 
-import JobAdapter
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -111,6 +109,38 @@ class Home : AppCompatActivity() {
         }
 
         return false;
+    }
+
+//    override fun onBackPressed() {
+//
+//        val fm: FragmentManager = supportFragmentManager
+//        if (fm.backStackEntryCount > 0) {
+//            Log.i("MainActivity", "popping backstack")
+//            fm.popBackStack()
+//        } else {
+//            Log.i("MainActivity", "nothing on backstack, calling super")
+//            super.onBackPressed()
+//        }
+//    }
+
+    override fun onBackPressed() {
+
+        val fragmentManager = supportFragmentManager
+        if (fragmentManager.backStackEntryCount > 1) {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            fragmentManager.popBackStackImmediate()
+        } else {
+            Toast.makeText(this, fragmentManager.backStackEntryCount.toString(), Toast.LENGTH_SHORT).show()
+            super.onBackPressed()
+        }
+    }
+
+    fun showUpButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun hideUpButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
 

@@ -18,19 +18,20 @@
             android:background="@drawable/border_radius"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
             app:srcCompat="@drawable/backicon" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="243dp"
             android:layout_height="51dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:text="User Profile"
             android:textColor="#F8F8F8"
             android:textSize="34sp"
-            app:layout_constraintStart_toEndOf="@+id/back_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView

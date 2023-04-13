@@ -1,16 +1,13 @@
 package com.example.nekoshigoto
 
-import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.nekoshigoto.databinding.FragmentQualificationBinding
 
 class QualificationFragment : Fragment() {
@@ -79,28 +76,45 @@ class QualificationFragment : Fragment() {
         }
 
         binding.button2.setOnClickListener {
-            activity
-                ?.supportFragmentManager
-                ?.beginTransaction()?.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
-                ?.replace(R.id.container, ProfileFragment())
-                ?.commit()
+//            activity
+//                ?.supportFragmentManager
+//                ?.beginTransaction()?.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
+//                ?.replace(R.id.Container, ProfileFragment())
+//                ?.commit()
+            (activity as Home).onBackPressed()
+            true
 
         }
         return binding.root
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.container, ProfileFragment())
-                fragmentTransaction?.addToBackStack(null)
-                fragmentTransaction?.commit()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            android.R.id.home -> {
+//                val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+//                fragmentTransaction?.replace(R.id.Container, ProfileFragment())
+//                fragmentTransaction?.commit()
+//                return true
+//            }
+//            else -> return super.onOptionsItemSelected(item)
+//        }
+//    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home?
+        activity?.showUpButton()
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.getItemId()) {
+//            android.R.id.home -> {
+//                (activity as Home).onBackPressed()
+//                true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {

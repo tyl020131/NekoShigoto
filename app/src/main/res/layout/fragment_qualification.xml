@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 android:paddingRight="5dp" />
 
             <TextView
-                android:id="@+id/contact"
+                android:id="@+id/field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/form_margin_left"
@@ -64,7 +64,7 @@
                 android:textColor="@color/color5" />
 
             <EditText
-                android:id="@+id/editTextContact"
+                android:id="@+id/editTextField"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="@dimen/form_margin_left"
@@ -91,7 +91,8 @@
                 android:id="@+id/editTextExp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="40dp"
+                android:minHeight="80dp"
+                android:layout_weight="3"
                 android:inputType="textMultiLine"
                 android:gravity="top|start"
                 android:layout_marginStart="@dimen/form_margin_left"

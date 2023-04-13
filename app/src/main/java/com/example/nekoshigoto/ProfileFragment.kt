@@ -1,14 +1,12 @@
 package com.example.nekoshigoto
 
 import android.os.Bundle
-import android.text.TextUtils.replace
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.nekoshigoto.databinding.FragmentProfileBinding
-import com.example.nekoshigoto.databinding.FragmentQualificationBinding
 
 
 class ProfileFragment : Fragment() {
@@ -26,14 +24,21 @@ class ProfileFragment : Fragment() {
         binding.saveButton.visibility = View.GONE
 
         binding.qualificationButton.setOnClickListener {
-            activity
-                ?.supportFragmentManager
-                ?.beginTransaction()?.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
-                ?.replace(R.id.container, QualificationFragment())
-                ?.commit()}
+
+            //it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
+            val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.Container, QualificationFragment())
+            fragmentTransaction?.commit()
+        }
 
         return binding.root
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.hideUpButton()
     }
 
 
