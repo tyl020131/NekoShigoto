@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +27,8 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -81,9 +82,6 @@ class ConsulationFragment : Fragment() {
             val sender_id = userid
             val chat = Chat(sender_id,receiver_id,content,Date())
             database.child(String.format("%s%s%s",Date(),sender_id,receiver_id)).setValue(chat)
-            chatList.add(Chat(sender_id,receiver_id,content, Date()) )
-            messageAdapter.add(SendMessageItem(chatList.get(chatList.size-1)))
-            newRecyclerView.scrollToPosition(chatList.size-1);
             chatMessage.text.clear()
 
         }
