@@ -16,6 +16,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [file_provider: "nekoshigoto"]
     }
 
     buildTypes {
@@ -52,6 +53,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -75,5 +78,7 @@ dependencies {
     //for country picker
     implementation "com.github.nkuppan:country:${latestVersion}"
     implementation 'com.github.fasilthottathil:CountrySelectionDialog:1.0.5'
+
+
 
 }
