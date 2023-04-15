@@ -2,4 +2,4 @@ package com.example.nekoshigoto
 
 import java.util.Date
 
-data class Chat(val sender : Int, val receiver : Int, val content : String, val date: Date)
+data class Chat(val sender : String?=null, val receiver : String?=null, val content : String?=null, val date: Date?=null)
