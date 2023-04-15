@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexWrap
@@ -32,7 +33,9 @@ class HomeFragment : Fragment() {
 
 
     ): View? {
-
+        // Disable the up button
+        setHasOptionsMenu(true)
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -67,6 +70,12 @@ class HomeFragment : Fragment() {
 
 
         newRecyclerView.adapter = JobAdapter(jobList)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
     }
 
 

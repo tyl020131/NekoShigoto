@@ -25,7 +25,7 @@ import java.util.*
 class SetupProfile : AppCompatActivity() {
     private lateinit var binding : ActivitySetupProfileBinding
     private lateinit var selectedImg : Uri
-    private lateinit var dialog : AlertDialog.Builder
+    //private lateinit var dialog : AlertDialog.Builder
     private lateinit var pdfUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +83,7 @@ class SetupProfile : AppCompatActivity() {
                     }
                     // Select "Cancel" to cancel the task
                     choice[item] == "Cancel" -> {
-                        selectPdf()
+
                     }
                 }
             })
@@ -105,22 +105,44 @@ class SetupProfile : AppCompatActivity() {
                 }
         }
 
+//        //to create datepicker dialog
+//        val calendar = Calendar.getInstance()
+//        val datePicker = DatePickerDialog.OnDateSetListener{view, year, month, day ->
+//            calendar.set(Calendar.YEAR, year)
+//            calendar.set(Calendar.MONTH, month)
+//            calendar.set(Calendar.DAY_OF_MONTH, day)
+//            updateField(calendar)
+//        }
+//
+//        binding.editTextDob.setOnClickListener{
+//            DatePickerDialog(this, datePicker, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+//        }
+
         val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener{view, year, month, day ->
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, day)
             updateField(calendar)
-
         }
 
-        binding.editTextDob.setOnClickListener{
-            DatePickerDialog(this, datePicker, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+        // Set max date to today's date
+        val maxDate = System.currentTimeMillis()
+        val datePickerDialog = DatePickerDialog(
+            this,
+            datePicker,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.datePicker.maxDate = maxDate
+
+        binding.editTextDob.setOnClickListener {
+            datePickerDialog.show()
         }
 
         binding.button2.setOnClickListener{
             val intent = Intent(this, Home::class.java)
-            //intent.putExtra("selectedItem", com.example.nekoshigoto.R.id.saved)
             startActivity(intent)
         }
     }
@@ -170,32 +192,5 @@ class SetupProfile : AppCompatActivity() {
                 Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-        // For loading PDF
-        when (requestCode) {
-            12 -> if (resultCode == RESULT_OK) {
-
-                pdfUri = data?.data!!
-                val uri: Uri = data?.data!!
-                val uriString: String = uri.toString()
-                var pdfName: String? = null
-                if (uriString.startsWith("content://")) {
-                    var myCursor: Cursor? = null
-                    try {
-                        myCursor = applicationContext!!.contentResolver.query(uri, null, null, null, null)
-                        if (myCursor != null && myCursor.moveToFirst()) {
-                            val nameIndex = myCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                            if (nameIndex >= 0) {
-                                pdfName = myCursor.getString(nameIndex)
-                            }
-                            binding.dob.text = pdfName
-                        }
-                    } finally {
-                        myCursor?.close()
-                    }
-                }
-            }
-        }
-
-
     }
 }

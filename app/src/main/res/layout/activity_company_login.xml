@@ -100,9 +100,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
-            style="@style/button_light"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
+            style="@style/button_light"
             android:background="@drawable/button_light"
             android:text="Register"
             app:layout_constraintBottom_toBottomOf="@+id/view"

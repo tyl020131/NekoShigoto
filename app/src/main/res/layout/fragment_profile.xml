@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <ScrollView
-
+        android:id="@+id/scrollView2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -12,251 +12,475 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color1"
-            android:orientation="vertical"
-            tools:context=".SetupProfile">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/uploadImage"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:src="@drawable/upload" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Full Name"
-                android:textColor="@color/color5" />
-
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-
-            <TextView
-                android:id="@+id/gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Gender"
-                android:textColor="@color/color5" />
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/radioButtonLayout2"
+                android:id="@+id/viewLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/color1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:src="@drawable/megumin" />
 
-                <RadioGroup
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textA"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Full Name"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot">
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:text="name"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
 
-                    <RadioButton
-                        android:id="@+id/male"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Male"
-                        android:textColor="@color/color5" />
-
-                    <RadioButton
-                        android:id="@+id/female"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Female"
-                        android:textColor="@color/color5" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/nationality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Nationality"
-                android:textColor="@color/color5" />
-
-            <LinearLayout
-                android:id="@+id/radioButtonLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:background="@color/color1"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/nationalityGroup"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textB"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:orientation="horizontal">
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Gender"
+                    android:textColor="@color/color5" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Malaysian"
-                        android:textColor="@color/color5" />
+                <EditText
+                    android:id="@+id/textGender"
+                    android:layout_width="match_parent"
+                    android:text="male"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:text="Non-Malaysian"
-                        android:textColor="@color/color5" />
-                </RadioGroup>
+                <TextView
+                    android:id="@+id/nationality1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Nationality"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textNationality"
+                    android:text="Malaysian"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+
+                <TextView
+                    android:id="@+id/textC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Date of Birth"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textDOB"
+                    android:layout_width="match_parent"
+                    android:text="20/09/2003"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/textD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Contact No"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textContact"
+                    android:text="012-1234567"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/textE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="IC No / Passport No"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textIcNo"
+                    android:text="111111-11-1111"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/textF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Country"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textCountry"
+                    android:text="Malaysia"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/textG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="State"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/textState"
+                    android:text="Penang"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/dob"
+            <LinearLayout
+                android:id="@+id/editLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Date of Birth"
-                android:textColor="@color/color5" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/editTextDob"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="Click here to select DOB"
-                android:textSize="18sp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/uploadImage"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:src="@drawable/upload" />
 
-            <TextView
-                android:id="@+id/contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Contact No"
-                android:textColor="@color/color5" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Full Name"
+                    android:textColor="@color/color5" />
 
-            <EditText
-                android:id="@+id/editTextContact"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
 
-            <TextView
-                android:id="@+id/icno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="IC No / Passport No"
-                android:textColor="@color/color5" />
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Gender"
+                    android:textColor="@color/color5" />
 
-            <EditText
-                android:id="@+id/editTextIcno"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <LinearLayout
+                    android:id="@+id/radioButtonLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color1"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Country"
-                android:textColor="@color/color5" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/form_margin_left"
+                        android:layout_marginEnd="@dimen/form_margin_left"
+                        android:layout_marginBottom="@dimen/form_margin_bot">
 
-            <TextView
-                android:id="@+id/editTextCountry"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="Click here to select country"
-                android:textSize="18sp" />
+                        <RadioButton
+                            android:id="@+id/male"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:text="Male"
+                            android:textColor="@color/color5" />
 
-            <TextView
-                android:id="@+id/state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="State"
-                android:textColor="@color/color5" />
+                        <RadioButton
+                            android:id="@+id/female"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:text="Female"
+                            android:textColor="@color/color5" />
+                    </RadioGroup>
+                </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextState"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <TextView
+                    android:id="@+id/nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Nationality"
+                    android:textColor="@color/color5" />
+
+                <LinearLayout
+                    android:id="@+id/radioButtonLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/color1"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/nationalityGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/form_margin_left"
+                        android:layout_marginEnd="@dimen/form_margin_left"
+                        android:layout_marginBottom="@dimen/form_margin_bot"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButton"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:text="Malaysian"
+                            android:textColor="@color/color5" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:text="Non-Malaysian"
+                            android:textColor="@color/color5" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Date of Birth"
+                    android:textColor="@color/color5" />
+
+                <TextView
+                    android:id="@+id/editTextDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Click here to select DOB"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Contact No"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/icno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="IC No / Passport No"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextIcno"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Country"
+                    android:textColor="@color/color5" />
+
+                <TextView
+                    android:id="@+id/editTextCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Click here to select country"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="State"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextState"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button2"
+                android:id="@+id/editButton"
                 style="@style/button_dark"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -284,6 +508,17 @@
                 style="@style/button_light"
                 android:background="@drawable/button_light"
                 android:text="Qualification"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancelButton"
+                style="@style/button_light"
+                android:background="@drawable/button_light"
+                android:text="Cancel"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

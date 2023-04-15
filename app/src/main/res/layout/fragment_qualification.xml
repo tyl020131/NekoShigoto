@@ -27,149 +27,157 @@
                 android:textColor="@color/color5"
                 android:textSize="30dp"/>
 
-            <TextView
-                android:id="@+id/textView6"
+            <LinearLayout
+                android:id="@+id/viewLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Full Name"
-                android:textColor="@color/color5" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Full Name"
+                    android:textColor="@color/color5" />
 
-            <TextView
-                android:id="@+id/field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Field"
-                android:textColor="@color/color5" />
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
 
-            <EditText
-                android:id="@+id/editTextField"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <TextView
+                    android:id="@+id/field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Field"
+                    android:textColor="@color/color5" />
 
-            <TextView
-                android:id="@+id/expTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Study / Working Experience"
-                android:textColor="@color/color5" />
+                <Spinner
+                    android:id="@+id/fieldSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="test"
+                    android:textSize="18sp"/>
 
-            <EditText
-                android:id="@+id/editTextExp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="80dp"
-                android:layout_weight="3"
-                android:inputType="textMultiLine"
-                android:gravity="top|start"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:ems="10"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                <TextView
+                    android:id="@+id/expTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Study / Working Experience"
+                    android:textColor="@color/color5" />
 
-            <TextView
-                android:id="@+id/educationTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Education Level"
-                android:textColor="@color/color5" />
+                <EditText
+                    android:id="@+id/editTextExp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Write Something..."
+                    android:minHeight="80dp"
+                    android:layout_weight="3"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|start"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
 
-            <Spinner
-                android:id="@+id/educationLevelSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="test"
-                android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/educationTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Education Level"
+                    android:textColor="@color/color5" />
 
-            <TextView
-                android:id="@+id/state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:fontFamily="@font/inter_medium"
-                android:text="Resume"
-                android:textColor="@color/color5" />
+                <Spinner
+                    android:id="@+id/educationLevelSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="test"
+                    android:textSize="18sp"/>
 
-            <TextView
-                android:id="@+id/editTextResume"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/form_margin_left"
-                android:layout_marginEnd="@dimen/form_margin_left"
-                android:layout_marginBottom="@dimen/form_margin_bot"
-                android:background="@color/color5"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="Click here to upload resume"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Resume"
+                    android:textColor="@color/color5" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button2"
-                style="@style/button_dark"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/button_dark"
-                android:backgroundTint="@color/color2"
-                android:text="Save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button"
-                app:layout_constraintVertical_bias="0.5" />
+                <TextView
+                    android:id="@+id/editTextResume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:minHeight="40dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Click here to upload resume"
+                    android:textSize="18sp" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button2"
+                    style="@style/button_dark"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_dark"
+                    android:backgroundTint="@color/color2"
+                    android:text="Save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button"
+                    app:layout_constraintVertical_bias="0.5" />
 
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

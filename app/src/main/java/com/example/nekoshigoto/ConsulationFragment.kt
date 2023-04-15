@@ -89,11 +89,6 @@ class ConsulationFragment : Fragment() {
         chatList.add(Chat(1,2,"weak chicken", Date("3 March 2023")) )
         chatList.add(Chat(2,1,"weak chinken", Date("3 March 2023")) )
 
-
-
-
-
-
     }
 
     class SendMessageItem(private val chat: Chat) : BindableItem<SenderChatBinding>() {
@@ -129,5 +124,10 @@ class ConsulationFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+    }
 
 }
