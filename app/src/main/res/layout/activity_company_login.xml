@@ -70,7 +70,7 @@
             app:layout_constraintVertical_bias="0.091" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/password_text"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:ems="10"
@@ -89,14 +89,14 @@
             style="@style/button_dark"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+
             android:background="@drawable/button_dark"
-
             android:text="Sign In"
-            app:layout_constraintEnd_toEndOf="parent"
 
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/password_text" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
@@ -123,6 +123,18 @@
             android:textSize="24dp"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <ImageView
+            android:id="@+id/eyeView"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/password_text"
+            app:layout_constraintHorizontal_bias="0.962"
+            app:layout_constraintStart_toStartOf="@+id/password_text"
+            app:layout_constraintTop_toBottomOf="@+id/email_text"
+            app:srcCompat="@drawable/eye_open" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

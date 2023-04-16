@@ -13,6 +13,7 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.example.nekoshigoto.databinding.FragmentProfileBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 
@@ -28,6 +29,9 @@ class ProfileFragment : Fragment() {
         // Disable the up button
         setHasOptionsMenu(true)
         activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
+        Glide.with(this)
+            .load("https://firebasestorage.googleapis.com/v0/b/nekoshigoto-6c7d7.appspot.com/o/Employee%2F1681560152143?alt=media&token=a36bb3e1-6dc3-4fb0-ae2f-bbd08e021e1c")
+            .into(binding.profileImage)
         
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
