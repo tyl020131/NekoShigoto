@@ -6,8 +6,245 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color3"
+        android:background="@color/color1"
         tools:context=".EmployeeLogin">
+
+        <TextView
+            android:id="@+id/view_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Applying for:"
+            android:textColor="@color/color5"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="394dp"
+            android:layout_height="147dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/button_dark"
+            android:backgroundTint="@color/color3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profilepic"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="76dp"
+            app:layout_constraintEnd_toStartOf="@+id/company_name"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:srcCompat="@drawable/kunkun" />
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="197dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Kunkun Company"
+            android:textColor="@color/color2"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/profilepic"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/vacancy"
+            android:layout_width="294dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Product Designer"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/profilepic"
+            app:layout_constraintTop_toBottomOf="@+id/company_name" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="364dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Penang, Malaysia"
+            android:textColor="@color/color2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+
+        <TextView
+            android:id="@+id/mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Freelance"
+            android:textColor="@color/color4"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location" />
+
+        <TextView
+            android:id="@+id/mode2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Freelance"
+            android:textColor="@color/color4"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.249"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location" />
+
+        <TextView
+            android:id="@+id/view_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="236dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Application:"
+            android:textColor="@color/color5"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="394dp"
+            android:layout_height="147dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="268dp"
+            android:background="@drawable/button_dark"
+            android:backgroundTint="@color/color3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profilepic2"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="284dp"
+            app:layout_constraintEnd_toStartOf="@+id/company_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:srcCompat="@drawable/kunkun" />
+
+        <TextView
+            android:id="@+id/company_name2"
+            android:layout_width="197dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Kunkun Company"
+            android:textColor="@color/color2"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/profilepic2"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/vacancy2"
+            android:layout_width="294dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Product Designer"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/profilepic2"
+            app:layout_constraintTop_toBottomOf="@+id/company_name2" />
+
+        <TextView
+            android:id="@+id/location2"
+            android:layout_width="364dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Penang, Malaysia"
+            android:textColor="@color/color2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilepic2" />
+
+        <TextView
+            android:id="@+id/mode4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Freelance"
+            android:textColor="@color/color4"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location2" />
+
+        <TextView
+            android:id="@+id/mode3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Freelance"
+            android:textColor="@color/color4"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.242"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1"
@@ -15,9 +252,9 @@
             android:layout_height="44dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_dark"
-            android:backgroundTint="#3069FA"
+            android:backgroundTint="@color/color8"
             android:fontFamily="sans-serif-medium"
-            android:text="Apply"
+            android:text="Reject"
             android:textColor="@color/color5"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,9 +268,9 @@
             android:layout_height="44dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_dark"
-            android:backgroundTint="#3069FA"
+            android:backgroundTint="@color/color10"
             android:fontFamily="sans-serif-medium"
-            android:text="Apply"
+            android:text="Approve"
             android:textColor="@color/color5"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
