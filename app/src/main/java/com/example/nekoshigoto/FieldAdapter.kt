@@ -11,7 +11,7 @@ import com.google.android.material.imageview.ShapeableImageView
 
 class FieldAdapter(private val fieldList : ArrayList<String>) :
     RecyclerView.Adapter<FieldAdapter.MyViewHolder>() {
-
+    var fields : ArrayList<String> = arrayListOf<String>();
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.filter_item,parent,false)
@@ -24,17 +24,22 @@ class FieldAdapter(private val fieldList : ArrayList<String>) :
         holder.mode_item.tag = "NotSelected"
         holder.mode_item.setOnClickListener {
             if(it.getTag() == "NotSelected"){
+                fields.add(currentItem.toString())
                 it.tag = "Selected";
                 it.setBackgroundDrawable(it.resources.getDrawable(R.drawable.filter_item_selected) )
                 holder.mode_item.setTextColor(it.resources.getColor(R.color.white))
             }
             else{
+                fields.remove(currentItem.toString())
                 it.tag = "NotSelected";
                 it.background = it.resources.getDrawable(R.drawable.filter_item_notselected)
                 holder.mode_item.setTextColor(it.resources.getColor(R.color.black))
             }
         }
 
+    }
+    fun getSFields():ArrayList<String>{
+        return fields;
     }
 
     override fun getItemCount(): Int {

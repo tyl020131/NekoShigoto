@@ -10,7 +10,7 @@ import com.google.android.material.imageview.ShapeableImageView
 
 class ModeAdapter(private val modeList : ArrayList<String>) :
     RecyclerView.Adapter<ModeAdapter.MyViewHolder>() {
-
+    val modes : ArrayList<String> = arrayListOf<String>();
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.filter_item,parent,false)
@@ -23,11 +23,13 @@ class ModeAdapter(private val modeList : ArrayList<String>) :
 
         holder.mode_item.setOnClickListener {
             if(it.getTag() == "NotSelected"){
+                modes.add(currentItem.toString())
                 it.tag = "Selected";
                 it.setBackgroundDrawable(it.resources.getDrawable(R.drawable.filter_item_selected) )
                 holder.mode_item.setTextColor(it.resources.getColor(R.color.white))
             }
             else{
+                modes.remove(currentItem.toString())
                 it.tag = "NotSelected";
                 it.background = it.resources.getDrawable(R.drawable.filter_item_notselected)
                 holder.mode_item.setTextColor(it.resources.getColor(R.color.black))
@@ -35,7 +37,9 @@ class ModeAdapter(private val modeList : ArrayList<String>) :
         }
 
     }
-
+    fun getSModes() : ArrayList<String>{
+        return modes
+    }
     override fun getItemCount(): Int {
         return modeList.size
     }

@@ -128,40 +128,35 @@
                     android:text="Working Mode" />
 
                 <RadioGroup
+                    android:id="@+id/grp_gender"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|left"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp">
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <RadioButton
+                        android:id="@+id/male_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#0355F3"
+                        android:checked="true"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Male"
+                        android:textColor="@color/white" />
 
-                        <RadioButton
-                            android:id="@+id/male_radio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="#0355F3"
-                            android:checked="true"
-                            android:fontFamily="@font/inter_bold"
-                            android:text="Male"
-                            android:textColor="@color/white"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <RadioButton
-                            android:id="@+id/female_radio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="26dp"
-                            android:buttonTint="#0355F3"
-                            android:checked="false"
-                            android:fontFamily="@font/inter_bold"
-                            android:text="Female"
-                            android:textColor="@color/white"
-                            app:layout_constraintStart_toEndOf="@+id/male_radio"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <RadioButton
+                        android:id="@+id/female_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:buttonTint="#0355F3"
+                        android:checked="false"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Female"
+                        android:textColor="@color/white" />
 
                 </RadioGroup>
             </LinearLayout>
@@ -224,17 +219,22 @@
                     android:text="Sort by" />
 
                 <TextView
+                    android:id="@+id/salary_high"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:drawableEnd="@drawable/mdi_tick"
+                    android:drawableTint="@color/unsorted"
                     android:text="Expected Salary : High To Low"
                     android:textColor="@color/color5" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/salary_low"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:drawableEnd="@drawable/mdi_tick"
+                    android:drawableTint="#0E1926"
                     android:text="Expected Salary : To Low High"
                     android:textColor="@color/color5" />
 

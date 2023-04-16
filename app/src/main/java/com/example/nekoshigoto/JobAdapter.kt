@@ -4,12 +4,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.nekoshigoto.Job
 import com.example.nekoshigoto.R
+import com.example.nekoshigoto.Vacancy
 import com.google.android.material.imageview.ShapeableImageView
 
-class JobAdapter(private val jobList : ArrayList<Job>) :
+class JobAdapter(private val jobList : ArrayList<Vacancy>) :
     RecyclerView.Adapter<JobAdapter.MyViewHolder>() {
 
 
@@ -24,10 +27,11 @@ class JobAdapter(private val jobList : ArrayList<Job>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = jobList[position];
-        holder.propic.setImageResource(currentItem.image)
-        holder.company.text = currentItem.company
-        holder.vacancy.text = currentItem.vacancy
-        holder.location.text = currentItem.location
+        val imgUri = currentItem.image.toUri().buildUpon().scheme("https").build()
+        holder.propic.load(imgUri)
+        holder.company.text = currentItem.companyName
+        holder.vacancy.text = currentItem.position
+        holder.location.text = "Penang,Malaysia"
         holder.mode.text = currentItem.mode
 
         holder.fav.setOnClickListener{

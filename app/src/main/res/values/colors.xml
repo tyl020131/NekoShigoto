@@ -17,4 +17,6 @@
     <color name="color7">#BB0000</color>
     <color name="color8">#1E5BF9</color>
     <color name="color9">#12C902</color>
+    <color name="unsorted">#0E1926</color>
+    <color name="sorted">#0355F3</color>
 </resources>
