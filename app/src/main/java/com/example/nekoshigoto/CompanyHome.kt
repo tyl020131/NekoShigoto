@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CompanyHome : AppCompatActivity() {
@@ -14,10 +17,10 @@ class CompanyHome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_home)
-
-        loadFragment(VacancyFragment())
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        bottomNav.setOnItemSelectedListener {
+        val navController = this.findNavController(R.id.Container)
+        bottomNav.setupWithNavController(navController)
+        /*bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     newPosition = 1
@@ -35,7 +38,7 @@ class CompanyHome : AppCompatActivity() {
                     true
                 }
             }
-        }
+        }*/
 
         setSession()
 

@@ -2,9 +2,15 @@ package com.example.nekoshigoto
 
 import JobAdapter
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,39 +24,11 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        loadFragment(HomeFragment())
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        val selectedItem = intent.getIntExtra("selectedItem", 0)
-        bottomNav.menu.findItem(selectedItem)?.isChecked = true
-
-        if(selectedItem != 0)
-        {
-            when(selectedItem) {
-                R.id.home -> {
-                    newPosition = 1
-                    loadFragment(HomeFragment())
-                                    }
-                R.id.activity -> {
-                    newPosition = 2
-                    loadFragment(ActivityFragment())
-                                    }
-                R.id.consultation -> {
-                    newPosition = 3
-                    loadFragment(ConsulationFragment())
-                                    }
-                R.id.saved -> {
-                    newPosition = 4
-                    loadFragment(SavedFragment())
-                                    }
-                else ->{
-                    newPosition = 5
-                    loadFragment(ProfileFragment())
-                }
-            }
-
-        }
-
-        bottomNav.setOnItemSelectedListener {
+        val navController = this.findNavController(R.id.Container)
+        bottomNav.setupWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this,navController)
+        /*bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     newPosition = 1
@@ -78,11 +56,26 @@ class Home : AppCompatActivity() {
                     true
                 }
             }
-        }
+        }*/
 
 
 
 
+    }
+
+    fun hideBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.GONE
+    }
+
+    fun showBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.VISIBLE
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.Container)
+        return navController.navigateUp()
     }
 
     private fun loadFragment(fragment: Fragment): Boolean {
@@ -112,6 +105,38 @@ class Home : AppCompatActivity() {
 
         return false;
     }
+
+//    override fun onBackPressed() {
+//
+//        val fm: FragmentManager = supportFragmentManager
+//        if (fm.backStackEntryCount > 0) {
+//            Log.i("MainActivity", "popping backstack")
+//            fm.popBackStack()
+//        } else {
+//            Log.i("MainActivity", "nothing on backstack, calling super")
+//            super.onBackPressed()
+//        }
+//    }
+
+//    override fun onBackPressed() {
+//
+//        val fragmentManager = supportFragmentManager
+//        if (fragmentManager.backStackEntryCount > 1) {
+//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+//            fragmentManager.popBackStackImmediate()
+//        } else {
+//            Toast.makeText(this, fragmentManager.backStackEntryCount.toString(), Toast.LENGTH_SHORT).show()
+//            super.onBackPressed()
+//        }
+//    }
+//
+//    fun showUpButton() {
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//    }
+//
+//    fun hideUpButton() {
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+//    }
 
 
 }

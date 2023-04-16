@@ -1,23 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/create_vacancy"
-    app:startDestination="@id/vacancyFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/vacancyFragment"
-        android:name="com.example.nekoshigoto.VacancyFragment"
-        android:label="VacancyFragment" >
+        android:id="@+id/consulationFragment"
+        android:name="com.example.nekoshigoto.ConsulationFragment"
+        android:label="ConsulationFragment">
         <action
-            android:id="@+id/action_vacancyFragment_to_submitVacancyFragment"
-            app:destination="@id/submitVacancyFragment" />
+            android:id="@+id/action_consulationFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_consulationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_consulationFragment_to_activityFragment2"
+            app:destination="@id/activityFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_consulationFragment_to_profileFragment2"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
     </fragment>
     <fragment
-        android:id="@+id/submitVacancyFragment"
-        android:name="com.example.nekoshigoto.SubmitVacancyFragment"
-        android:label="SubmitVacancyFragment" >
+        android:id="@+id/homeFragment"
+        android:name="com.example.nekoshigoto.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_submitVacancyFragment_to_vacancyFragment"
-            app:destination="@id/vacancyFragment" />
+            android:id="@+id/action_homeFragment_to_savedFragment"
+            app:destination="@id/savedFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_activityFragment2"
+            app:destination="@id/activityFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.nekoshigoto.SavedFragment"
+        android:label="SavedFragment">
+        <action
+            android:id="@+id/action_savedFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_savedFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_savedFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_savedFragment_to_activityFragment2"
+            app:destination="@id/activityFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.nekoshigoto.ProfileFragment"
+        android:label="ProfileFragment">
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_savedFragment"
+            app:destination="@id/savedFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_activityFragment2"
+            app:destination="@id/activityFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_qualificationFragment"
+            app:destination="@id/qualificationFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.example.nekoshigoto.ActivityFragment"
+        android:label="ActivityFragment">
+        <action
+            android:id="@+id/action_activityFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_slide_left_enter"
+            app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_activityFragment_to_savedFragment"
+            app:destination="@id/savedFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_activityFragment_to_consulationFragment"
+            app:destination="@id/consulationFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_activityFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/qualificationFragment"
+        android:name="com.example.nekoshigoto.QualificationFragment"
+        android:label="QualificationFragment" >
+        <action
+            android:id="@+id/action_qualificationFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"/>/>
     </fragment>
 </navigation>

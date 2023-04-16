@@ -18,8 +18,6 @@ class UserDetailFragment : Fragment() {
 
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
 
-
-
         return binding.root
 
     }

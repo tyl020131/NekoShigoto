@@ -56,6 +56,10 @@ class ActivityFragment : Fragment() {
 
         newRecyclerView.adapter = ApplicationAdapter(jobList)
     }
-
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+    }
 
 }
