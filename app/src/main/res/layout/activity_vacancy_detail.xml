@@ -142,6 +142,7 @@
             android:id="@+id/applicants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:visibility="visible"

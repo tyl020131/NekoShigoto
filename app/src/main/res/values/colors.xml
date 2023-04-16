@@ -19,4 +19,6 @@
     <color name="color9">#1E5BF9</color>
     <color name="color10">#12C902</color>
     <color name="color11">#5786FF</color>
+    <color name="unsorted">#0E1926</color>
+    <color name="sorted">#0355F3</color>
 </resources>
