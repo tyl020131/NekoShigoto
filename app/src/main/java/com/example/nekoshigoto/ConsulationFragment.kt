@@ -128,11 +128,6 @@ class ConsulationFragment : Fragment() {
     private fun loadData(){
 
 
-
-
-
-
-
     }
 
     class SendMessageItem(private val chat: Chat) : BindableItem<SenderChatBinding>() {
@@ -168,5 +163,10 @@ class ConsulationFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+    }
 
 }

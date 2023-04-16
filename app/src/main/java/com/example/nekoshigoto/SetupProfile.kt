@@ -6,10 +6,8 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,14 +16,20 @@ import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.setOnCountrySelected
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.show
 import com.github.dhaval2404.imagepicker.ImagePicker
+import kotlin.random.Random
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 
 class SetupProfile : AppCompatActivity() {
     private lateinit var binding : ActivitySetupProfileBinding
     private lateinit var selectedImg : Uri
-    private lateinit var dialog : AlertDialog.Builder
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var storage : FirebaseStorage
+    //private lateinit var dialog : AlertDialog.Builder
     private lateinit var pdfUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,8 @@ class SetupProfile : AppCompatActivity() {
         actionBar!!.title = "Setup Profile"
 
         actionBar?.setDisplayHomeAsUpEnabled(true)
+
+        storage = FirebaseStorage.getInstance()
 
         binding.uploadImage.setOnClickListener{
 
@@ -83,7 +89,7 @@ class SetupProfile : AppCompatActivity() {
                     }
                     // Select "Cancel" to cancel the task
                     choice[item] == "Cancel" -> {
-                        selectPdf()
+
                     }
                 }
             })
@@ -105,23 +111,46 @@ class SetupProfile : AppCompatActivity() {
                 }
         }
 
+//        //to create datepicker dialog
+//        val calendar = Calendar.getInstance()
+//        val datePicker = DatePickerDialog.OnDateSetListener{view, year, month, day ->
+//            calendar.set(Calendar.YEAR, year)
+//            calendar.set(Calendar.MONTH, month)
+//            calendar.set(Calendar.DAY_OF_MONTH, day)
+//            updateField(calendar)
+//        }
+//
+//        binding.editTextDob.setOnClickListener{
+//            DatePickerDialog(this, datePicker, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+//        }
+
         val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener{view, year, month, day ->
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, day)
             updateField(calendar)
-
         }
 
-        binding.editTextDob.setOnClickListener{
-            DatePickerDialog(this, datePicker, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+        // Set max date to today's date
+        val maxDate = System.currentTimeMillis()
+        val datePickerDialog = DatePickerDialog(
+            this,
+            datePicker,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.datePicker.maxDate = maxDate
+
+        binding.editTextDob.setOnClickListener {
+            datePickerDialog.show()
         }
 
         binding.button2.setOnClickListener{
-            val intent = Intent(this, Home::class.java)
-            //intent.putExtra("selectedItem", com.example.nekoshigoto.R.id.saved)
-            startActivity(intent)
+            uploadImage()
+//            val intent = Intent(this, Home::class.java)
+//            startActivity(intent)
         }
     }
 
@@ -135,21 +164,38 @@ class SetupProfile : AppCompatActivity() {
         }
     }
 
-    private fun selectPdf() {
-        val pdfIntent = Intent(Intent.ACTION_GET_CONTENT)
-        pdfIntent.type = "application/pdf"
-        pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
-        startActivityForResult(pdfIntent, 12)
-    }
+//    private fun selectPdf() {
+//        val pdfIntent = Intent(Intent.ACTION_GET_CONTENT)
+//        pdfIntent.type = "application/pdf"
+//        pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
+//        startActivityForResult(pdfIntent, 12)
+//    }
 
     private fun updateField(calendar: Calendar) {
         val format = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(format, Locale.ENGLISH)
 
         binding.editTextDob.text = (sdf.format(calendar.time))
-
     }
 
+    private fun uploadImage(){
+        val reference = storage.reference.child("Employee").child(Date().time.toString())
+        reference.putFile(selectedImg).addOnCompleteListener{
+            if(it.isSuccessful){
+                reference.downloadUrl.addOnSuccessListener {
+                    uploadInfo(it.toString())
+                }
+            }
+        }
+    }
+
+    private fun uploadInfo(imgUrl:String){
+        Toast.makeText(this, imgUrl, Toast.LENGTH_SHORT).show()
+        var img = hashMapOf(
+            "img" to imgUrl
+        )
+        db.collection("test").document("2").set(img)
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -161,8 +207,8 @@ class SetupProfile : AppCompatActivity() {
         when(requestCode){
             2404 -> if (resultCode == Activity.RESULT_OK) {
                 //Image Uri will not be null for RESULT_OK
-                val uri: Uri = data?.data!!
-                binding.uploadImage.setImageURI(uri)
+                selectedImg = data?.data!!
+                binding.uploadImage.setImageURI(selectedImg)
 
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
@@ -170,32 +216,12 @@ class SetupProfile : AppCompatActivity() {
                 Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-        // For loading PDF
-        when (requestCode) {
-            12 -> if (resultCode == RESULT_OK) {
-
-                pdfUri = data?.data!!
-                val uri: Uri = data?.data!!
-                val uriString: String = uri.toString()
-                var pdfName: String? = null
-                if (uriString.startsWith("content://")) {
-                    var myCursor: Cursor? = null
-                    try {
-                        myCursor = applicationContext!!.contentResolver.query(uri, null, null, null, null)
-                        if (myCursor != null && myCursor.moveToFirst()) {
-                            val nameIndex = myCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                            if (nameIndex >= 0) {
-                                pdfName = myCursor.getString(nameIndex)
-                            }
-                            binding.dob.text = pdfName
-                        }
-                    } finally {
-                        myCursor?.close()
-                    }
-                }
-            }
-        }
-
-
     }
+//    fun randomString(n: Int): String {
+//        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+//        return (1..n)
+//            .map { Random.nextInt(0, charPool.size) }
+//            .map(charPool::get)
+//            .joinToString("")
+//    }
 }

@@ -14,9 +14,11 @@
     <color name="color4">#2684FF</color>
     <color name="color5">#E2F5FC</color>
     <color name="color6">#0D3880</color>
-    <color name="color7">#BB0000</color>
-    <color name="color8">#1E5BF9</color>
-    <color name="color9">#12C902</color>
+    <color name="color7">#0355F3</color>
+    <color name="color8">#BB0000</color>
+    <color name="color9">#1E5BF9</color>
+    <color name="color10">#12C902</color>
+    <color name="color11">#5786FF</color>
     <color name="unsorted">#0E1926</color>
     <color name="sorted">#0355F3</color>
 </resources>

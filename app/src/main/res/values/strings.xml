@@ -13,4 +13,11 @@
         <item>Master\'s degree</item>
 
     </string-array>
+    <string-array name="field_array">
+        <item>Computing and Science</item>
+        <item>Accounting and Finance</item>
+        <item>Engineering</item>
+        <item>Biochemistry</item>
+
+    </string-array>
 </resources>

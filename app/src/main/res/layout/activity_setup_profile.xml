@@ -33,11 +33,36 @@
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:fontFamily="@font/inter_medium"
-                android:text="Full Name"
+                android:text="First Name"
                 android:textColor="@color/color5" />
 
             <EditText
-                android:id="@+id/editTextName"
+                android:id="@+id/editTextFName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:background="@color/color5"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/textlname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin_left"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/form_margin_left"
+                android:layout_marginBottom="@dimen/form_margin_bot"
+                android:fontFamily="@font/inter_medium"
+                android:text="Last Name"
+                android:textColor="@color/color5" />
+
+            <EditText
+                android:id="@+id/editTextLName"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="@dimen/form_margin_left"

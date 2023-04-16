@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav"
     app:startDestination="@id/homeFragment">
 
@@ -32,12 +33,14 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.nekoshigoto.HomeFragment"
-        android:label="HomeFragment">
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_savedFragment"
             app:destination="@id/savedFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
+
         <action
             android:id="@+id/action_homeFragment_to_consulationFragment"
             app:destination="@id/consulationFragment"
@@ -103,6 +106,11 @@
             app:destination="@id/activityFragment"
             app:enterAnim="@anim/fragment_slide_left_enter"
             app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_qualificationFragment"
+            app:destination="@id/qualificationFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
     </fragment>
     <fragment
         android:id="@+id/activityFragment"
@@ -128,5 +136,17 @@
             app:destination="@id/profileFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/qualificationFragment"
+        android:name="com.example.nekoshigoto.QualificationFragment"
+        android:label="QualificationFragment" >
+        <action
+            android:id="@+id/action_qualificationFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"/>/>
     </fragment>
 </navigation>

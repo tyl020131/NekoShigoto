@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="270sp"
-            android:backgroundTint="@color/color7"
+            android:backgroundTint="@color/color8"
             android:text="Block" />
     </androidx.cardview.widget.CardView>
 
