@@ -38,7 +38,7 @@
             app:destination="@id/vacancyFragment" />
         <action
             android:id="@+id/action_viewUserFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
+            app:destination="@id/companyProfileFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
     </fragment>
