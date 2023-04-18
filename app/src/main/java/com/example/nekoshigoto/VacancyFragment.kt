@@ -5,8 +5,14 @@ import ModeAdapter
 import VacancyAdapter
 import android.app.Dialog
 import android.content.Intent
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.view.*
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -20,11 +26,14 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.slider.RangeSlider
 import com.google.android.material.slider.Slider
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 
 class VacancyFragment : Fragment() {
+    private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var newRecyclerView: RecyclerView
-    private lateinit var VacancyList : ArrayList<Job>
+    private lateinit var VacancyList : ArrayList<Vacancy>
     lateinit var imageId : Array<Int>
 
     override fun onCreateView(
@@ -45,7 +54,7 @@ class VacancyFragment : Fragment() {
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
 
-        VacancyList = arrayListOf<Job>()
+        VacancyList = arrayListOf<Vacancy>()
         loadData()
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
@@ -66,14 +75,40 @@ class VacancyFragment : Fragment() {
     }
 
 
-    private fun loadData(){
-        VacancyList.add(Job(imageId[0],"Kunkun Company","Product Designer","Penang, Malaysia","Full-Time"))
-        VacancyList.add(Job(imageId[0],"Paopao Company","Tyre Mechanic","Johor, Malaysia","Freelance"))
+    private fun loadData() {
 
 
+        db.collection("Vacancy")
+            .whereEqualTo("companyName", "Ikun Studio")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    val vacancy = document.toObject(Vacancy::class.java)
+                    if (document != null) {
 
-        newRecyclerView.adapter = VacancyAdapter(VacancyList)
-    }
+                        val query = db.collection("Vacancy").document("${document.id}").collection("application")
+                        query.get().addOnSuccessListener {
+                            vacancy.numOfApp = it.documents.size
+                        }
+
+
+                    }
+                    VacancyList.add(vacancy)
+
+
+                }
+                newRecyclerView.adapter = VacancyAdapter(VacancyList)
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+
+
+        }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

@@ -53,9 +53,9 @@ class SubmitVacancyFragment : Fragment() {
 
             var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
 
-            val companyName : String = sh.getString("CompanyEmail","").toString()
+            val companyName : String = sh.getString("CompanyName","").toString()
 
-            val vacancy = Vacancy(position_val,field_val,mode_val,gender_val,salary_val.toDouble(),description_val,companyName)
+            val vacancy = Vacancy("https://firebasestorage.googleapis.com/v0/b/nekoshigoto-6c7d7.appspot.com/o/Employee%2F1681560152143?alt=media&token=a36bb3e1-6dc3-4fb0-ae2f-bbd08e021e1c",position_val,field_val,mode_val,gender_val,salary_val.toDouble(),description_val,companyName)
 
             val collectionid = String.format("%s%s",position_val,companyName).lowercase()
             db.collection("Vacancy").document(collectionid).set(vacancy).addOnFailureListener {

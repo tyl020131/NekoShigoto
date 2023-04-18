@@ -138,33 +138,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
-
-
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/applicants"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".Home">
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-            <FrameLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/bottomNav"
-                />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNav"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/menu_tab"
-                android:scrollIndicators="left"/>
-        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

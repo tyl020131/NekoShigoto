@@ -13,9 +13,7 @@
             app:destination="@id/submitVacancyFragment" />
         <action
             android:id="@+id/action_vacancyFragment_to_viewUserFragment"
-            app:destination="@id/viewUserFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
+            app:destination="@id/viewUserFragment" />
         <action
             android:id="@+id/action_vacancyFragment_to_companyProfileFragment"
             app:destination="@id/companyProfileFragment" />
@@ -37,9 +35,12 @@
         android:label="ViewUserFragment" >
         <action
             android:id="@+id/action_viewUserFragment_to_vacancyFragment"
-            app:destination="@id/vacancyFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
+            app:destination="@id/vacancyFragment" />
+        <action
+            android:id="@+id/action_viewUserFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_slide_right_enter"
+            app:exitAnim="@anim/fragment_slide_left_exit" />
     </fragment>
     <fragment
         android:id="@+id/companyProfileFragment"

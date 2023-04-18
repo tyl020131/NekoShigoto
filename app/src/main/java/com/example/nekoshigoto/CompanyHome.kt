@@ -54,7 +54,7 @@ class CompanyHome : AppCompatActivity() {
 
         val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
 
-        myEdit.putString("CompanyEmail", "ikunjiji@gmail.com")
+        myEdit.putString("CompanyName", "Ikun Studio")
         myEdit.commit()
 
 
