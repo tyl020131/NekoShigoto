@@ -143,14 +143,10 @@
     <fragment
         android:id="@+id/qualificationFragment"
         android:name="com.example.nekoshigoto.QualificationFragment"
-        android:label="QualificationFragment"
-        android:fragmentEnterTransition="@anim/fade_in"
-        android:fragmentExitTransition="@anim/fade_out">
+        android:label="QualificationFragment">
         <action
             android:id="@+id/action_qualificationFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true"/>
     </fragment>

@@ -122,7 +122,7 @@ class EmployeeRegister : AppCompatActivity() {
         var message:String=""
         val passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,15}$".toRegex()
         if(!passwordPattern.matches(password)){
-            message+="Password must be at least 1 upper, 1 lower, 1 digit and the length must between 8 to 15"
+            message+="Password must be at least 1 uppercase, 1 lowercase, 1 digit and the length must between 8 to 15"
         } else if(password != cpassword){
             message+="Password and confirm password do not match"
         }
