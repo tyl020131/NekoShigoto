@@ -28,7 +28,7 @@ class QualificationFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentQualificationBinding.inflate(inflater, container, false)
-        binding.viewLayout.visibility = View.GONE
+
         //education spinner setup
         val education= resources.getStringArray(R.array.education_array)
         val eduSpinner = binding.educationLevelSpinner
@@ -139,6 +139,7 @@ class QualificationFragment : Fragment() {
         }
         return binding.root
     }
+
     override fun onResume() {
         super.onResume()
         val activity = activity as Home?

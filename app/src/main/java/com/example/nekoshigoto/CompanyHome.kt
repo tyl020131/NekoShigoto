@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,6 +22,7 @@ class CompanyHome : AppCompatActivity() {
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         val navController = this.findNavController(R.id.Container)
         bottomNav.setupWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this,navController)
         /*bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
@@ -55,6 +58,18 @@ class CompanyHome : AppCompatActivity() {
         myEdit.commit()
 
 
+    }
+    fun hideBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.GONE
+    }
+    fun showBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.VISIBLE
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.Container)
+        return navController.navigateUp()
     }
 
     private fun loadFragment(fragment: Fragment): Boolean {

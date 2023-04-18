@@ -3,16 +3,17 @@ package com.example.nekoshigoto
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.databinding.ReceiverChatBinding
@@ -46,6 +47,7 @@ class ConsulationFragment : Fragment() {
 
 
     ): View? {
+        setHasOptionsMenu(true)
         var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
 
         val userid : String = sh.getString("userid","").toString()
@@ -168,5 +170,22 @@ class ConsulationFragment : Fragment() {
         val activity = activity as Home
         activity?.showBottomNav()
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }

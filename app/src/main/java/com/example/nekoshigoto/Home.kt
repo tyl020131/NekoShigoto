@@ -1,18 +1,17 @@
 package com.example.nekoshigoto
 
-import JobAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -57,11 +56,27 @@ class Home : AppCompatActivity() {
                 }
             }
         }*/
-
-
-
-
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.options_menu, menu)
+//        return true
+//    }
+//
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.changePasswordFragment -> {
+//                NavigationUI.onNavDestinationSelected(item, this.findNavController(R.id.Container))
+//                return true
+//            }
+//            R.id.logout -> {
+//                startActivity(Intent(this, Logout::class.java))
+//            }
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
     fun hideBottomNav(){
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)

@@ -7,43 +7,53 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
+import android.view.*
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
-import com.example.nekoshigoto.databinding.ActivityCompanyRegisterBinding
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
+import com.example.nekoshigoto.databinding.FragmentCompanyProfileBinding
+import com.example.nekoshigoto.databinding.FragmentProfileBinding
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.setOnCountrySelected
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.show
 import com.github.dhaval2404.imagepicker.ImagePicker
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-class CompanyRegister : AppCompatActivity() {
+class CompanyProfileFragment : Fragment() {
 
-    private lateinit var binding : ActivityCompanyRegisterBinding
+    private lateinit var binding: FragmentCompanyProfileBinding
     private lateinit var selectedImg : Uri
+    private var chgImg : Boolean = false
     private var error : Boolean = false
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private val storage : FirebaseStorage = FirebaseStorage.getInstance()
+    private lateinit var storage : FirebaseStorage
+    private lateinit var email : String
+    private lateinit var dialog : AlertDialog.Builder
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCompanyRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val actionBar = supportActionBar
-        actionBar!!.title = "Register an Account"
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+
+        storage = FirebaseStorage.getInstance()
+        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+
+        // Inflate the layout for this fragment
+        binding = FragmentCompanyProfileBinding.inflate(inflater, container, false)
 
         binding.apply {
+            editLayout.visibility = View.GONE
             errorTextName.visibility = View.GONE
             errorTextEmail.visibility = View.GONE
             errorTextContact.visibility = View.GONE
@@ -54,8 +64,59 @@ class CompanyRegister : AppCompatActivity() {
             errorTextProfile.visibility = View.GONE
         }
 
+        email = sh.getString("userid","").toString()
+        db.collection("Company").document(email).get()
+            .addOnSuccessListener {
+                val company = it.toObject<Company>()  //convert the doc into object
+                binding.apply {
+                    //insert data for view layout
+                    textName.text = company?.name
+                    textEmail.text = company?.email
+                    textAddress.text = company?.address
+                    textContact.text = company?.contactNo
+                    textCountry.text = company?.country
+                    textState.text = company?.state
+                    textBusiness.text = company?.business
+                    Glide.with(requireContext())
+                        .load(company?.profilePic)
+                        .into(binding.profileImage)
+
+                    //insert data for edit layout
+                    editTextName.setText(company?.name)
+                    editTextContact.setText(company?.contactNo)
+                    editTextCountry.text = company?.country
+                    editTextState.setText(company?.state)
+                    editTextAddress.setText(company?.address)
+                    editTextBusiness.setText(company?.business)
+
+                    Glide.with(requireContext())
+                        .load(company?.profilePic)
+                        .into(binding.uploadImage)
+
+                    binding.uploadImage.tag = company?.profilePic
+
+                }
+
+
+            }
+            .addOnFailureListener{
+                Log.e("SearchUser", it.message.toString())
+            }
+
+        binding.editButton.setOnClickListener {
+            binding.scrollview.smoothScrollTo(0, 0)
+            binding.editLayout.visibility = View.VISIBLE
+            binding.viewLayout.visibility = View.GONE
+        }
+
+        binding.cancelButton.setOnClickListener {
+            binding.scrollview.smoothScrollTo(0, 0)
+            binding.editLayout.visibility = View.GONE
+            binding.viewLayout.visibility = View.VISIBLE
+        }
+
         binding.editTextCountry.setOnClickListener{
-            CountrySelectionDialog().create(this)
+            CountrySelectionDialog().create(requireContext())
                 .show()?.setOnCountrySelected {
                     binding.editTextCountry.text = it.name
                 }
@@ -64,7 +125,7 @@ class CompanyRegister : AppCompatActivity() {
         binding.uploadImage.setOnClickListener{
 
             val choice = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
-            val myAlertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+            val myAlertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
             myAlertDialog.setTitle("Select Image")
             myAlertDialog.setCancelable(true)
             myAlertDialog.setItems(choice, DialogInterface.OnClickListener { dialog, item ->
@@ -87,25 +148,17 @@ class CompanyRegister : AppCompatActivity() {
 
         }
 
-        binding.registerButton.setOnClickListener{
+        binding.saveButton.setOnClickListener {
             error = false
 
             val nameT =  binding.editTextName
-            val emailT = binding.editTextEmail
             val contactNoT = binding.editTextContact
             val addressT = binding.editTextAddress
             val countryT = binding.editTextCountry
             val stateT = binding.editTextState
             val businessT = binding.editTextBusiness
 
-            if (!this::selectedImg.isInitialized)
-            {
-                error = true
-                binding.errorTextProfile.visibility = View.VISIBLE
-                binding.errorTextProfile.text = "Please upload an image"
-            }
             checkName(nameT.text.toString())
-            checkEmail(emailT.text.toString())
             checkAddress(addressT.text.toString())
             checkBusiness(businessT.text.toString())
             checkContact(contactNoT.text.toString())
@@ -114,36 +167,47 @@ class CompanyRegister : AppCompatActivity() {
 
             if(error)
             {
-                Toast.makeText(this, "Please check the error message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please check the error message", Toast.LENGTH_SHORT).show()
             }
             else
             {
-                uploadImage { imageUrl ->
-                    val name = nameT.text.toString()
-                    val email = emailT.text.toString()
-                    val contactNo = contactNoT.text.toString()
-                    val country = countryT.text.toString()
-                    val state = stateT.text.toString()
-                    val address = addressT.text.toString()
-                    val business = businessT.text.toString()
+                dialog = AlertDialog.Builder(requireContext())
 
-                    val user = Company(name, email, contactNo, address, country, state, imageUrl, business, "P")
-                    db.collection("Company").document(email).set(user)
+                dialog.setTitle("Edit Confirmation ")
+                    .setMessage("Are you sure to edit profile? ")
+                    .setCancelable(true)
+                    .setPositiveButton("Edit"){dialogInterface,it->
+                        val loadedUrl = binding.uploadImage.tag as String
+                        val name = nameT.text.toString()
+                        val contactNo = contactNoT.text.toString()
+                        val country = countryT.text.toString()
+                        val state = stateT.text.toString()
+                        val address = addressT.text.toString()
+                        val business = businessT.text.toString()
+                        if(chgImg){
+                            //after changing profile pic
+                            uploadImage { imageUrl ->
+                                val user = Company(name, email, contactNo, address, country, state, imageUrl, business, "A")
+                                val imageName = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
+                                db.collection("Company").document(email).set(user)
+                                val imgRef = FirebaseStorage.getInstance().getReference().child("Company/$imageName")
+                                imgRef.delete()
+                            }
+                        } else{
+                            //no chg profile pic
+                            val user = Company(name, email, contactNo, address, country, state, loadedUrl, business, "A")
+                            db.collection("Company").document(email).set(user)
+                        }
+                        requireView().findNavController().navigate(R.id.action_companyProfileFragment_self)
+                        Toast.makeText(requireContext(), "Successfully Edit Profile", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("Cancel"){dialogInterface,it->
 
-                    /*this is used to change the company account to approved status
-
-                    val test = db.collection("User").document(email)
-                    test.update("status", "A")*/
-
-                    val intent = Intent(this, GetStarted::class.java)
-                    startActivity(intent)
-
-                    Toast.makeText(this, "Successfully registered, please wait for the approval email", Toast.LENGTH_SHORT).show()
-
-                }
+                    }
+                    .show()
             }
         }
-
+        return binding.root
     }
 
     private fun checkName(fname:String){
@@ -159,22 +223,6 @@ class CompanyRegister : AppCompatActivity() {
         }
         else{
             binding.errorTextName.visibility = View.GONE
-        }
-    }
-
-    private fun checkEmail(email: String) {
-
-        if(email.isEmpty()){
-            binding.errorTextEmail.visibility = View.VISIBLE
-            binding.errorTextEmail.text = "Please enter your State"
-            error = true
-        }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.errorTextEmail.visibility = View.VISIBLE
-            binding.errorTextEmail.text = "Invalid email"
-            error = true
-        }
-        else{
-            binding.errorTextEmail.visibility = View.GONE
         }
     }
 
@@ -261,24 +309,6 @@ class CompanyRegister : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            2404 -> if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
-                selectedImg = data?.data!!
-                binding.errorTextProfile.visibility = View.GONE
-                binding.uploadImage.setImageURI(selectedImg)
-
-            } else if (resultCode == ImagePicker.RESULT_ERROR) {
-                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     private fun randomString(n: Int): String {
         val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
         return (1..n)
@@ -287,4 +317,47 @@ class CompanyRegister : AppCompatActivity() {
             .joinToString("")
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode){
+            2404 -> if (resultCode == Activity.RESULT_OK) {
+                //Image Uri will not be null for RESULT_OK
+                selectedImg = data?.data!!
+                binding.uploadImage.setImageURI(selectedImg)
+                chgImg = true
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as CompanyHome
+        activity?.showBottomNav()
+    }
 }

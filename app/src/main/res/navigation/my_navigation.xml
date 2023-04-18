@@ -111,6 +111,9 @@
             app:destination="@id/qualificationFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_profileFragment_self"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/activityFragment"
@@ -140,13 +143,19 @@
     <fragment
         android:id="@+id/qualificationFragment"
         android:name="com.example.nekoshigoto.QualificationFragment"
-        android:label="QualificationFragment" >
+        android:label="QualificationFragment"
+        android:fragmentEnterTransition="@anim/fade_in"
+        android:fragmentExitTransition="@anim/fade_out">
         <action
             android:id="@+id/action_qualificationFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/profileFragment"
-            app:popUpToInclusive="true"/>/>
+            app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.nekoshigoto.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>
