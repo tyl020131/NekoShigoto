@@ -61,8 +61,11 @@ class EmployeeLogin : AppCompatActivity() {
                                     val user = it.toObject<Customer>()  //convert the doc into object
                                     when(user?.userType){
                                         "jobSeeker" -> {
+
                                             when (user.status) {
                                                 "A" -> {
+                                                    Toast.makeText(baseContext, "Login Successfully",
+                                                        Toast.LENGTH_SHORT).show()
                                                     val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
                                                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
                                                     myEdit.putString("userid", email)
@@ -74,6 +77,8 @@ class EmployeeLogin : AppCompatActivity() {
                                                     startActivity(intent)
                                                 }
                                                 "S" -> {
+                                                    Toast.makeText(baseContext, "Login Successfully",
+                                                        Toast.LENGTH_SHORT).show()
                                                     val intent = Intent(this, SetupProfile::class.java)
                                                     intent.putExtra("email", email)
                                                     startActivity(intent)
@@ -111,8 +116,6 @@ class EmployeeLogin : AppCompatActivity() {
                     }
 
             }
-//            val intent = Intent(this, SetupProfile::class.java)
-//            startActivity(intent)
         }
         eye.setOnClickListener{
             if (passwordField.transformationMethod == PasswordTransformationMethod.getInstance()) {

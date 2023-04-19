@@ -7,10 +7,12 @@
     <string name="default_salary_range">RM0.00 - RM100000.00</string>
     <string-array name="education_array">
         <item>Select Your Education Level...</item>
-        <item>Secondary School</item>
+        <item>High School</item>
         <item>Diploma</item>
         <item>Bachelor\'s degree</item>
         <item>Master\'s degree</item>
+        <item>Doctoral\'s degree</item>
+        <item>Doctor of Philosophy</item>
 
     </string-array>
     <string-array name="field_array">

@@ -65,6 +65,7 @@ class SetupProfile : AppCompatActivity() {
             errorTextCountry.visibility = View.GONE
             errorTextState.visibility = View.GONE
             errorTextProfile.visibility = View.GONE
+            errorTextSalary.visibility = View.GONE
         }
 
         storage = FirebaseStorage.getInstance()
@@ -174,6 +175,7 @@ class SetupProfile : AppCompatActivity() {
             val icnoT = binding.editTextIcno
             val countryT = binding.editTextCountry
             val stateT = binding.editTextState
+            val salaryT = binding.editTextSalary
 
             if (!this::selectedImg.isInitialized)
             {
@@ -191,6 +193,7 @@ class SetupProfile : AppCompatActivity() {
             checkICNo(icnoT.text.toString())
             checkCountry(countryT.text.toString())
             checkState(stateT.text.toString())
+            checkSalary(salaryT.text.toString())
 
             if(error)
             {
@@ -208,8 +211,9 @@ class SetupProfile : AppCompatActivity() {
                     val icno = icnoT.text.toString()
                     val country = countryT.text.toString()
                     val state = stateT.text.toString()
+                    val salary = salaryT.text.toString().toInt()
 
-                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state)
+                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary)
                     db.collection("Job Seeker").document(email).set(user)
                     val test = db.collection("User").document(email)
                     test.update("status", "A")
@@ -434,6 +438,24 @@ class SetupProfile : AppCompatActivity() {
         }
         else{
             binding.errorTextState.visibility = View.GONE
+        }
+    }
+
+    private fun checkSalary(salary:String){
+        if(salary.isEmpty()){
+            binding.errorTextSalary.visibility = View.VISIBLE
+            binding.errorTextSalary.text = "Please enter your expected salary"
+            error = true
+        }else{
+            try {
+                val number = salary.toInt()
+                binding.errorTextSalary.visibility = View.GONE
+                Toast.makeText(this, "test", Toast.LENGTH_SHORT).show()
+            } catch (e: NumberFormatException) {
+                binding.errorTextSalary.visibility = View.VISIBLE
+                binding.errorTextSalary.text = "Please enter only numbers"
+                error = true
+            }
         }
     }
 

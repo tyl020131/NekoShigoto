@@ -84,6 +84,7 @@ class ProfileFragment : Fragment() {
                     textIcNo.text = user?.icPassport
                     textCountry.text = user?.country
                     textState.text = user?.state
+                    textSalary.text = "RM ${user?.salary.toString()}"
 
                     //insert data for edit layout
                     editTextFName.setText(user?.fname)
@@ -93,6 +94,7 @@ class ProfileFragment : Fragment() {
                     editTextIcno.setText(user?.icPassport)
                     editTextCountry.text = user?.country
                     editTextState.setText(user?.state)
+                    editTextSalary.setText(user?.salary.toString())
                     if(user?.gender == "Male")
                         male.isChecked = true
                     else
@@ -138,6 +140,7 @@ class ProfileFragment : Fragment() {
                 errorTextCountry.visibility = View.GONE
                 errorTextState.visibility = View.GONE
                 errorTextProfile.visibility = View.GONE
+                errorTextSalary.visibility = View.GONE
             }
         }
 
@@ -238,6 +241,7 @@ class ProfileFragment : Fragment() {
             val icnoT = binding.editTextIcno
             val countryT = binding.editTextCountry
             val stateT = binding.editTextState
+            val salaryT = binding.editTextSalary
 
             checkfName(fnameT.text.toString())
             checklName(lnameT.text.toString())
@@ -248,6 +252,7 @@ class ProfileFragment : Fragment() {
             checkICNo(icnoT.text.toString())
             checkCountry(countryT.text.toString())
             checkState(stateT.text.toString())
+            checkSalary(salaryT.text.toString())
 
             if(error)
             {
@@ -271,10 +276,12 @@ class ProfileFragment : Fragment() {
                         val icno = icnoT.text.toString()
                         val country = countryT.text.toString()
                         val state = stateT.text.toString()
+                        val salary = salaryT.text.toString().toInt()
+
                         if(chgImg){
                             //after changing profile pic
                             uploadImage { imageUrl ->
-                                val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state)
+                                val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary)
                                 val imageName = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
                                 db.collection("Job Seeker").document(email).set(user)
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Employee/$imageName")
@@ -283,7 +290,7 @@ class ProfileFragment : Fragment() {
                         }
                         else{
                             //no chg profile pic
-                            val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state)
+                            val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary)
                             db.collection("Job Seeker").document(email).set(user)
                         }
                         requireView().findNavController().navigate(R.id.action_profileFragment_self)
@@ -379,6 +386,24 @@ class ProfileFragment : Fragment() {
             false
         }
     }
+
+    private fun checkSalary(salary:String){
+        if(salary.isEmpty()){
+            binding.errorTextSalary.visibility = View.VISIBLE
+            binding.errorTextSalary.text = "Please enter your expected salary"
+            error = true
+        }else{
+            try {
+                val number = salary.toInt()
+                binding.errorTextSalary.visibility = View.GONE
+            } catch (e: NumberFormatException) {
+                binding.errorTextSalary.visibility = View.VISIBLE
+                binding.errorTextSalary.text = "Please enter only numbers"
+                error = true
+            }
+        }
+    }
+
     private fun calculateAge(dateString: String): Int {
         val birthDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(dateString)
         val today = Calendar.getInstance().time
