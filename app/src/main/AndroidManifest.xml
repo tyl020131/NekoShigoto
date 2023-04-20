@@ -15,13 +15,13 @@
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31">
         <!--<activity
-            android:name=".VacancyDetail"
-            android:exported="false" /> -->
+            android:name=".AdminView"
+            android:exported="false" />-->
         <activity
-            android:name=".AdminCompanyRequest"
+            android:name=".VacancyDetail"
             android:exported="false" />
         <activity
-            android:name=".AdminView"
+            android:name=".AdminCompanyRequest"
             android:exported="false" />
         <activity
             android:name=".ApplicationsDetail"
@@ -51,7 +51,7 @@
             android:name=".EmployeeLogin"
             android:exported="false" />
         <activity
-            android:name=".VacancyDetail"
+            android:name=".AdminView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
