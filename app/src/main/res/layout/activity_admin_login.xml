@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="372dp"
-            android:layout_height="105dp"
+            android:layout_width="376dp"
+            android:layout_height="93dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.589"
@@ -24,17 +24,19 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/employee_register"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/admin_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <View
             android:id="@+id/view"
-            android:layout_width="380dp"
-            android:layout_height="380dp"
+            android:layout_width="374dp"
+            android:layout_height="327dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="9dp"
+            android:layout_marginEnd="1dp"
             android:background="@drawable/login_div"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,23 +45,12 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView4"
             app:layout_constraintVertical_bias="1.0" />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="168dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/logo"
-            app:layout_constraintBottom_toTopOf="@+id/email_text"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.0" />
-
         <EditText
-            android:id="@+id/email_text"
+            android:id="@+id/username_text"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="Your Email"
+            android:hint="Username"
             android:inputType="textPersonName"
             android:paddingBottom="12dp"
             android:textSize="15sp"
@@ -74,16 +65,17 @@
             android:id="@+id/password_text"
             android:layout_width="280dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="Password"
-            android:maxLength="15"
             android:inputType="textPassword"
+            android:maxLength="15"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_text"
+            app:layout_constraintTop_toBottomOf="@+id/username_text"
             app:layout_constraintVertical_bias="0.036" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -98,29 +90,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_text" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registerButton"
-            style="@style/button_light"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            android:background="@drawable/button_light"
-            android:text="Sign Up"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginButton"
-            app:layout_constraintVertical_bias="0.333" />
-
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/montserrat"
-            android:text="Welcome To"
+            android:text="Admin Portal"
             android:textColor="@color/color6"
             android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toTopOf="@+id/view" />
 
@@ -128,12 +107,13 @@
             android:id="@+id/eyeView"
             android:layout_width="40dp"
             android:layout_height="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             app:layout_constraintEnd_toEndOf="@+id/password_text"
             app:layout_constraintHorizontal_bias="0.962"
             app:layout_constraintStart_toStartOf="@+id/password_text"
-            app:layout_constraintTop_toBottomOf="@+id/email_text"
+            app:layout_constraintTop_toBottomOf="@+id/username_text"
             app:srcCompat="@drawable/eye_open" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+

@@ -11,7 +11,7 @@
         android:title="Explore" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/companyProfileFragment"
         android:icon="@drawable/profile"
         android:title="Profile" />
 </menu>

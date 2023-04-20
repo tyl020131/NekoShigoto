@@ -15,8 +15,8 @@
             android:id="@+id/action_vacancyFragment_to_viewUserFragment"
             app:destination="@id/viewUserFragment" />
         <action
-            android:id="@+id/action_vacancyFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_vacancyFragment_to_companyProfileFragment"
+            app:destination="@id/companyProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/submitVacancyFragment"
@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_submitVacancyFragment_to_vacancyFragment"
             app:destination="@id/vacancyFragment" />
+        <action
+            android:id="@+id/action_submitVacancyFragment_to_companyProfileFragment"
+            app:destination="@id/companyProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewUserFragment"
@@ -35,21 +38,26 @@
             app:destination="@id/vacancyFragment" />
         <action
             android:id="@+id/action_viewUserFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
+            app:destination="@id/companyProfileFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.nekoshigoto.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:id="@+id/companyProfileFragment"
+        android:name="com.example.nekoshigoto.CompanyProfileFragment"
+        android:label="CompanyProfileFragment" >
         <action
-            android:id="@+id/action_profileFragment_to_vacancyFragment"
+            android:id="@+id/action_companyProfileFragment_to_vacancyFragment"
             app:destination="@id/vacancyFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_viewUserFragment"
-            app:destination="@id/viewUserFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
+            android:id="@+id/action_companyProfileFragment_to_submitVacancyFragment"
+            app:destination="@id/submitVacancyFragment" />
+        <action
+            android:id="@+id/action_companyProfileFragment_self"
+            app:destination="@id/companyProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.nekoshigoto.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>
