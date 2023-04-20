@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
@@ -56,8 +57,6 @@ class ProfileFragment : Fragment() {
         setHasOptionsMenu(true)
 
         storage = FirebaseStorage.getInstance()
-        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
-
         
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -68,59 +67,107 @@ class ProfileFragment : Fragment() {
             cancelButton.visibility = View.GONE
         }
 
-        email = sh.getString("userid","").toString()
-        db.collection("Job Seeker").document(email).get()
-            .addOnSuccessListener {
-                val user = it.toObject<JobSeeker>()  //convert the doc into object
-                binding.apply {
-                    //insert data for view layout
-                    textName.text = user?.fname + " " + user?.lname
-                    textGender.text = user?.gender
-                    textNationality.text = user?.nationality
-                    Glide.with(requireContext())
-                    .load(user?.profilePic)
-                    .into(binding.profileImage)
-                    textDOB.text = user?.dob
-                    textContact.text = user?.contactNo
-                    textIcNo.text = user?.icPassport
-                    textCountry.text = user?.country
-                    textState.text = user?.state
-                    val number = user?.salary
-                    val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
-                    textSalary.text = "RM $formattedNumber"
+//        email = sh.getString("userid","").toString()
+//        db.collection("Job Seeker").document(email).get()
+//            .addOnSuccessListener {
+//                val user = it.toObject<JobSeeker>()  //convert the doc into object
+//                binding.apply {
+//                    //insert data for view layout
+//                    textName.text = user?.fname + " " + user?.lname
+//                    textGender.text = user?.gender
+//                    textNationality.text = user?.nationality
+//                    Glide.with(requireContext())
+//                    .load(user?.profilePic)
+//                    .into(binding.profileImage)
+//                    textDOB.text = user?.dob
+//                    textContact.text = user?.contactNo
+//                    textIcNo.text = user?.icPassport
+//                    textCountry.text = user?.country
+//                    textState.text = user?.state
+//                    val number = user?.salary
+//                    val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
+//                    textSalary.text = "RM $formattedNumber"
+//
+//                    //insert data for edit layout
+//                    editTextFName.setText(user?.fname)
+//                    editTextLName.setText(user?.lname)
+//                    editTextDob.text = user?.dob
+//                    editTextContact.setText(user?.contactNo)
+//                    editTextIcno.setText(user?.icPassport)
+//                    editTextCountry.text = user?.country
+//                    editTextState.setText(user?.state)
+//                    editTextSalary.setText(user?.salary.toString())
+//                    if(user?.gender == "Male")
+//                        male.isChecked = true
+//                    else
+//                        female.isChecked = true
+//
+//                    if(user?.nationality == "Malaysian")
+//                        radioButton.isChecked = true
+//                    else
+//                        radioButton2.isChecked = true
+//
+//                    Glide.with(requireContext())
+//                        .load(user?.profilePic)
+//                        .into(binding.uploadImage)
+//
+//                    binding.uploadImage.tag = user?.profilePic
+//
+//                }
+//
+//
+//            }
+//            .addOnFailureListener{
+//                Log.e("SearchUser", it.message.toString())
+//            }
 
-                    //insert data for edit layout
-                    editTextFName.setText(user?.fname)
-                    editTextLName.setText(user?.lname)
-                    editTextDob.text = user?.dob
-                    editTextContact.setText(user?.contactNo)
-                    editTextIcno.setText(user?.icPassport)
-                    editTextCountry.text = user?.country
-                    editTextState.setText(user?.state)
-                    editTextSalary.setText(user?.salary.toString())
-                    if(user?.gender == "Male")
-                        male.isChecked = true
-                    else
-                        female.isChecked = true
+        val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        var user : JobSeeker = viewModel.getJobSeeker()
+        email = user.email
 
-                    if(user?.nationality == "Malaysian")
-                        radioButton.isChecked = true
-                    else
-                        radioButton2.isChecked = true
+        binding.apply {
+            //insert data for view layout
+            textName.text = user?.fname + " " + user?.lname
+            textGender.text = user?.gender
+            textNationality.text = user?.nationality
+            Glide.with(requireContext())
+                .load(user?.profilePic)
+                .into(binding.profileImage)
+            textDOB.text = user?.dob
+            textContact.text = user?.contactNo
+            textIcNo.text = user?.icPassport
+            textCountry.text = user?.country
+            textState.text = user?.state
+            val number = user?.salary
+            val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
+            textSalary.text = "RM $formattedNumber"
 
-                    Glide.with(requireContext())
-                        .load(user?.profilePic)
-                        .into(binding.uploadImage)
+            //insert data for edit layout
+            editTextFName.setText(user?.fname)
+            editTextLName.setText(user?.lname)
+            editTextDob.text = user?.dob
+            editTextContact.setText(user?.contactNo)
+            editTextIcno.setText(user?.icPassport)
+            editTextCountry.text = user?.country
+            editTextState.setText(user?.state)
+            editTextSalary.setText(user?.salary.toString())
+            if(user?.gender == "Male")
+                male.isChecked = true
+            else
+                female.isChecked = true
 
-                    binding.uploadImage.tag = user?.profilePic
+            if(user?.nationality == "Malaysian")
+                radioButton.isChecked = true
+            else
+                radioButton2.isChecked = true
 
-                }
+            Glide.with(requireContext())
+                .load(user?.profilePic)
+                .into(binding.uploadImage)
 
+            binding.uploadImage.tag = user?.profilePic
 
-            }
-            .addOnFailureListener{
-                Log.e("SearchUser", it.message.toString())
-            }
+        }
 
         binding.editButton.setOnClickListener {
             binding.apply {
@@ -289,12 +336,14 @@ class ProfileFragment : Fragment() {
                                 db.collection("Job Seeker").document(email).set(user)
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Employee/$imageName")
                                 imgRef.delete()
+                                viewModel.setJobSeeker(user)
                             }
                         }
                         else{
                             //no chg profile pic
                             val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary)
                             db.collection("Job Seeker").document(email).set(user)
+                            viewModel.setJobSeeker(user)
                         }
                         requireView().findNavController().navigate(R.id.action_profileFragment_self)
                         Toast.makeText(requireContext(), "Successfully Edit Profile", Toast.LENGTH_SHORT).show()

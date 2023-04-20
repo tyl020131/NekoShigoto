@@ -13,6 +13,7 @@ import android.view.*
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
@@ -64,44 +65,77 @@ class CompanyProfileFragment : Fragment() {
             errorTextProfile.visibility = View.GONE
         }
 
-        email = sh.getString("userid","").toString()
-        db.collection("Company").document(email).get()
-            .addOnSuccessListener {
-                val company = it.toObject<Company>()  //convert the doc into object
-                binding.apply {
-                    //insert data for view layout
-                    textName.text = company?.name
-                    textEmail.text = company?.email
-                    textAddress.text = company?.address
-                    textContact.text = company?.contactNo
-                    textCountry.text = company?.country
-                    textState.text = company?.state
-                    textBusiness.text = company?.business
-                    Glide.with(requireContext())
-                        .load(company?.profilePic)
-                        .into(binding.profileImage)
+//        email = sh.getString("userid","").toString()
+//        db.collection("Company").document(email).get()
+//            .addOnSuccessListener {
+//                val company = it.toObject<Company>()  //convert the doc into object
+//                binding.apply {
+//                    //insert data for view layout
+//                    textName.text = company?.name
+//                    textEmail.text = company?.email
+//                    textAddress.text = company?.address
+//                    textContact.text = company?.contactNo
+//                    textCountry.text = company?.country
+//                    textState.text = company?.state
+//                    textBusiness.text = company?.business
+//                    Glide.with(requireContext())
+//                        .load(company?.profilePic)
+//                        .into(binding.profileImage)
+//
+//                    //insert data for edit layout
+//                    editTextName.setText(company?.name)
+//                    editTextContact.setText(company?.contactNo)
+//                    editTextCountry.text = company?.country
+//                    editTextState.setText(company?.state)
+//                    editTextAddress.setText(company?.address)
+//                    editTextBusiness.setText(company?.business)
+//
+//                    Glide.with(requireContext())
+//                        .load(company?.profilePic)
+//                        .into(binding.uploadImage)
+//
+//                    binding.uploadImage.tag = company?.profilePic
+//
+//                }
+//
+//
+//            }
+//            .addOnFailureListener{
+//                Log.e("SearchUser", it.message.toString())
+//            }
 
-                    //insert data for edit layout
-                    editTextName.setText(company?.name)
-                    editTextContact.setText(company?.contactNo)
-                    editTextCountry.text = company?.country
-                    editTextState.setText(company?.state)
-                    editTextAddress.setText(company?.address)
-                    editTextBusiness.setText(company?.business)
+        val viewModel = ViewModelProvider(requireActivity()).get(CompanyViewModel::class.java)
+        var company : Company = viewModel.getCompany()
 
-                    Glide.with(requireContext())
-                        .load(company?.profilePic)
-                        .into(binding.uploadImage)
+        binding.apply {
+            //insert data for view layout
+            textName.text = company?.name
+            textEmail.text = company?.email
+            email = company.email
+            textAddress.text = company?.address
+            textContact.text = company?.contactNo
+            textCountry.text = company?.country
+            textState.text = company?.state
+            textBusiness.text = company?.business
+            Glide.with(requireContext())
+                .load(company?.profilePic)
+                .into(binding.profileImage)
 
-                    binding.uploadImage.tag = company?.profilePic
+            //insert data for edit layout
+            editTextName.setText(company?.name)
+            editTextContact.setText(company?.contactNo)
+            editTextCountry.text = company?.country
+            editTextState.setText(company?.state)
+            editTextAddress.setText(company?.address)
+            editTextBusiness.setText(company?.business)
 
-                }
+            Glide.with(requireContext())
+                .load(company?.profilePic)
+                .into(binding.uploadImage)
 
+            binding.uploadImage.tag = company?.profilePic
 
-            }
-            .addOnFailureListener{
-                Log.e("SearchUser", it.message.toString())
-            }
+        }
 
         binding.editButton.setOnClickListener {
             binding.scrollview.smoothScrollTo(0, 0)
@@ -192,11 +226,13 @@ class CompanyProfileFragment : Fragment() {
                                 db.collection("Company").document(email).set(user)
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Company/$imageName")
                                 imgRef.delete()
+                                viewModel.setCompany(user)
                             }
                         } else{
                             //no chg profile pic
                             val user = Company(name, email, contactNo, address, country, state, loadedUrl, business, "A")
                             db.collection("Company").document(email).set(user)
+                            viewModel.setCompany(user)
                         }
                         requireView().findNavController().navigate(R.id.action_companyProfileFragment_self)
                         Toast.makeText(requireContext(), "Successfully Edit Profile", Toast.LENGTH_SHORT).show()

@@ -21,6 +21,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.nekoshigoto.databinding.FragmentQualificationBinding
@@ -219,39 +220,63 @@ class QualificationFragment : Fragment() {
                 }
             }
         }
-        db.collection("Qualification").document(email).get()
-            .addOnSuccessListener {
-                val qualification = it.toObject<Qualification>()  //convert the doc into object
+//        db.collection("Qualification").document(email).get()
+//            .addOnSuccessListener {
+//                val qualification = it.toObject<Qualification>()  //convert the doc into object
+//
+//                binding.apply {
+//                    for(i in educationArray.indices){
+//                        if(qualification?.education == educationArray[i]){
+//                            educationLevelSpinner.setSelection(i)
+//                            selectedEdu = educationArray[i]
+//                            break
+//                        }
+//                    }
+//                    textEducation.text = qualification?.education
+//
+//                    for (i in fieldArray.indices) {
+//                        if (fieldArray[i] == qualification?.field) {
+//                            fieldSpinner.setSelection(i)
+//                            selectedField = fieldArray[i]
+//                            break
+//                        }
+//                    }
+//                    textField.text = qualification?.field
+//
+//                    editTextExp.setText(qualification?.workingExp)
+//
+//                    editTextResume.tag = qualification?.resumeURl
+//                }
+//            }
+//            .addOnFailureListener{
+//                Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
+//            }
 
-                binding.apply {
-                    for(i in educationArray.indices){
-                        if(qualification?.education == educationArray[i]){
-                            educationLevelSpinner.setSelection(i)
-                            selectedEdu = educationArray[i]
-                            break
-                        }
-                    }
-                    textEducation.text = qualification?.education
-
-                    for (i in fieldArray.indices) {
-                        if (fieldArray[i] == qualification?.field) {
-                            fieldSpinner.setSelection(i)
-                            selectedField = fieldArray[i]
-                            break
-                        }
-                    }
-                    textField.text = qualification?.field
-
-                    editTextExp.setText(qualification?.workingExp)
-
-                    editTextResume.tag = qualification?.resumeURl
+        val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        var qualification : Qualification = viewModel.getQualification()
+        binding.apply {
+            for(i in educationArray.indices){
+                if(qualification?.education == educationArray[i]){
+                    educationLevelSpinner.setSelection(i)
+                    selectedEdu = educationArray[i]
+                    break
                 }
-
-
             }
-            .addOnFailureListener{
-                Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
+            textEducation.text = qualification?.education
+
+            for (i in fieldArray.indices) {
+                if (fieldArray[i] == qualification?.field) {
+                    fieldSpinner.setSelection(i)
+                    selectedField = fieldArray[i]
+                    break
+                }
             }
+            textField.text = qualification?.field
+
+            editTextExp.setText(qualification?.workingExp)
+
+            editTextResume.tag = qualification?.resumeURl
+        }
 
         binding.removeButton.setOnClickListener {
             dialog = AlertDialog.Builder(requireContext())
@@ -260,9 +285,15 @@ class QualificationFragment : Fragment() {
                 .setMessage("Are you sure to remove the current resume?")
                 .setCancelable(true)
                 .setPositiveButton("Remove"){dialogInterface,it->
-                    binding.editTextResume.tag = ""
-                    binding.editTextResume.text = "Resume removed, click here to upload"
-                    chgPDF = false
+                    if(binding.editTextResume.tag as String == ""){
+                        Toast.makeText(requireContext(), "No resume founded", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        binding.editTextResume.tag = ""
+                        binding.editTextResume.text = "Resume removed, click here to upload"
+                        Toast.makeText(requireContext(),"Please click the edit button to save the changes", Toast.LENGTH_LONG).show()
+                        chgPDF = false
+                    }
                 }.setNegativeButton("Cancel"){ dialogInterface,it->
 
                 }.show()
@@ -286,6 +317,7 @@ class QualificationFragment : Fragment() {
                                 db.collection("Qualification").document(email).set(newQuali)
                                 val pdfRef = FirebaseStorage.getInstance().getReference().child("Resume/$oldPDF")
                                 pdfRef.delete()
+                                viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
                                 requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
                             }
@@ -300,6 +332,7 @@ class QualificationFragment : Fragment() {
                                     .setPositiveButton("continue"){dialogInterface,it->
                                         var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, loadedUrl)
                                         db.collection("Qualification").document(email).set(newQuali)
+                                        viewModel.setQualification(newQuali)
                                         Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
                                         requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
                                     }
@@ -311,6 +344,7 @@ class QualificationFragment : Fragment() {
                             }else{
                                 var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, loadedUrl)
                                 db.collection("Qualification").document(email).set(newQuali)
+                                viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
                                 requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
                             }

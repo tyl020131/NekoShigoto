@@ -83,9 +83,6 @@ class CompanyLogin : AppCompatActivity() {
                                                         myEdit.putString("userid", email)
                                                         myEdit.putString("type", "company")
                                                         myEdit.putBoolean("loggedIn", true)
-                                                        myEdit.putString("name", company?.name)
-                                                        myEdit.putString("address", "${company?.state}, ${company?.country}")
-                                                        myEdit.putString("image", company?.profilePic)
                                                         myEdit.commit()
 
                                                         val intent = Intent(this, CompanyHome::class.java)

@@ -94,7 +94,7 @@
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Resume"
+                    android:text="Resume (Optional)"
                     android:textColor="@color/color5" />
 
                 <TextView
@@ -114,6 +114,18 @@
                     android:textSize="18sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/removeButton"
+                    style="@style/button_dark"
+                    android:background="@drawable/button_dark"
+                    android:backgroundTint="@color/color1"
+                    android:text="Remove Resume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,6 +140,8 @@
                     android:text="Submit Vacancy"
                     android:textSize="20dp"
                     android:textColor="@color/color5" />
+
+
 
             </LinearLayout>
         </LinearLayout>
