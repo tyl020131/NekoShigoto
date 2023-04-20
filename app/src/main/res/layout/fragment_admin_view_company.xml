@@ -18,7 +18,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/textView1"
                     android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:text="1"
@@ -27,7 +27,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/textView2"
                     android:layout_width="180sp"
                     android:layout_height="wrap_content"
                     android:text="PaoPao Sdn.bhd"
@@ -36,7 +36,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView43"
+                    android:id="@+id/textView3"
                     android:layout_width="80sp"
                     android:layout_height="wrap_content"
                     android:text="Active"
@@ -46,7 +46,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button8"
+                    android:id="@+id/button9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/color11"
