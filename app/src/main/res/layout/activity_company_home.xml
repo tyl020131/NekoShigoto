@@ -29,7 +29,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/company_menu_tab" />
 
-
-
     </RelativeLayout>
 </layout>

@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, CompanyHome::class.java))
                 finish()
             }
+            else if(sharedPreferences.getString("type", "").toString() == "admin"){
+                startActivity(Intent(this, AdminLogin::class.java))
+                finish()
+            }
             else {
                 // Redirect to getStarted screen
                 startActivity(Intent(this, GetStarted::class.java))

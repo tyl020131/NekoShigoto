@@ -33,7 +33,6 @@ class CompanyLogin : AppCompatActivity() {
         setContentView(view)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        val loginButton = binding.loginButton
         val registerButton = binding.registerButton
         val eye = binding.eyeView
         val passwordField = binding.passwordText
@@ -42,14 +41,11 @@ class CompanyLogin : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        loginButton.setOnClickListener{
-            val intent = Intent(this, CompanyHome::class.java)
-            startActivity(intent)
-        }
         registerButton.setOnClickListener{
             val intent = Intent(this, CompanyRegister::class.java)
             startActivity(intent)
         }
+
         eye.setOnClickListener{
             if (passwordField.transformationMethod == PasswordTransformationMethod.getInstance()) {
                 passwordField.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -78,6 +74,8 @@ class CompanyLogin : AppCompatActivity() {
                                         "company" -> {
                                             when (user.status) {
                                                 "A" -> {
+                                                    Toast.makeText(baseContext, "Login Successfully",
+                                                        Toast.LENGTH_SHORT).show()
                                                     val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
                                                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
                                                     db.collection("Company").document(email).get().addOnSuccessListener {

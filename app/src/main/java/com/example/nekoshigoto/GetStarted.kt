@@ -12,12 +12,17 @@ class GetStarted : AppCompatActivity() {
 
         var button = findViewById<View>(R.id.button)
         var button2 = findViewById<View>(R.id.button2)
+        var image = findViewById<View>(R.id.imageView)
         button.setOnClickListener {
             val intent = Intent(this, EmployeeLogin::class.java)
             startActivity(intent)
         }
         button2.setOnClickListener{
             val intent = Intent(this, CompanyLogin::class.java)
+            startActivity(intent)
+        }
+        image.setOnClickListener{
+            val intent = Intent(this, AdminLogin::class.java)
             startActivity(intent)
         }
     }

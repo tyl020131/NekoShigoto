@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.icu.text.NumberFormat
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -84,7 +85,9 @@ class ProfileFragment : Fragment() {
                     textIcNo.text = user?.icPassport
                     textCountry.text = user?.country
                     textState.text = user?.state
-                    textSalary.text = "RM ${user?.salary.toString()}"
+                    val number = user?.salary
+                    val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
+                    textSalary.text = "RM $formattedNumber"
 
                     //insert data for edit layout
                     editTextFName.setText(user?.fname)

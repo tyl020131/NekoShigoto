@@ -1,6 +1,7 @@
 package com.example.nekoshigoto
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -13,10 +14,7 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -48,6 +46,7 @@ class QualificationFragment : Fragment() {
     private var db : FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var storage : FirebaseStorage
     private lateinit var progressDialog : ProgressDialog
+    private lateinit var dialog : AlertDialog.Builder
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,8 +64,15 @@ class QualificationFragment : Fragment() {
         binding.fieldSpinner.visibility = View.GONE
         binding.educationLevelSpinner.visibility = View.GONE
         binding.editTextExp.isEnabled = false
+        binding.removeButton.visibility = View.GONE
+
         binding.editTextResume.setOnClickListener {
-            viewPdf()
+            if(binding.editTextResume.tag.toString() == "") {
+                Toast.makeText(requireContext(), "Please upload a resume before viewing it", Toast.LENGTH_LONG).show()
+            }
+            else{
+                viewPdf()
+            }
         }
 
         binding.editButton.setOnClickListener {
@@ -74,6 +80,7 @@ class QualificationFragment : Fragment() {
             binding.fieldSpinner.visibility = View.VISIBLE
             binding.educationLevelSpinner.visibility = View.VISIBLE
             binding.cancelButton.visibility = View.VISIBLE
+            binding.removeButton.visibility = View.VISIBLE
 
             binding.editButton.visibility = View.GONE
             binding.textEducation.visibility = View.GONE
@@ -92,13 +99,20 @@ class QualificationFragment : Fragment() {
             binding.fieldSpinner.visibility = View.GONE
             binding.educationLevelSpinner.visibility = View.GONE
             binding.cancelButton.visibility = View.GONE
+            binding.removeButton.visibility = View.GONE
 
             binding.editButton.visibility = View.VISIBLE
             binding.textEducation.visibility = View.VISIBLE
             binding.textField.visibility = View.VISIBLE
 
             binding.editTextResume.setOnClickListener {
-                viewPdf()
+                if(binding.editTextResume.tag.toString() == "") {
+                    Toast.makeText(requireContext(), "Please upload a resume before viewing it", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    viewPdf()
+                }
+
             }
             binding.editTextResume.setText("Click here to view resume")
 
@@ -239,37 +253,78 @@ class QualificationFragment : Fragment() {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }
 
+        binding.removeButton.setOnClickListener {
+            dialog = AlertDialog.Builder(requireContext())
+
+            dialog.setTitle("Remove resume ")
+                .setMessage("Are you sure to remove the current resume?")
+                .setCancelable(true)
+                .setPositiveButton("Remove"){dialogInterface,it->
+                    binding.editTextResume.tag = ""
+                    binding.editTextResume.text = "Resume removed, click here to upload"
+                    chgPDF = false
+                }.setNegativeButton("Cancel"){ dialogInterface,it->
+
+                }.show()
+        }
+
         binding.button2.setOnClickListener {
 
-            val loadedUrl = binding.editTextResume.tag as String
-            if(eduSpinner.selectedItemPosition!=0 && fieldSpinner.selectedItemPosition!=0 &&
-                binding.editTextExp.text.toString().isNotEmpty()){
-                if(chgPDF){
-                    uploadPdf { pdf ->
-                        var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, pdf)
-                        val oldPDF = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
-                        db.collection("Qualification").document(email).set(newQuali)
-                        val pdfRef = FirebaseStorage.getInstance().getReference().child("Resume/$oldPDF")
-                        pdfRef.delete()
-                        Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                        requireView().findNavController().navigate(R.id.action_qualificationFragment_self)
+            dialog = AlertDialog.Builder(requireContext())
+
+            dialog.setTitle("Update Confirmation ")
+                .setMessage("Are you sure to update qualification details? ")
+                .setCancelable(true)
+                .setPositiveButton("Update"){dialogInterface,it->
+                    val loadedUrl = binding.editTextResume.tag as String
+                    if(eduSpinner.selectedItemPosition!=0 && fieldSpinner.selectedItemPosition!=0 &&
+                        binding.editTextExp.text.toString().isNotEmpty()){
+                        if(chgPDF){
+                            uploadPdf { pdf ->
+                                var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, pdf)
+                                val oldPDF = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
+                                db.collection("Qualification").document(email).set(newQuali)
+                                val pdfRef = FirebaseStorage.getInstance().getReference().child("Resume/$oldPDF")
+                                pdfRef.delete()
+                                Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
+                                requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                            }
+                        }else{
+                            //check is there any file
+                            if(loadedUrl == "") {
+                                dialog = AlertDialog.Builder(requireContext())
+
+                                dialog.setTitle("Resume is missing... ")
+                                    .setMessage("Do you want to continue to update your qualification without resume? ")
+                                    .setCancelable(true)
+                                    .setPositiveButton("continue"){dialogInterface,it->
+                                        var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, loadedUrl)
+                                        db.collection("Qualification").document(email).set(newQuali)
+                                        Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
+                                        requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                                    }
+                                    .setNegativeButton("Cancel"){dialogInterface,it->
+                                        Toast.makeText(requireContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show()
+                                    }
+                                    .show()
+
+                            }else{
+                                var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, loadedUrl)
+                                db.collection("Qualification").document(email).set(newQuali)
+                                Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
+                                requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                            }
+                        }
                     }
-                }else{
-                    //check is there any file
-                    if(loadedUrl == "") {
-                        //no file
+                    else{
                         Toast.makeText(requireContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show()
-                    }else{
-                        var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, loadedUrl)
-                        db.collection("Qualification").document(email).set(newQuali)
-                        Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                        requireView().findNavController().navigate(R.id.action_qualificationFragment_self)
                     }
                 }
-            }
-            else{
-                Toast.makeText(requireContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show()
-            }
+                .setNegativeButton("Cancel"){dialogInterface,it->
+
+                }
+                .show()
+
         }
 
         return binding.root
@@ -322,7 +377,7 @@ class QualificationFragment : Fragment() {
                 startActivity(intent)
             }
             .addOnFailureListener {
-                // Handle any errors
+
             }
     }
     private fun uploadPdf(callback: (String) -> Unit){
