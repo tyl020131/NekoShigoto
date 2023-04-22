@@ -85,6 +85,8 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:1.1.1"
 
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //for image URL
     implementation 'com.github.bumptech.glide:glide:4.12.0'
