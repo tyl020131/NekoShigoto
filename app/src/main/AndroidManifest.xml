@@ -17,17 +17,15 @@
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
-        <!--
         <activity
             android:name=".VacancyDetail"
             android:exported="false" />
-        -->
         <activity
             android:name=".AdminCompanyRequest"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".AdminView"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".ApplicationsDetail"
             android:exported="false" />
@@ -67,7 +65,7 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
