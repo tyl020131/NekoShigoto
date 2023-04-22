@@ -209,6 +209,7 @@ class ProfileFragment : Fragment() {
 
         binding.qualificationButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
+            //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
         }
 
         binding.uploadImage.setOnClickListener{
