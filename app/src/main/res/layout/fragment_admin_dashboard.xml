@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color1"
+    tools:context=".AdminDashboardFragment">
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="204dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="17dp"
+        android:text="Dashboard"
+        android:textAlignment="center"
+        android:textColor="#F8FAFC"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="166dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="520dp"
+        app:cardBackgroundColor="#0F1926"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="52dp"
+            android:layout_height="47dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:background="#624C28"
+            android:padding="5sp"
+            app:srcCompat="@drawable/profile3" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70sp"
+            android:layout_marginTop="20sp"
+            android:text="User"
+            android:textColor="#F8FAFC"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70sp"
+            android:text="Total: "
+            android:textAlignment="textEnd"
+            android:textColor="#5BF911"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="82sp"
+            android:layout_marginTop="70sp"
+            android:text="900"
+            android:textAlignment="viewStart"
+            android:textColor="#5BF911"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="166dp"
+        android:layout_height="106dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="528dp"
+        app:cardBackgroundColor="#0F1926"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.962">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="52dp"
+            android:layout_height="47dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:background="#624C28"
+            android:padding="5sp"
+            app:srcCompat="@drawable/profile3" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70sp"
+            android:layout_marginTop="20sp"
+            android:text="Company"
+            android:textColor="#F8FAFC"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70sp"
+            android:text="Total: "
+            android:textAlignment="textEnd"
+            android:textColor="#5BF911"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="82sp"
+            android:layout_marginTop="70sp"
+            android:text="900"
+            android:textAlignment="viewStart"
+            android:textColor="#5BF911"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
