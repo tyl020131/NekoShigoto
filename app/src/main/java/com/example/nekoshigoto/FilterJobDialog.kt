@@ -72,18 +72,21 @@ class FilterJobDialog(context : Context) {
         }
 
         //Sorter
-        val salary_high = dialog.findViewById<TextView>(R.id.salary_high)
-        val salary_low = dialog.findViewById<TextView>(R.id.salary_low)
+        val shigh = dialog.findViewById<TextView>(R.id.salary_high)
+        val slow = dialog.findViewById<TextView>(R.id.salary_low)
 
-        salary_high.setOnClickListener {
-            salary_low.getCompoundDrawables()[0].setTint(R.color.unsorted)
-            salary_high.getCompoundDrawables()[0].setTint(R.color.sorted)
+        val salary_high = dialog.findViewById<TextView>(R.id.salhigh_tick)
+        val salary_low = dialog.findViewById<TextView>(R.id.sallow_tick)
+
+        shigh.setOnClickListener {
+            salary_high.visibility = View.VISIBLE
+            salary_low.visibility = View.INVISIBLE
             sort="Salary High"
         }
 
-        salary_high.setOnClickListener {
-            salary_low.compoundDrawables[0].setTint(R.color.sorted)
-            salary_high.compoundDrawables[0].setTint(R.color.unsorted)
+        slow.setOnClickListener {
+            salary_low.visibility = View.VISIBLE
+            salary_high.visibility = View.INVISIBLE
             sort="Salary Low"
         }
 
@@ -101,11 +104,26 @@ class FilterJobDialog(context : Context) {
         modes = modeAdapter.getSModes()
     }
     private fun loadField(){
-        fieldList.add("IT")
-        fieldList.add("Software Engineering")
-        fieldList.add("Finance")
-        fieldList.add("Fitness")
-        fieldList.add("League Of Legends")
+        fieldList.add("Agriculture")
+        fieldList.add("Architecture")
+        fieldList.add("Arts and Entertainment")
+        fieldList.add("Business & Finance")
+        fieldList.add("Social Community")
+        fieldList.add("Computer")
+        fieldList.add("Mathematics")
+        fieldList.add("Education")
+        fieldList.add("Healthcare")
+        fieldList.add("Maintenance & Repair")
+        fieldList.add("Law")
+        fieldList.add("Management")
+        fieldList.add("Communication")
+        fieldList.add("Office")
+        fieldList.add("Personal Care & Service")
+        fieldList.add("Production")
+        fieldList.add("Sales")
+        fieldList.add("Transportation")
+        fieldList.add("Food")
+        fieldList.add("Others")
 
         fieldAdapter = FieldAdapter(fieldList)
         fieldRecyclerView.adapter = fieldAdapter
