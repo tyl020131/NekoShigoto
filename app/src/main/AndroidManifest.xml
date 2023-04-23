@@ -14,18 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31">
+        <!--<activity
+            android:name=".AdminHome"
+            android:exported="false"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/Theme.NekoShigoto.NoActionBar" />-->
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
         <activity
             android:name=".VacancyDetail"
             android:exported="false" />
-        <activity
-            android:name=".AdminCompanyRequest"
-            android:exported="false" />
-        <!--<activity
-            android:name=".AdminView"
-            android:exported="false" />-->
         <activity
             android:name=".ApplicationsDetail"
             android:exported="false" />
@@ -65,7 +64,7 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".AdminView"
+            android:name=".AdminHome"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
