@@ -11,7 +11,6 @@ import com.google.android.material.imageview.ShapeableImageView
 class ApplicationAdapter(private val applicationList : ArrayList<Application>) :
     RecyclerView.Adapter<ApplicationAdapter.MyViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.application_list,parent,false)
         return MyViewHolder(itemView)
@@ -28,7 +27,6 @@ class ApplicationAdapter(private val applicationList : ArrayList<Application>) :
     override fun getItemCount(): Int {
         return applicationList.size
     }
-
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)

@@ -4,25 +4,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.nekoshigoto.Job
+import com.example.nekoshigoto.JobSeekerViewModel
 import com.example.nekoshigoto.R
+import com.example.nekoshigoto.Vacancy
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.firestore.FirebaseFirestore
 
-class SavedAdapter(private val jobList : ArrayList<Job>) :
+class SavedAdapter(private val jobList : ArrayList<Vacancy>, private val viewModel: JobSeekerViewModel) :
     RecyclerView.Adapter<SavedAdapter.MyViewHolder>() {
-
-
+    private lateinit var itemView :View
+    private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
+        itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = jobList[position];
-        holder.propic.setImageResource(currentItem.image)
-        holder.company.text = currentItem.company
-        holder.vacancy.text = currentItem.vacancy
+        val imgUri = currentItem.image.toUri().buildUpon().scheme("https").build()
+        holder.propic.load(imgUri)
+        holder.company.text = currentItem.companyName
+        holder.vacancy.text = currentItem.position
         holder.location.text = currentItem.location
         holder.mode.text = currentItem.mode
 
@@ -32,6 +39,10 @@ class SavedAdapter(private val jobList : ArrayList<Job>) :
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, jobList.size)
             holder.itemView.setVisibility(View.GONE)
+            val jobseeker = viewModel.getJobSeeker()
+            val saveid = String.format("%s%s",jobseeker.email,currentItem.vacancyid)
+            db.collection("Job Seeker").document(jobseeker.email).collection("saves").document(saveid).delete()
+            Toast.makeText(itemView.context, "Job Removed from Saved Successfully", Toast.LENGTH_SHORT).show()
 
         };
     }

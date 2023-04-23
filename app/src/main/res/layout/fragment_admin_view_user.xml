@@ -12,51 +12,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/users"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-                <TextView
-                    android:id="@+id/textView41"
-                    android:layout_width="40sp"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView42"
-                    android:layout_width="180sp"
-                    android:layout_height="wrap_content"
-                    android:text="Cai Xu Kun"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toEndOf="@+id/textView41"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView43"
-                    android:layout_width="80sp"
-                    android:layout_height="wrap_content"
-                    android:text="Active"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toEndOf="@+id/textView42"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/color11"
-                    android:text="View"
-                    android:textSize="12sp"
-                    app:cornerRadius="15sp"
-                    tools:layout_editor_absoluteX="321dp"
-                    tools:layout_editor_absoluteY="6dp" />
-
-            </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

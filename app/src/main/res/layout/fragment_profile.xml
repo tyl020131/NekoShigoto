@@ -25,8 +25,7 @@
                     android:layout_height="250dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:src="@drawable/megumin" />
+                    android:layout_marginBottom="@dimen/form_margin_bot" />
 
                 <TextView
                     android:id="@+id/textA"
@@ -40,19 +39,21 @@
                     android:text="Full Name"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
-                    android:ems="10"
-                    android:text="name"
-                    android:inputType="textPersonName"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="name"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textB"
@@ -65,19 +66,23 @@
                     android:text="Gender"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textGender"
                     android:layout_width="match_parent"
-                    android:text="male"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
+                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="male"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/nationality1"
@@ -90,19 +95,22 @@
                     android:text="Nationality"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textNationality"
-                    android:text="Malaysian"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="Malaysian"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
 
                 <TextView
@@ -116,19 +124,22 @@
                     android:text="Date of Birth"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textDOB"
                     android:layout_width="match_parent"
-                    android:text="20/09/2003"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="20/09/2003"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textD"
@@ -141,19 +152,22 @@
                     android:text="Contact No"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textContact"
-                    android:text="012-1234567"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="012-1234567"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textE"
@@ -166,19 +180,22 @@
                     android:text="IC No / Passport No"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textIcNo"
-                    android:text="111111-11-1111"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="111111-11-1111"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textF"
@@ -191,19 +208,22 @@
                     android:text="Country"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textCountry"
-                    android:text="Malaysia"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="Malaysia"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textG"
@@ -216,19 +236,51 @@
                     android:text="State"
                     android:textColor="@color/color5" />
 
-                <EditText
+                <TextView
                     android:id="@+id/textState"
-                    android:text="Penang"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:paddingRight="5dp"
+                    android:text="Penang"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Expected Salary"
+                    android:textColor="@color/color5" />
+
+                <TextView
+                    android:id="@+id/textSalary"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@drawable/field_dark"
+                    android:textColor="@color/color5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="RM 3,000"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -247,6 +299,14 @@
                     android:src="@drawable/upload" />
 
                 <TextView
+                    android:id="@+id/errorTextProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_red_light"
+                    android:text="Please upload an image" />
+
+                <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,11 +315,11 @@
                     android:layout_marginEnd="@dimen/form_margin_left"
                     android:layout_marginBottom="@dimen/form_margin_bot"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Full Name"
+                    android:text="First Name"
                     android:textColor="@color/color5" />
 
                 <EditText
-                    android:id="@+id/editTextName"
+                    android:id="@+id/editTextFName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
@@ -270,6 +330,52 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/errorTextFname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
+                    android:id="@+id/textlname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Last Name"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextLName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/errorTextLname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
 
                 <TextView
                     android:id="@+id/gender"
@@ -290,12 +396,13 @@
                     android:orientation="horizontal">
 
                     <RadioGroup
+                        android:id="@+id/genderGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginStart="@dimen/form_margin_left"
                         android:layout_marginEnd="@dimen/form_margin_left"
-                        android:layout_marginBottom="@dimen/form_margin_bot">
+                        android:layout_marginBottom="@dimen/form_margin_bot"
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/male"
@@ -312,6 +419,17 @@
                             android:textColor="@color/color5" />
                     </RadioGroup>
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/errorTextGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
 
                 <TextView
                     android:id="@+id/nationality"
@@ -358,6 +476,17 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/errorTextNationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
                     android:id="@+id/dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -370,6 +499,8 @@
 
                 <TextView
                     android:id="@+id/editTextDob"
+                    android:gravity="center"
+                    android:textAlignment="textStart"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
@@ -380,6 +511,17 @@
                     android:paddingRight="5dp"
                     android:text="Click here to select DOB"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/errorTextDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
 
                 <TextView
                     android:id="@+id/contact"
@@ -406,6 +548,17 @@
                     android:paddingRight="5dp" />
 
                 <TextView
+                    android:id="@+id/errorTextContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
                     android:id="@+id/icno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -430,6 +583,17 @@
                     android:paddingRight="5dp" />
 
                 <TextView
+                    android:id="@+id/errorTextIcno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
                     android:id="@+id/country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -442,6 +606,8 @@
 
                 <TextView
                     android:id="@+id/editTextCountry"
+                    android:gravity="center"
+                    android:textAlignment="textStart"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/form_margin_left"
@@ -452,6 +618,17 @@
                     android:paddingRight="5dp"
                     android:text="Click here to select country"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/errorTextCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
 
                 <TextView
                     android:id="@+id/state"
@@ -476,6 +653,53 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/errorTextState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
+                    android:id="@+id/salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Expected Salary (RM)"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextSalary"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:maxLength="6"
+                    android:inputType="text|number"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/errorTextSalary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/form_margin_left"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_red_light" />
 
             </LinearLayout>
 

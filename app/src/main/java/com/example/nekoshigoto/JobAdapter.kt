@@ -4,20 +4,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.nekoshigoto.Job
-import com.example.nekoshigoto.R
-import com.example.nekoshigoto.Vacancy
+import com.example.nekoshigoto.*
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.firestore.FirebaseFirestore
 
-class JobAdapter(private val jobList : ArrayList<Vacancy>) :
+class JobAdapter(private val jobList : ArrayList<Vacancy>,private val viewModel:JobSeekerViewModel,private val mySaved : ArrayList<Save>) :
     RecyclerView.Adapter<JobAdapter.MyViewHolder>() {
 
+    private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
 
+    private lateinit var itemView :View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
+        itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_list,parent,false)
         return MyViewHolder(itemView)
     }
 
@@ -33,16 +35,31 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>) :
         holder.vacancy.text = currentItem.position
         holder.location.text = "Penang,Malaysia"
         holder.mode.text = currentItem.mode
+        if(mySaved.contains(Save(currentItem.vacancyid))){
+            holder.fav.setImageResource(R.drawable.favorite);
+        }
+        else{
+            holder.fav.setImageResource(R.drawable.saved);
+        }
+
 
         holder.fav.setOnClickListener{
+            val vacancyname = String.format("%s%s",holder.vacancy,holder.company).lowercase()
+            val jobseeker = viewModel.getJobSeeker()
+            val saveid = String.format("%s%s",jobseeker.email,currentItem.vacancyid)
 
             if(it.getTag() == R.drawable.saved){
+
                 holder.fav.setImageResource(R.drawable.favorite);
                 holder.fav.setTag(R.drawable.favorite);
+                db.collection("Job Seeker").document(jobseeker.email).collection("saves").document(saveid).set(Save(currentItem.vacancyid))
+                Toast.makeText(itemView.context, "Job Saved Successfully", Toast.LENGTH_SHORT).show()
             }
             else{
                 holder.fav.setImageResource(R.drawable.saved);
                 holder.fav.setTag(R.drawable.saved);
+                db.collection("Job Seeker").document(jobseeker.email).collection("saves").document(saveid).delete()
+                Toast.makeText(itemView.context, "Job Removed from Saved Successfully", Toast.LENGTH_SHORT).show()
             }
         };
     }

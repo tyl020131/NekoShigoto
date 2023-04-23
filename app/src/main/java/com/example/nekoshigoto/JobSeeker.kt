@@ -11,6 +11,7 @@ data class JobSeeker(
     val icPassport : String = "",
     val profilePic : String = "",
     val country : String = "",
-    val state : String = ""
+    val state : String = "",
+    val salary : Int = 0,
 
 )

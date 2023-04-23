@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/admin_view_navigation"
+    app:startDestination="@id/adminViewUserFragment2">
+
+    <fragment
+        android:id="@+id/adminViewUserFragment2"
+        android:name="com.example.nekoshigoto.AdminViewUserFragment"
+        android:label="AdminViewUserFragment" >
+        <action
+            android:id="@+id/action_adminViewUserFragment2_to_adminViewCompanyFragment2"
+            app:destination="@id/adminViewCompanyFragment2" />
+        <action
+            android:id="@+id/action_adminViewUserFragment2_self"
+            app:destination="@id/adminViewUserFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminViewCompanyFragment2"
+        android:name="com.example.nekoshigoto.AdminViewCompanyFragment"
+        android:label="AdminViewCompanyFragment" >
+        <action
+            android:id="@+id/action_adminViewCompanyFragment2_to_adminViewUserFragment2"
+            app:destination="@id/adminViewUserFragment2" />
+    </fragment>
+</navigation>

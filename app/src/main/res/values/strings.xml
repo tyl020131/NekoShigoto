@@ -7,10 +7,12 @@
     <string name="default_salary_range">RM0.00 - RM100000.00</string>
     <string-array name="education_array">
         <item>Select Your Education Level...</item>
-        <item>Secondary School</item>
+        <item>High School</item>
         <item>Diploma</item>
         <item>Bachelor\'s degree</item>
         <item>Master\'s degree</item>
+        <item>Doctoral\'s degree</item>
+        <item>Doctor of Philosophy</item>
 
     </string-array>
     <string-array name="field_array">
@@ -18,6 +20,39 @@
         <item>Accounting and Finance</item>
         <item>Engineering</item>
         <item>Biochemistry</item>
+
+    </string-array>
+    <string name="title_activity_logout">Logout</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="Fields">
+        <item>Agriculture</item>
+        <item>Architecture</item>
+        <item>Arts and Entertainment</item>
+        <item>Business and Finance</item>
+        <item>Social Community</item>
+        <item>Computer</item>
+        <item>Mathematics</item>
+        <item>Education</item>
+        <item>Healthcare</item>
+        <item>Maintenance and Repair</item>
+        <item>Law</item>
+        <item>Management</item>
+        <item>Communication</item>
+        <item>Office</item>
+        <item>Personal Care and Service</item>
+        <item>Law</item>
+        <item>Production Sales</item>
+        <item>Transportation</item>
+        <item>Food</item>
+        <item>Others</item>
 
     </string-array>
 </resources>

@@ -6,22 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.databinding.FragmentAdminViewUserBinding
 
 class AdminViewUserFragment : Fragment() {
-    private lateinit var binding : FragmentAdminViewUserBinding
+    private lateinit var newRecyclerView: RecyclerView
+    private lateinit var userListForAdmin : ArrayList<UserView>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_admin_view_user, container, false)
 
-        binding = FragmentAdminViewUserBinding.inflate(inflater, container, false)
+        newRecyclerView = view.findViewById(R.id.users)
+        newRecyclerView.layoutManager = LinearLayoutManager(activity)
+        newRecyclerView.setHasFixedSize(true)
 
+        userListForAdmin = arrayListOf<UserView>()
+        loadData()
 
+        return view
 
-        return binding.root
+    }
+
+    private fun loadData(){
+        userListForAdmin.add(UserView("PaoPao", "Active"))
+        userListForAdmin.add(UserView("NickNick", "Inactive"))
+
+        newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
+
 
     }
 

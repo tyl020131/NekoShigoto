@@ -2,12 +2,14 @@ package com.example.nekoshigoto
 
 import ApplicationAdapter
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -23,7 +25,7 @@ class ActivityFragment : Fragment() {
 
 
     ): View? {
-
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -46,6 +48,24 @@ class ActivityFragment : Fragment() {
         return view;
 
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun loadData(){

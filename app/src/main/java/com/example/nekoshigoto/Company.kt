@@ -7,6 +7,7 @@ data class Company(
     val address : String = "",
     val country : String = "",
     val state : String = "",
-    val profile : String = "",
-    val business : String = ""
+    val profilePic : String = "",
+    val business : String = "",
+    val status : String = "",
 )

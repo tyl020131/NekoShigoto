@@ -14,24 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31">
-        <!--<activity
+        <activity
+            android:name=".AdminLogin"
+            android:exported="false" />
+        <activity
             android:name=".VacancyDetail"
-            android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".AdminCompanyRequest"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".AdminView"
-            android:exported="false" />
-
-        <activity
-            android:name=".GetStarted"
-            android:exported="true" >
-
-        </activity>
+            android:exported="false" />-->
         <activity
             android:name=".ApplicationsDetail"
             android:exported="false" />
+        <activity
+            android:name=".Logout"
+            android:exported="false"
+            android:label="@string/title_activity_logout"
+            android:theme="@style/Theme.NekoShigoto.NoActionBar" />
         <activity
             android:name=".JobDetails"
             android:exported="false" />
@@ -59,30 +61,40 @@
             android:name=".EmployeeLogin"
             android:exported="false" />
         <activity
-            android:name=".VacancyDetail"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" >
+            android:name=".GetStarted"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".AdminView"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
