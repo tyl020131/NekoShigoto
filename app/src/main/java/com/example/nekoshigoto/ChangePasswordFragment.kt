@@ -62,7 +62,7 @@ class ChangePasswordFragment : Fragment() {
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
                                                 auth.signOut()
-                                                Toast.makeText(requireContext(), "Password updated successfully.", Toast.LENGTH_LONG).show()
+                                                Toast.makeText(requireContext(), "Password updated successfully. Please login again", Toast.LENGTH_LONG).show()
                                                 val intent = Intent(requireContext(), GetStarted::class.java)
                                                 startActivity(intent)
                                             }

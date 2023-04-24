@@ -48,4 +48,9 @@ class AdminViewFragment : Fragment() {
 
         return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+    }
 }
