@@ -220,8 +220,8 @@ class ProfileFragment : Fragment() {
         }
 
         binding.qualificationButton.setOnClickListener {
-            val bundle = bundleOf("test" to "test")
-            it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment, bundle)
+            //val bundle = bundleOf("test" to "test")
+            it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
             //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
         }
 

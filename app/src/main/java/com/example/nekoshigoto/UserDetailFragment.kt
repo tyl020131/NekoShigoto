@@ -26,9 +26,6 @@ class UserDetailFragment : Fragment() {
     private lateinit var binding : FragmentUserDetailBinding
     private lateinit var storage : FirebaseStorage
     private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var progressDialog : ProgressDialog
-    private lateinit var pdfUri: Uri
-    private var chgPDF = false
     private lateinit var dialog : AlertDialog.Builder
 
     override fun onCreateView(
@@ -53,6 +50,16 @@ class UserDetailFragment : Fragment() {
                     textGender.text = user?.gender
                     textNationality.text = user?.nationality
                     textAddress.text = user?.state + ", " + user?.country
+
+                    val list = user?.workingMode?.split(", ")
+                    list?.forEach {
+                        if(it == binding.freelance.text.toString())
+                            binding.freelance.visibility = View.VISIBLE
+                        else if(it == binding.partTime.text.toString())
+                            binding.partTime.visibility = View.VISIBLE
+                        else if(it == binding.fullTime.text.toString())
+                            binding.fullTime.visibility = View.VISIBLE
+                    }
                 }
 
             }.addOnFailureListener {

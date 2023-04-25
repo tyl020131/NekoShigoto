@@ -46,13 +46,26 @@
             <!--                app:layout_constraintStart_toStartOf="parent"-->
             <!--                app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-            <com.google.android.material.imageview.ShapeableImageView
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/profilePic"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="28dp"-->
+<!--                android:background="@drawable/button_dark"-->
+<!--                android:src="@drawable/upload"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.521"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView"-->
+<!--                app:shapeAppearanceOverlay="@style/circleImageView" />-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="28dp"
-                android:background="@drawable/button_dark"
                 android:src="@drawable/upload"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.521"
@@ -69,23 +82,70 @@
                 android:text="Cai Xu Kun"
                 android:textColor="#F8F8F8"
                 android:textSize="26dp"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexbox_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:justifyContent="space_around"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTextView">
+
+                <TextView
+                    android:id="@+id/partTime"
+                    style="@style/button_dark"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_dark"
+                    android:gravity="center"
+                    android:text="Part-time"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/fullTime"
+                    style="@style/button_dark"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_dark"
+                    android:gravity="center"
+                    android:text="Full-time"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/freelance"
+                    style="@style/button_dark"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_dark"
+                    android:gravity="center"
+                    android:text="Freelance"
+                    android:visibility="gone" />
+
+            </com.google.android.flexbox.FlexboxLayout>
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/flexbox_layout" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -98,7 +158,7 @@
                 android:textColor="@color/color5"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+                app:layout_constraintTop_toTopOf="@+id/view2" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
