@@ -83,6 +83,8 @@ class SavedFragment : Fragment() {
                     for(save in mysaved){
                         if(save.vacancy==document.id){
                             jobList.add(vacancy)
+                            Log.w(ContentValues.TAG, "vacancy:"+
+                                    vacancy)
                         }
                     }
                 }

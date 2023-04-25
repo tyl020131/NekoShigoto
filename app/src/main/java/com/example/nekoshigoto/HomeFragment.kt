@@ -8,6 +8,8 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.util.Log
@@ -37,6 +39,8 @@ class HomeFragment : Fragment() {
     private lateinit var jobList : ArrayList<Vacancy>
     private lateinit var djobList : ArrayList<Vacancy>
     private lateinit var viewModel: JobSeekerViewModel
+    private var mysaved : ArrayList<Save> = ArrayList<Save>()
+    private var email : String= ""
 
 
     lateinit var imageId : Array<Int>
@@ -50,7 +54,9 @@ class HomeFragment : Fragment() {
         // Disable the up button
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
-        Log.d(TAG, "noob"+ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java).getJobSeeker().toString())
+        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+        email = sh.getString("userid","").toString()
+
 
 
         // Inflate the layout for this fragment
@@ -65,7 +71,7 @@ class HomeFragment : Fragment() {
 
         jobList = arrayListOf<Vacancy>()
 
-        loadData(viewModel.getJobSeeker().email)
+        loadData(email)
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
@@ -131,7 +137,7 @@ class HomeFragment : Fragment() {
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
 
-        newRecyclerView.adapter = VacancyAdapter(filteredJobs)
+        newRecyclerView.adapter = JobAdapter(filteredJobs,email,mysaved)
 
 
     }
@@ -139,8 +145,8 @@ class HomeFragment : Fragment() {
 
     private fun loadData(email:String){
 
-        var mysaved = ArrayList<Save>()
-        db.collection("Job Seeker").document(viewModel.getJobSeeker().email).collection("saves")
+        mysaved = ArrayList<Save>()
+        db.collection("Job Seeker").document(email).collection("saves")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -165,7 +171,7 @@ class HomeFragment : Fragment() {
 
 
                 }
-                newRecyclerView.adapter = JobAdapter(jobList, viewModel,mysaved)
+                newRecyclerView.adapter = JobAdapter(jobList, email,mysaved)
 
             }
             .addOnFailureListener { exception ->

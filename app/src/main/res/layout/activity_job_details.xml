@@ -13,9 +13,13 @@
             android:id="@+id/imageView7"
             android:layout_width="127dp"
             android:layout_height="126dp"
-            app:srcCompat="@drawable/kunkun"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="49dp" />
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginEnd="142dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/kunkun" />
 
         <TextView
             android:id="@+id/textView"
@@ -30,6 +34,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
+        <TextView
+            android:id="@+id/mode5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Freelance"
+            android:textColor="@color/color4"
+            android:textSize="10sp"
+            tools:layout_editor_absoluteX="172dp"
+            tools:layout_editor_absoluteY="255dp" />
+
         <View
             android:id="@+id/view3"
             android:layout_width="430dp"
@@ -41,11 +62,16 @@
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="409dp"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/button_dark"
             android:backgroundTint="#1051F8"
+            android:fontFamily="@font/inter_bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="Description"
             android:textAlignment="center"
             android:textColor="@color/color5"
@@ -64,17 +90,6 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="387dp" />
-
-        <TextView
-            android:id="@+id/Respond"
-            android:layout_width="145dp"
-            android:layout_height="32dp"
-            android:fontFamily="sans-serif"
-            android:text="Responsibilities"
-            android:textColor="@color/color5"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="502dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button4"
@@ -102,42 +117,15 @@
             tools:layout_editor_absoluteY="223dp" />
 
         <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView38"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jinishizai"
-            android:textColor="@color/color5"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="264dp" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Taimei"
-            android:textColor="@color/color5"
-            tools:layout_editor_absoluteX="211dp"
-            tools:layout_editor_absoluteY="264dp" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="388dp"
-            android:layout_height="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="418dp" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="388dp"
-            android:layout_height="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="534dp" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="424dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
