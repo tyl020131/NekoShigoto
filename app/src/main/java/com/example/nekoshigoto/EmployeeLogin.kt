@@ -87,7 +87,7 @@ class EmployeeLogin : AppCompatActivity() {
                                                     startActivity(intent)
                                                 }
                                                 "C" -> {
-                                                    /*Toast.makeText(baseContext, "Please change your password",
+                                                    Toast.makeText(baseContext, "Please change your password",
                                                         Toast.LENGTH_SHORT).show()
                                                     val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
                                                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
@@ -97,7 +97,7 @@ class EmployeeLogin : AppCompatActivity() {
 
                                                     val intent = Intent(this, ForgotPassword::class.java)
                                                     intent.putExtra("email", email)
-                                                    startActivity(intent)*/
+                                                    startActivity(intent)
                                                 }
                                                 else -> {
                                                     val message = "This account has been banned"
@@ -143,7 +143,7 @@ class EmployeeLogin : AppCompatActivity() {
             }
         }
 
-        /*binding.forgotPassword.setOnClickListener{
+        binding.forgotPassword.setOnClickListener{
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Forgot Password")
             val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
@@ -156,7 +156,7 @@ class EmployeeLogin : AppCompatActivity() {
 
             }
             builder.show()
-        }*/
+        }
 
     }
 

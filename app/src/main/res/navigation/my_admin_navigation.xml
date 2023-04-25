@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/my_admin_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_admin_navigation"
+    app:startDestination="@id/adminDashboardFragment">
 
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.example.nekoshigoto.AdminDashboardFragment"
+        android:label="fragment_admin_dashboard"
+        tools:layout="@layout/fragment_admin_dashboard" >
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_adminCompanyRequestMainFragment"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_adminViewFragment"
+            app:destination="@id/adminViewFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_self"
+            app:destination="@id/adminDashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminViewFragment"
+        android:name="com.example.nekoshigoto.AdminViewFragment"
+        android:label="AdminViewFragment" >
+        <action
+            android:id="@+id/action_adminViewFragment_to_adminCompanyRequestMainFragment"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_adminViewFragment_to_adminDashboardFragment"
+            app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_adminViewFragment_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
+        <action
+            android:id="@+id/action_adminViewFragment_self"
+            app:destination="@id/adminViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminCompanyRequestMainFragment"
+        android:name="com.example.nekoshigoto.AdminCompanyRequestMainFragment"
+        android:label="fragment_admin_company_request_main"
+        tools:layout="@layout/fragment_admin_company_request_main" >
+        <action
+            android:id="@+id/action_adminCompanyRequestMainFragment_to_adminDashboardFragment"
+            app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestMainFragment_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestMainFragment_to_adminViewFragment"
+            app:destination="@id/adminViewFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestMainFragment_self"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminProfileFragment"
+        android:name="com.example.nekoshigoto.AdminProfileFragment"
+        android:label="AdminProfileFragment" >
+        <action
+            android:id="@+id/action_adminProfileFragment_to_adminDashboardFragment"
+            app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_adminProfileFragment_to_adminViewFragment"
+            app:destination="@id/adminViewFragment" />
+        <action
+            android:id="@+id/action_adminProfileFragment_to_adminCompanyRequestMainFragment"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_adminProfileFragment_self"
+            app:destination="@id/adminProfileFragment" />
+    </fragment>
 </navigation>

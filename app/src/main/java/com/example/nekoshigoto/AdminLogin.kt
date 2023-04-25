@@ -79,8 +79,8 @@ class AdminLogin : AppCompatActivity() {
                                             myEdit.putBoolean("loggedIn", true)
                                             myEdit.commit()
 
-//                                            val intent = Intent(this, CompanyHome::class.java)
-//                                            startActivity(intent)
+                                            val intent = Intent(this, AdminHome::class.java)
+                                            startActivity(intent)
                                         }else{
                                             progressDialog.dismiss()
                                             Toast.makeText(baseContext, "Username and password do not match",
