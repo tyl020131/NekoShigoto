@@ -186,13 +186,4 @@ class Home : AppCompatActivity() {
 //        }
 //    }
 //
-//    fun showUpButton() {
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-//    }
-//
-//    fun hideUpButton() {
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-//    }
-
-
 }

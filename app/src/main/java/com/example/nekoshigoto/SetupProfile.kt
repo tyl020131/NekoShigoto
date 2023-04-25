@@ -66,6 +66,7 @@ class SetupProfile : AppCompatActivity() {
             errorTextState.visibility = View.GONE
             errorTextProfile.visibility = View.GONE
             errorTextSalary.visibility = View.GONE
+            errorTextMode.visibility = View.GONE
         }
 
         storage = FirebaseStorage.getInstance()
@@ -194,6 +195,7 @@ class SetupProfile : AppCompatActivity() {
             checkCountry(countryT.text.toString())
             checkState(stateT.text.toString())
             checkSalary(salaryT.text.toString())
+            checkMode()
 
             if(error)
             {
@@ -212,8 +214,27 @@ class SetupProfile : AppCompatActivity() {
                     val country = countryT.text.toString()
                     val state = stateT.text.toString()
                     val salary = salaryT.text.toString().toInt()
+                    var workingMode = ""
+                    val partTime = binding.myCheckBox1
+                    val fullTime = binding.myCheckBox2
+                    val freelance = binding.myCheckBox3
+                    if(partTime.isChecked){
+                        workingMode += partTime.text.toString()
+                    }
+                    if(fullTime.isChecked){
+                        workingMode += if(workingMode == "")
+                            fullTime.text.toString()
+                        else
+                            ", " + fullTime.text.toString()
+                    }
+                    if(freelance.isChecked){
+                        workingMode += if(workingMode == "")
+                            freelance.text.toString()
+                        else
+                            ", " + freelance.text.toString()
+                    }
 
-                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary)
+                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode)
                     db.collection("Job Seeker").document(email).set(user)
                     val test = db.collection("User").document(email)
                     test.update("status", "A")
@@ -456,6 +477,16 @@ class SetupProfile : AppCompatActivity() {
                 binding.errorTextSalary.text = "Please enter only numbers"
                 error = true
             }
+        }
+    }
+
+    private fun checkMode(){
+        return if (!binding.myCheckBox1.isChecked && !binding.myCheckBox2.isChecked && !binding.myCheckBox3.isChecked) {
+            binding.errorTextMode.visibility = View.VISIBLE
+            binding.errorTextMode.text = "Please select your working mode"
+            error = true
+        } else {
+            binding.errorTextMode.visibility = View.GONE
         }
     }
 

@@ -44,7 +44,8 @@ class SubmitVacancyFragment : Fragment() {
         context?.let {
             ArrayAdapter.createFromResource(
                 it,
-                R.array.Fields,
+                //R.array.Fields,
+                R.array.field_array,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 // Specify the layout to use when the list of choices appears

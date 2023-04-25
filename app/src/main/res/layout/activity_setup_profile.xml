@@ -435,7 +435,7 @@
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:fontFamily="@font/inter_medium"
-                android:text="Expected Salary (RM)"
+                android:text="Working Mode"
                 android:textColor="@color/color5" />
 
             <LinearLayout

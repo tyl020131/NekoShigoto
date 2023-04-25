@@ -65,7 +65,8 @@ class HomeFragment : Fragment() {
 
         jobList = arrayListOf<Vacancy>()
 
-        loadData(viewModel.getJobSeeker().email)
+        //loadData(viewModel.getJobSeeker().email)
+        loadData("tankc2002@gmail.com")
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
@@ -140,7 +141,7 @@ class HomeFragment : Fragment() {
     private fun loadData(email:String){
 
         var mysaved = ArrayList<Save>()
-        db.collection("Job Seeker").document(viewModel.getJobSeeker().email).collection("saves")
+        db.collection("Job Seeker").document(email).collection("saves")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
