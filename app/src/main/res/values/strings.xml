@@ -33,4 +33,26 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_admin_home">AdminHome</string>
     <string name="title_activity_forgot_password">ForgotPassword</string>
+    <string-array name="Fields">
+        <item>Agriculture</item>
+        <item>Architecture</item>
+        <item>Arts and Entertainment</item>
+        <item>Business and Finance</item>
+        <item>Social Community</item>
+        <item>Computer and IT</item>
+        <item>Mathematics</item>
+        <item>Education</item>
+        <item>Healthcare</item>
+        <item>Maintenance and Repair</item>
+        <item>Law</item>
+        <item>Management</item>
+        <item>Communication</item>
+        <item>Office</item>
+        <item>Personal Care and Service</item>
+        <item>Production</item>
+        <item>Sales</item>
+        <item>Transportation</item>
+        <item>Food</item>
+        <item>Others</item>
+    </string-array>
 </resources>
