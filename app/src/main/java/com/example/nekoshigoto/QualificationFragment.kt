@@ -261,8 +261,10 @@ class QualificationFragment : Fragment() {
                 }
             }
             textField.text = qualification?.field
+            val data = arguments?.getString("dataKey")
 
-            editTextExp.setText(qualification?.workingExp)
+            //editTextExp.setText(qualification?.workingExp)
+            editTextExp.setText(data.toString())
 
             editTextResume.tag = qualification?.resumeURl
         }

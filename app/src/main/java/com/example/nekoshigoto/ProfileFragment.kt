@@ -19,6 +19,7 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -208,7 +209,8 @@ class ProfileFragment : Fragment() {
         }
 
         binding.qualificationButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
+            val bundle = bundleOf("test" to "test")
+            it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment, bundle)
             //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
         }
 
@@ -672,7 +674,6 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
