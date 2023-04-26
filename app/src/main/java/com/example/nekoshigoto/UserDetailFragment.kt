@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-import javax.mail.MessagingException
+//import javax.mail.MessagingException
 
 class UserDetailFragment : Fragment() {
     private lateinit var binding : FragmentUserDetailBinding

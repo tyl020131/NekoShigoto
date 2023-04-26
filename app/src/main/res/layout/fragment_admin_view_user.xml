@@ -5,21 +5,89 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0F1926"
         tools:context=".AdminViewUserFragment">
 
-        <ScrollView
+        <Button
+            android:id="@+id/userViewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="User"
+            android:textColor="#40577D"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/companyViewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="Company"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="50sp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/users"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="63dp"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true"
-                android:visibility="visible"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                android:text="No."
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </ScrollView>
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="172dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/textView41"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/textView42"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:layout_marginTop="60sp"
+            android:padding="15sp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0F1926">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/users"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="true"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            </ScrollView>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

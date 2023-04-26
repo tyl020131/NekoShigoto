@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31" >
-        <activity
+        <!--<activity
             android:name=".ForgotPassword"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
-            android:theme="@style/Theme.NekoShigoto.NoActionBar" />
+            android:theme="@style/Theme.NekoShigoto.NoActionBar" />-->
         <!--
         <activity
             android:name=".AdminHome"
@@ -71,11 +71,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
