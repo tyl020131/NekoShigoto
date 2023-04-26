@@ -57,8 +57,8 @@
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
         <action
-            android:id="@+id/action_homeFragment_to_jobDetailsUser"
-            app:destination="@id/jobDetailsUser" />
+            android:id="@+id/action_homeFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
@@ -84,6 +84,9 @@
             app:destination="@id/activityFragment"
             app:enterAnim="@anim/fragment_slide_left_enter"
             app:exitAnim="@anim/fragment_slide_right_exit" />
+        <action
+            android:id="@+id/action_savedFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -161,7 +164,14 @@
         android:name="com.example.nekoshigoto.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
     <fragment
-        android:id="@+id/jobDetailsUser"
-        android:name="com.example.nekoshigoto.JobDetailsUser"
-        android:label="JobDetailsUser" />
+        android:id="@+id/jobDetailFragment"
+        android:name="com.example.nekoshigoto.JobDetailFragment"
+        android:label="JobDetailFragment" >
+        <action
+            android:id="@+id/action_jobDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_jobDetailFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+    </fragment>
 </navigation>

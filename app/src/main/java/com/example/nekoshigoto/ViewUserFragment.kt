@@ -99,22 +99,13 @@ class ViewUserFragment : Fragment() {
 
                 if(modes.size!=0){
                     var list = user.workingMode.split(", ")
-//                    modes.forEach{ mode ->
-//                        list.forEach {
-//                            if(it == mode)
-//                                filteredUser.add(user)
-//                        }
-//                    }
+
                     list.forEach{
                         if(modes.contains(it)){
                             filteredUser.add(user)
                             return@forEach // break out of the loop
                         }
                     }
-
-//                    if(modes.contains(user.workingMode)){
-//                        filteredUser.add(user)
-//                    }
                 }
                 else{
                     Log.d(ContentValues.TAG,"Added")

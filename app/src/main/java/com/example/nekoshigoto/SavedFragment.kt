@@ -7,12 +7,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +27,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class SavedFragment : Fragment() {
     private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var navigator : NavController
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var jobList : ArrayList<Vacancy>
+    private lateinit var viewModel : JobSeekerViewModel
     lateinit var imageId : Array<Int>
 
     override fun onCreateView(
@@ -33,13 +41,31 @@ class SavedFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
 
-        val viewModel : JobSeekerViewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        navigator = findNavController()
         imageId = arrayOf(
             R.drawable.kunkun
         )
+
+        val homesearch = view.findViewById<EditText>(R.id.home_search)
+        homesearch.addTextChangedListener {
+
+            val newlist = ArrayList<Vacancy>()
+            val text = homesearch.text.toString()
+            for(job in jobList){
+                if(job.position.contains(text,ignoreCase = true)){
+                    newlist.add(job)
+                }
+            }
+            Log.d(ContentValues.TAG,"hehehehehhbe")
+            newRecyclerView.adapter = SavedAdapter(newlist, viewModel,navigator)
+
+        }
+
+
         newRecyclerView = view.findViewById(R.id.jobs)
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -47,17 +73,81 @@ class SavedFragment : Fragment() {
         jobList = arrayListOf<Vacancy>()
         loadData(viewModel)
 
+
+
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
         filterBtn.setOnClickListener {
-            FilterJobDialog(requireContext())
+            var myDialog : FilterJobDialog = FilterJobDialog(requireContext())
+            myDialog.dialog.show()
+            val filter : Button = myDialog.dialog.findViewById<Button>(R.id.filter_btn)
+            filter.setOnClickListener {
+                myDialog.updateField()
+                val sort : String = myDialog.sort
+                val salaryRange :ArrayList<Float> = myDialog.salary_range
+                val fields = myDialog.fields
+                val modes = myDialog.modes
+                val gender = myDialog.gender
+                filterArray(gender,sort, salaryRange,fields, modes)
+                myDialog.dialog.dismiss()
+            }
+
+
         }
 
-        return view;
+        val seeall : TextView = view.findViewById(R.id.home_seeall)
+
+        seeall.setOnClickListener{
+            newRecyclerView.adapter = SavedAdapter(jobList, viewModel)
+        }
+
+        return view
 
 
     }
 
+    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Float>,fields:ArrayList<String>, modes:ArrayList<String>){
+
+        val filteredJobs : ArrayList<Vacancy> = ArrayList<Vacancy>();
+
+
+        jobList.forEach { vacancy->
+            if(vacancy.gender == gender && vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1]){
+                if(fields.size!=0){
+                    if(!fields.contains(vacancy.field)){
+                        return@forEach
+
+                    }
+                }
+                if(modes.size!=0){
+                    if(modes.contains(vacancy.mode)){
+                        filteredJobs.add(vacancy)
+                    }
+                }
+                else{
+                    filteredJobs.add(vacancy)
+                }
+                if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
+                    Log.d(ContentValues.TAG,"Filtered")
+
+                }
+            }
+            else{
+
+            }
+        }
+
+        if(sort == "Salary High"){
+            filteredJobs.sortByDescending { vacancy -> vacancy.salary }
+        }
+        else{
+            filteredJobs.sortByDescending { vacancy -> vacancy.salary }
+        }
+
+        newRecyclerView.adapter = SavedAdapter(filteredJobs, viewModel,navigator)
+
+
+    }
     private fun loadData(viewModel: JobSeekerViewModel){
         var mysaved = ArrayList<Save>()
         db.collection("Job Seeker").document(viewModel.getJobSeeker().email).collection("saves")
@@ -88,7 +178,7 @@ class SavedFragment : Fragment() {
                         }
                     }
                 }
-                newRecyclerView.adapter = SavedAdapter(jobList, viewModel)
+                newRecyclerView.adapter = SavedAdapter(jobList, viewModel,navigator)
 
             }
             .addOnFailureListener { exception ->

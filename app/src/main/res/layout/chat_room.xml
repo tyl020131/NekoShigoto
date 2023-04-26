@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#00FFFFFF"
+    app:contentPaddingTop="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/roomm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="@drawable/rectangle"
+        android:paddingBottom="20dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profilepic"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/content"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:srcCompat="@drawable/kunkun" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Product Designer"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/profilepic"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Kunkun Company"
+            android:textColor="@color/color2"
+            app:layout_constraintStart_toEndOf="@+id/profilepic"
+            app:layout_constraintTop_toBottomOf="@id/username" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
