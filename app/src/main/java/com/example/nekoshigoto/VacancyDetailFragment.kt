@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentVacancyDetailBinding
-import com.example.nekoshigoto.databinding.FragmentVacancyDetailsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 
@@ -29,11 +29,12 @@ class VacancyDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-
         val vacID = arguments?.getString("jobname").toString()
+        newRecyclerView = binding.vacDetailRecycle
+        newRecyclerView.layoutManager = LinearLayoutManager(activity);
+        newRecyclerView.setHasFixedSize(true)
 
         emailList = ArrayList<String>()
-        userList = ArrayList<JobSeeker>()
 //        db.collection("Vacancy").document(vacID).collection("Application").get()
         db.collection("Vacancy").document(vacID).get()
             .addOnSuccessListener {
@@ -42,7 +43,7 @@ class VacancyDetailFragment : Fragment() {
                 binding.apply {
                     val imgUri = vacancy?.image?.toUri()?.buildUpon()?.scheme("https")?.build()
                     binding.jobImage.load(imgUri)
-                    JobDesc.text = vacancy?.description
+                    textDesc.text = vacancy?.description
                     jobPosition.text = vacancy?.position
                     tag.text = vacancy?.gender
                     tag1.text = vacancy?.mode
@@ -60,13 +61,14 @@ class VacancyDetailFragment : Fragment() {
                     emailList.add(email)
                 }
             }
-
         loadData()
-
         return view
+
     }
 
     private fun loadData() {
+        userList = ArrayList<JobSeeker>()
+
         db.collection("Job Seeker")
             .get()
             .addOnSuccessListener { documents ->
@@ -75,8 +77,7 @@ class VacancyDetailFragment : Fragment() {
                     if (emailList.contains(document.getString("email"))) {
                         userList.add(jobSeeker)
                     }
-                    if (userList.size == emailList.size) {
-                        // Stop the loop once we have 10 users
+                    else if (userList.size == emailList.size) {
                         break
                     }
 
