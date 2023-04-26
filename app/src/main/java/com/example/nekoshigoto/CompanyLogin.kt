@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -83,11 +84,14 @@ class CompanyLogin : AppCompatActivity() {
                                                     myEdit.putString("userid", email)
                                                     myEdit.putString("type", "company")
                                                     myEdit.putBoolean("loggedIn", true)
-                                                    myEdit.commit()
-
-                                                    val intent = Intent(this, CompanyHome::class.java)
-                                                    startActivity(intent)
-
+                                                    val query = db.collection("Company").document(email)
+                                                    query.get().addOnSuccessListener { documentSnapshot ->
+                                                        val name = documentSnapshot.getString("name").toString()
+                                                        myEdit.putString("name", name)
+                                                        myEdit.commit()
+                                                        val intent = Intent(this, CompanyHome::class.java)
+                                                        startActivity(intent)
+                                                    }
                                                 }
                                                 "C" -> {
                                                     Toast.makeText(baseContext, "Please change your password",
@@ -96,11 +100,15 @@ class CompanyLogin : AppCompatActivity() {
                                                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
                                                     myEdit.putString("userid", email)
                                                     myEdit.putString("type", "company")
-
-                                                    myEdit.commit()
-                                                    val intent = Intent(this, ForgotPassword::class.java)
-                                                    intent.putExtra("email", email)
-                                                    startActivity(intent)
+                                                    val query = db.collection("Company").document(email)
+                                                    query.get().addOnSuccessListener { documentSnapshot ->
+                                                        val name = documentSnapshot.getString("name").toString()
+                                                        myEdit.putString("name", name)
+                                                        myEdit.commit()
+                                                        val intent = Intent(this, ForgotPassword::class.java)
+                                                        intent.putExtra("email", email)
+                                                        startActivity(intent)
+                                                    }
                                                 }
                                                 else -> {
                                                     val message = "This account has been banned"
@@ -129,7 +137,6 @@ class CompanyLogin : AppCompatActivity() {
                             progressDialog.dismiss()
                             Toast.makeText(baseContext, "Email and password do not match",
                                 Toast.LENGTH_SHORT).show()
-
                         }
                     }
 

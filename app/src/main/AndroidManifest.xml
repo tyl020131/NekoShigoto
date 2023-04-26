@@ -25,7 +25,6 @@
             android:exported="false"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/Theme.NekoShigoto.NoActionBar" />
-
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
@@ -33,16 +32,10 @@
             android:name=".VacancyDetail"
             android:exported="false" />
         <activity
-            android:name=".ApplicationsDetail"
-            android:exported="false" />
-        <activity
             android:name=".Logout"
             android:exported="false"
             android:label="@string/title_activity_logout"
             android:theme="@style/Theme.NekoShigoto.NoActionBar" />
-        <activity
-            android:name=".JobDetails"
-            android:exported="false" />
         <activity
             android:name=".CompanyRegister"
             android:exported="false" />

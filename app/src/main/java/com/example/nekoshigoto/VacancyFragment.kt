@@ -9,6 +9,8 @@ import android.app.Dialog
 import android.content.ContentValues
 import android.content.Intent
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.util.Log
@@ -48,12 +50,14 @@ class VacancyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
-
     ): View? {
         setHasOptionsMenu(true)
         navigator = findNavController()
         viewModel = ViewModelProvider(requireActivity()).get(CompanyViewModel::class.java)
+        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+
+        var name = sh.getString("name","").toString()
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_vacancy, container, false)
 
@@ -80,7 +84,7 @@ class VacancyFragment : Fragment() {
         newRecyclerView.setHasFixedSize(true)
 
         VacancyList = arrayListOf<Vacancy>()
-        loadData(viewModel.getCompany().name)
+        loadData(name)
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
@@ -162,8 +166,6 @@ class VacancyFragment : Fragment() {
     }
 
     private fun loadData(name:String) {
-
-
         db.collection("Vacancy")
             .whereEqualTo("companyName", name)
             .get()
@@ -181,8 +183,6 @@ class VacancyFragment : Fragment() {
 
                     }
                     VacancyList.add(vacancy)
-
-
                 }
                 newRecyclerView.adapter = VacancyAdapter(VacancyList,navigator)
 
