@@ -5,21 +5,65 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0F1926"
         tools:context=".AdminCompanyRequestFragment">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/companyRequest"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="61dp"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true"
-                android:visibility="visible"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                android:text="No."
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </ScrollView>
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="172dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/textView41"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="Req. Date"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/textView42"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20sp"
+            android:padding="15sp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0F1926">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/companyRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="true"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            </ScrollView>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -103,7 +103,6 @@ class HomeFragment : Fragment() {
 
         val filteredJobs : ArrayList<Vacancy> = ArrayList<Vacancy>();
 
-
         jobList.forEach { vacancy->
             if(vacancy.gender == gender && vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1]){
                 if(fields.size!=0){

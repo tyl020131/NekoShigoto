@@ -1,12 +1,15 @@
 package com.example.nekoshigoto
 
 import FieldAdapter
+import FilterJobSeekerDialog
 import JobAdapter
 import ModeAdapter
 import UserAdapter
 import android.app.Dialog
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
@@ -16,15 +19,22 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nekoshigoto.databinding.FragmentViewUserBinding
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.slider.RangeSlider
 import com.google.android.material.slider.Slider
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 
 
 class ViewUserFragment : Fragment() {
+    private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var binding : FragmentViewUserBinding
     private lateinit var newRecyclerView: RecyclerView
-    private lateinit var userList : ArrayList<User>
+    private lateinit var userList : ArrayList<JobSeeker>
     private lateinit var dialogRecyclerView: RecyclerView
     private lateinit var modeList : ArrayList<String>
     private lateinit var fieldRecyclerView: RecyclerView
@@ -35,91 +45,107 @@ class ViewUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
-
     ): View? {
         setHasOptionsMenu(true)
+        binding = FragmentViewUserBinding.inflate(inflater, container, false)
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_view_user, container, false)
+        val view = binding.root
 
         imageId = arrayOf(
             R.drawable.kunkun
         )
-        newRecyclerView = view.findViewById(R.id.vacancies)
+        newRecyclerView = binding.vacancies
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
 
-        userList = arrayListOf<User>()
+        userList = arrayListOf<JobSeeker>()
         loadData()
 
-        val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
+        val filterBtn : ImageButton = binding.filterHome
 
         filterBtn.setOnClickListener {
-            showDialog()
+            var myDialog : FilterJobSeekerDialog = FilterJobSeekerDialog(requireContext())
+            myDialog.dialog.show()
+            val filter : Button = myDialog.dialog.findViewById<Button>(R.id.filter_btn)
+            filter.setOnClickListener {
+                myDialog.updateField()
+                val ageRange :ArrayList<Int> = myDialog.age_range
+                val modes = myDialog.modes
+                val gender = myDialog.gender
+                val nationality = myDialog.nationality
+                filterArray(gender, ageRange, modes, nationality)
+                myDialog.dialog.dismiss()
+            }
         }
 
-
-        return view;
-
-
-    }
-
-    private fun showDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.customer_filter_dialog)
-
-        fieldRecyclerView = dialog.findViewById(R.id.fieldRecycler)
-        dialogRecyclerView = dialog.findViewById(R.id.modeRecycler)
-        val layoutManager1 : FlexboxLayoutManager = FlexboxLayoutManager(context)
-        layoutManager1.setFlexWrap(FlexWrap.WRAP);
-        fieldRecyclerView.layoutManager = layoutManager1
-        val layoutManager2 : FlexboxLayoutManager = FlexboxLayoutManager(context)
-        layoutManager2.setFlexWrap(FlexWrap.WRAP);
-        dialogRecyclerView.layoutManager = layoutManager2
-        fieldList = arrayListOf<String>()
-        modeList = arrayListOf<String>()
-        loadField()
-        loadMode()
-
-        val btn : ImageButton = dialog.findViewById(R.id.back_btn)
-        val salary_val: TextView = dialog.findViewById(R.id.salary_val)
-        val continuousRangeSlider: RangeSlider = dialog.findViewById(R.id.continuousRangeSlider)
-        continuousRangeSlider.addOnChangeListener { slider, value, fromUser ->
-            salary_val.text = "RM${String.format("%.2f",slider.values[0])} - RM${String.format("%.2f",slider.values[1])}"
+        binding.homeSeeall.setOnClickListener{
+            newRecyclerView.adapter = UserAdapter(userList)
         }
-        btn.setOnClickListener {
-            dialog.dismiss()
+
+        return view
+    }
+
+    private fun filterArray(gender:String, ageRange:ArrayList<Int>, modes:ArrayList<String>, nationality:String){
+
+        val filteredUser : ArrayList<JobSeeker> = ArrayList<JobSeeker>();
+
+        userList.forEach { user->
+            val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+            val dob = LocalDate.parse(user.dob, formatter)
+            val currentDate: LocalDate = LocalDate.now()
+            val age: Int = Period.between(dob, currentDate).getYears()
+            if(user.gender == gender && age > ageRange[0] && age < ageRange[1] && user.nationality == nationality){
+
+                if(modes.size!=0){
+                    var list = user.workingMode.split(", ")
+//                    modes.forEach{ mode ->
+//                        list.forEach {
+//                            if(it == mode)
+//                                filteredUser.add(user)
+//                        }
+//                    }
+                    list.forEach{
+                        if(modes.contains(it)){
+                            filteredUser.add(user)
+                            return@forEach // break out of the loop
+                        }
+                    }
+
+//                    if(modes.contains(user.workingMode)){
+//                        filteredUser.add(user)
+//                    }
+                }
+                else{
+                    Log.d(ContentValues.TAG,"Added")
+                    filteredUser.add(user)
+                }
+            }else{
+                Log.d(ContentValues.TAG,"fail to add")
+            }
         }
-        dialog.show()
+
+        newRecyclerView.adapter = UserAdapter(filteredUser)
+
 
     }
 
-    private fun loadMode(){
-        modeList.add("Freelance")
-        modeList.add("Part-Time")
-        modeList.add("Full-Time")
-
-        dialogRecyclerView.adapter = ModeAdapter(modeList)
-    }
-
-    private fun loadField(){
-        fieldList.add("IT")
-        fieldList.add("Software Engineering")
-        fieldList.add("Finance")
-        fieldList.add("noob")
-        fieldList.add("League Of Legends")
-
-        fieldRecyclerView.adapter = FieldAdapter(fieldList)
-    }
     private fun loadData(){
-        userList.add(User(imageId[0],"Wong Zhi Hern", "Product Designer","Penang, Malaysia"))
-        userList.add(User(imageId[0],"Wong Chee Keong","Tyre Mechanic","Johor, Malaysia"))
+        db.collection("Job Seeker")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
+                    val jobSeeker = document.toObject(JobSeeker::class.java)
 
+                    userList.add(jobSeeker)
+                }
+                newRecyclerView.adapter = UserAdapter(userList)
 
-
-        newRecyclerView.adapter = UserAdapter(userList)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents: ", exception)
+            }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

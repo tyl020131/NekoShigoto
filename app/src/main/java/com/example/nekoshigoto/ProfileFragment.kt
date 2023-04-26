@@ -1,5 +1,6 @@
 package com.example.nekoshigoto
 
+import FilterJobSeekerDialog
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -13,10 +14,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.ScrollView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.bundleOf
@@ -220,9 +218,10 @@ class ProfileFragment : Fragment() {
         }
 
         binding.qualificationButton.setOnClickListener {
-            //val bundle = bundleOf("test" to "test")
+
             it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
             //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
+
         }
 
         binding.uploadImage.setOnClickListener{

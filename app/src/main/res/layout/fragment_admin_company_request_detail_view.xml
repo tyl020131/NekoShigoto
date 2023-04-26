@@ -7,28 +7,14 @@
     android:background="@color/color1"
     android:paddingLeft="10sp"
     android:paddingEnd="10sp"
-    tools:context=".AdminDetailView">
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:text="Company Request"
-        android:textAlignment="center"
-        android:textColor="#F8FAFC"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".AdminCompanyRequestDetailViewFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="550dp"
         app:cardBackgroundColor="#0F1926"
         app:contentPadding="17sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp">
 
         <TextView
@@ -125,7 +111,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="270sp"
             android:backgroundTint="@color/color10"
-            android:text="Approve" />
+            android:text="Approve"
+            app:cornerRadius="15sp" />
 
         <Button
             android:id="@+id/button6"
@@ -134,7 +121,8 @@
             android:layout_marginLeft="190sp"
             android:layout_marginTop="270sp"
             android:backgroundTint="@color/color8"
-            android:text="Reject" />
+            android:text="Reject"
+            app:cornerRadius="15sp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

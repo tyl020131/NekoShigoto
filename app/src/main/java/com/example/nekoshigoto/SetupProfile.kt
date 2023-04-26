@@ -471,7 +471,6 @@ class SetupProfile : AppCompatActivity() {
             try {
                 val number = salary.toInt()
                 binding.errorTextSalary.visibility = View.GONE
-                Toast.makeText(this, "test", Toast.LENGTH_SHORT).show()
             } catch (e: NumberFormatException) {
                 binding.errorTextSalary.visibility = View.VISIBLE
                 binding.errorTextSalary.text = "Please enter only numbers"
