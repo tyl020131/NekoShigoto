@@ -63,7 +63,7 @@ class FilterJobDialog(context : Context) {
         val salary_val: TextView = dialog.findViewById(R.id.salary_val)
         val continuousRangeSlider: RangeSlider = dialog.findViewById(R.id.continuousRangeSlider)
         continuousRangeSlider.addOnChangeListener { slider, value, fromUser ->
-            salary_val.text = "RM${String.format("%.2f",slider.values[0])} - RM${String.format("%.2f",slider.values[1])}"
+            salary_val.text = "RM${String.format("%d",slider.values[0])} - RM${String.format("%d",slider.values[1])}"
             salary_range[0] = slider.values[0]
             salary_range[1] = slider.values[1]
         }

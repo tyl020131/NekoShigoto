@@ -42,9 +42,11 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>,private val email:Stri
         holder.fav.setTag(R.drawable.saved)
         if(mySaved.contains(Save(currentItem.vacancyid))){
             holder.fav.setImageResource(R.drawable.favorite);
+            holder.fav.setTag(R.drawable.favorite)
         }
         else{
             holder.fav.setImageResource(R.drawable.saved);
+            holder.fav.setTag(R.drawable.saved)
         }
 
         holder.cont.setOnClickListener {
