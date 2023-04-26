@@ -234,7 +234,7 @@ class SetupProfile : AppCompatActivity() {
                             ", " + freelance.text.toString()
                     }
 
-                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode)
+                    val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode, "A")
                     db.collection("Job Seeker").document(email).set(user)
                     val test = db.collection("User").document(email)
                     test.update("status", "A")
