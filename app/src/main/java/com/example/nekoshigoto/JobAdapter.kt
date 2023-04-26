@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -64,7 +65,8 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>,private val email:Stri
             }
         };
         holder.jobb.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeFragment_to_jobDetailsUser)
+            val bundle = bundleOf("dataKey" to currentItem.vacancyid)
+            it.findNavController().navigate(R.id.action_homeFragment_to_jobDetailsUser, bundle)
         }
     }
 
