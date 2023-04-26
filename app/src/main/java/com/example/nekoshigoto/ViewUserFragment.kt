@@ -53,6 +53,9 @@ class ViewUserFragment : Fragment() {
         newRecyclerView = binding.vacancies
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
+        val myList = ArrayList<JobSeeker>()
+        userAdapter = UserAdapter(myList)
+        newRecyclerView.adapter = userAdapter
 
         userList = arrayListOf<JobSeeker>()
         loadData()

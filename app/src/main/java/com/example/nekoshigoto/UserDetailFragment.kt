@@ -44,6 +44,8 @@ class UserDetailFragment : Fragment() {
                         .load(user?.profilePic)
                         .into(profilePic)
 
+                    downloadCVButton.tag = ""
+
                     nameTextView.text = user?.fname + " " + user?.lname
                     textEmail.text = email
                     textDob.text = user?.dob
@@ -74,11 +76,12 @@ class UserDetailFragment : Fragment() {
                         linearLayout3.visibility = View.GONE
                         textView36.text = "Qualification Not Found"
                     }else{
-                        textField.text = qualification?.field
-                        textEducation.text = qualification?.education
-                        textExp.text = qualification?.workingExp
+                        textField.text = qualification.field
+                        textEducation.text = qualification.education
+                        textExp.text = qualification.workingExp
+                        downloadCVButton.tag = qualification.resumeURl
                     }
-                    downloadCVButton.tag = qualification?.resumeURl
+
                 }
 
             }.addOnFailureListener {
@@ -142,5 +145,11 @@ class UserDetailFragment : Fragment() {
             .addOnFailureListener {
 
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as CompanyHome
+        activity?.hideBottomNav()
     }
 }

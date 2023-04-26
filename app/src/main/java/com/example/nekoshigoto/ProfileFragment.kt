@@ -140,7 +140,15 @@ class ProfileFragment : Fragment() {
             val number = user?.salary
             val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
             textSalary.text = "RM $formattedNumber"
-            textMode.text = user?.workingMode
+            var workingMode = user?.workingMode?.split(", ")
+            workingMode?.forEach {
+                if(it == binding.freelance.text.toString())
+                    binding.freelance.visibility = View.VISIBLE
+                else if(it == binding.partTime.text.toString())
+                    binding.partTime.visibility = View.VISIBLE
+                else if(it == binding.fullTime.text.toString())
+                    binding.fullTime.visibility = View.VISIBLE
+            }
 
             //insert data for edit layout
             editTextFName.setText(user?.fname)
