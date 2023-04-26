@@ -38,6 +38,8 @@ class SubmitApplicationFragment : Fragment() {
         val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         val jobSeeker = viewModel.getJobSeeker()
         val qualification = viewModel.getQualification()
+        val jobid = arguments?.getString("jobid").toString()
+        val view = binding.root
         binding.apply{
             editTextName.isEnabled = false
             editTextName.setText(jobSeeker.fname+ " " + jobSeeker.lname)
@@ -72,10 +74,11 @@ class SubmitApplicationFragment : Fragment() {
                 if(chgPDF){
                     uploadPdf { pdf ->
                         val application = AppDetails(cover, jobSeeker.email, pdf, "P")
-                        db.collection("Vacancy").document("bball coachikun studio")
+                        db.collection("Vacancy").document(jobid)
                             .collection("Application").document(jobSeeker.email).set(application)
 
                         Toast.makeText(requireContext(), "Successfully submit application", Toast.LENGTH_SHORT).show()
+                        view.findNavController().navigate(R.id.action_submitApplicationFragment_to_homeFragment)
                     }
                 }else{
                     if(oldResume == ""){
@@ -86,20 +89,22 @@ class SubmitApplicationFragment : Fragment() {
                             .setCancelable(true)
                             .setPositiveButton("continue"){dialogInterface,it->
                                 val application = AppDetails(cover, jobSeeker.email, oldResume, "P")
-                                db.collection("Vacancy").document("bball coachikun studio")
+                                db.collection("Vacancy").document(jobid)
                                     .collection("Application").document(jobSeeker.email).set(application)
                                 Toast.makeText(requireContext(), "Successfully submit application", Toast.LENGTH_SHORT).show()
+                                view.findNavController().navigate(R.id.action_submitApplicationFragment_to_homeFragment)
                             }
                             .setNegativeButton("Cancel"){dialogInterface,it->
-                                Toast.makeText(requireContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), "Please fill up all the fields", Toast.LENGTH_SHORT).show()
                             }
                             .show()
 
                     }else{
                         val application = AppDetails(cover, jobSeeker.email, oldResume, "P")
-                        db.collection("Vacancy").document("bball coachikun studio")
+                        db.collection("Vacancy").document(jobid)
                             .collection("Application").document(jobSeeker.email).set(application)
                         Toast.makeText(requireContext(), "Successfully submit application", Toast.LENGTH_SHORT).show()
+                        view.findNavController().navigate(R.id.action_submitApplicationFragment_to_homeFragment)
                     }
 
                 }
@@ -190,6 +195,12 @@ class SubmitApplicationFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home?
+        activity?.hideBottomNav()
     }
 
 }

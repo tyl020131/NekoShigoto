@@ -12,8 +12,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -35,11 +37,7 @@ class ViewUserFragment : Fragment() {
     private lateinit var binding : FragmentViewUserBinding
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var userList : ArrayList<JobSeeker>
-    private lateinit var dialogRecyclerView: RecyclerView
-    private lateinit var modeList : ArrayList<String>
-    private lateinit var fieldRecyclerView: RecyclerView
-    private lateinit var fieldList : ArrayList<String>
-    lateinit var imageId : Array<Int>
+    private lateinit var userAdapter: UserAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,9 +50,6 @@ class ViewUserFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = binding.root
 
-        imageId = arrayOf(
-            R.drawable.kunkun
-        )
         newRecyclerView = binding.vacancies
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -79,8 +74,29 @@ class ViewUserFragment : Fragment() {
             }
         }
 
+        val homesearch = binding.homeSearch
+        homesearch.addTextChangedListener {
+            if(userAdapter!=null){
+
+                val searchList = ArrayList<JobSeeker>()
+                val text = homesearch.text.toString()
+                for(user in userList){
+                    val name = user.fname + " " + user.lname
+                    if(name.contains(text,ignoreCase = true)){
+                        searchList.add(user)
+                    }
+                }
+
+                userAdapter = UserAdapter(searchList)
+                newRecyclerView.adapter = userAdapter
+
+            }
+
+        }
+
         binding.homeSeeall.setOnClickListener{
-            newRecyclerView.adapter = UserAdapter(userList)
+            userAdapter = UserAdapter(userList)
+            newRecyclerView.adapter = userAdapter
         }
 
         return view
@@ -115,10 +131,8 @@ class ViewUserFragment : Fragment() {
                 Log.d(ContentValues.TAG,"fail to add")
             }
         }
-
-        newRecyclerView.adapter = UserAdapter(filteredUser)
-
-
+        userAdapter = UserAdapter(filteredUser)
+        newRecyclerView.adapter = userAdapter
     }
 
     private fun loadData(){
@@ -126,12 +140,11 @@ class ViewUserFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
                     val jobSeeker = document.toObject(JobSeeker::class.java)
-
                     userList.add(jobSeeker)
                 }
-                newRecyclerView.adapter = UserAdapter(userList)
+                userAdapter = UserAdapter(userList)
+                newRecyclerView.adapter = userAdapter
 
             }
             .addOnFailureListener { exception ->

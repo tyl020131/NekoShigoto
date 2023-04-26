@@ -13,9 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentJobDetailBinding
@@ -63,8 +65,33 @@ class JobDetailFragment : Fragment() {
                 Log.w(ContentValues.TAG, "Error getting documents: ", exception)
             }
 
+        view.button4.setOnClickListener {
+            val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+            val jobSeeker = viewModel.getJobSeeker()
+
+            db.collection("Vacancy").document(jobid)
+                .collection("Application").document(jobSeeker.email).get()
+                .addOnSuccessListener { snapshot ->
+                    if (snapshot.exists() && snapshot.getString("status") != "R") {
+                        Toast.makeText(requireContext(), "Application already submitted", Toast.LENGTH_SHORT).show()
+                    }else {
+                        val bundle = Bundle()
+                        bundle.putString("jobid", jobid)
+                        it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+        }
+
         return view.root;
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home?
+        activity?.hideBottomNav()
     }
 }
