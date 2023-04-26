@@ -116,8 +116,6 @@ class UserDetailFragment : Fragment() {
             startActivity(Intent.createChooser(emailIntent, "Send email using"))
         }
 
-
-
         return binding.root
     }
 

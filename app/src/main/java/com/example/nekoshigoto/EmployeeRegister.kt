@@ -52,7 +52,7 @@ class EmployeeRegister : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val user = Customer(email, "jobSeeker", "S")
+                        val user = User(email, "jobSeeker", "S")
                         db.collection("User").document(email).set(user)
                         val intent = Intent(this, SetupProfile::class.java)
                         intent.putExtra("email", email)

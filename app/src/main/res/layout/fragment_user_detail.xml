@@ -31,42 +31,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <!--            <com.google.android.material.imageview.ShapeableImageView-->
-            <!--                android:id="@+id/profilePic"-->
-            <!--                android:layout_width="250dp"-->
-            <!--                android:layout_height="250dp"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:layout_marginTop="28dp"-->
-            <!--                android:src="@drawable/upload"-->
-            <!--                app:shapeAppearanceOverlay="@style/roundBorder"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintHorizontal_bias="0.521"-->
-            <!--                android:background="@drawable/button_dark"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-
-<!--            <com.google.android.material.imageview.ShapeableImageView-->
-<!--                android:id="@+id/profilePic"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="250dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="28dp"-->
-<!--                android:background="@drawable/button_dark"-->
-<!--                android:src="@drawable/upload"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.521"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/textView"-->
-<!--                app:shapeAppearanceOverlay="@style/circleImageView" />-->
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="28dp"
-                android:src="@drawable/upload"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.521"
                 app:layout_constraintStart_toStartOf="parent"
