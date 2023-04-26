@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentVacancyDetailBinding
@@ -24,12 +25,15 @@ class VacancyDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-
         val vacID = arguments?.getString("jobname").toString()
+        newRecyclerView = binding.vacDetailRecycle
+        newRecyclerView.layoutManager = LinearLayoutManager(activity);
+        newRecyclerView.setHasFixedSize(true)
 
         emailList = ArrayList<String>()
 //        db.collection("Vacancy").document(vacID).collection("Application").get()
@@ -58,12 +62,14 @@ class VacancyDetailFragment : Fragment() {
                     emailList.add(email)
                 }
             }
-
-
+        loadData()
         return view
+
     }
 
     private fun loadData() {
+        userList = ArrayList<JobSeeker>()
+
         db.collection("Job Seeker")
             .get()
             .addOnSuccessListener { documents ->
@@ -72,7 +78,7 @@ class VacancyDetailFragment : Fragment() {
                     if (emailList.contains(document.getString("email"))) {
                         userList.add(jobSeeker)
                     }
-                    if (userList.size == emailList.size) {
+                    else if (userList.size == emailList.size) {
                         // Stop the loop once we have 10 users
                         break
                     }
