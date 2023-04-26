@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.JobSeeker
@@ -59,15 +61,12 @@ class UserAdapter(private val userList : ArrayList<JobSeeker>) :
             holder.gender.setImageResource(R.drawable.female)
         }
 
-    }
+        holder.jobb.setOnClickListener {
+            val bundle = bundleOf("dataKey" to currentItem.email)
+            it.findNavController().navigate(R.id.action_viewUserFragment_to_userDetailFragment, bundle)
+        }
 
-//    class MyViewHolder(private val binding: YourItemLayoutBinding) : RecyclerView.ViewHolder(itemView){
-//        val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)
-//        val name : TextView = itemView.findViewById(R.id.name)
-//        val age : TextView = itemView.findViewById(R.id.age)
-//        val location : TextView = itemView.findViewById(R.id.location)
-//        val gender : ImageButton = itemView.findViewById(R.id.gender)
-//    }
+    }
 
     class MyViewHolder(private val binding: UserListBinding) : RecyclerView.ViewHolder(binding.root){
         val propic :ShapeableImageView = binding.profilepic
@@ -78,5 +77,6 @@ class UserAdapter(private val userList : ArrayList<JobSeeker>) :
         val partTime = binding.partTime
         val fullTime = binding.fullTime
         val freelance = binding.freelance
+        val jobb = binding.jobb
     }
 }

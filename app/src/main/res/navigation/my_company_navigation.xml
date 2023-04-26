@@ -44,6 +44,9 @@
             app:destination="@id/companyProfileFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_viewUserFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyProfileFragment"
@@ -67,4 +70,8 @@
         android:id="@+id/vacancyDetail"
         android:name="com.example.nekoshigoto.VacancyDetail"
         android:label="VacancyDetail" />
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.example.nekoshigoto.UserDetailFragment"
+        android:label="UserDetailFragment" />
 </navigation>

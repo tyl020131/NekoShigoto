@@ -1,6 +1,7 @@
 package com.example.nekoshigoto
 
 import FieldAdapter
+import JobAdapter
 import ModeAdapter
 import SavedAdapter
 import VacancyAdapter
@@ -106,8 +107,13 @@ class VacancyFragment : Fragment() {
             this.findNavController().navigate(R.id.action_vacancyFragment_to_submitVacancyFragment)
         }
 
+//        val seeall : TextView = view.findViewById(R.id.home_seeall)
+//
+//        seeall.setOnClickListener{
+//            newRecyclerView.adapter = VacancyAdapter(VacancyList)
+//        }
 
-        return view;
+        return view
 
 
     }

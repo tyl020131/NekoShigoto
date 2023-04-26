@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.addTextChangedListener
@@ -94,7 +95,13 @@ class SavedFragment : Fragment() {
 
         }
 
-        return view;
+        val seeall : TextView = view.findViewById(R.id.home_seeall)
+
+        seeall.setOnClickListener{
+            newRecyclerView.adapter = SavedAdapter(jobList, viewModel)
+        }
+
+        return view
 
 
     }
