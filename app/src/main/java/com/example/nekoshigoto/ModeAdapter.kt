@@ -47,7 +47,5 @@ class ModeAdapter(private val modeList : ArrayList<String>) :
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val mode_item :TextView = itemView.findViewById(R.id.filter_item)
-
-
     }
 }

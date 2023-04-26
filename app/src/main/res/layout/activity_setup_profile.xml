@@ -435,7 +435,7 @@
                 android:layout_marginEnd="@dimen/form_margin_left"
                 android:layout_marginBottom="@dimen/form_margin_bot"
                 android:fontFamily="@font/inter_medium"
-                android:text="Expected Salary (RM)"
+                android:text="Working Mode"
                 android:textColor="@color/color5" />
 
             <LinearLayout
@@ -451,14 +451,14 @@
                     android:id="@+id/myCheckBox1"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Part-time"
+                    android:text="Part-Time"
                     android:textColor="@color/color5" />
 
                 <CheckBox
                     android:id="@+id/myCheckBox2"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Full-time"
+                    android:text="Full-Time"
                     android:textColor="@color/color5"/>
 
                 <CheckBox

@@ -30,11 +30,11 @@ class AdminCompanyRequestFragment : Fragment() {
     }
 
     private fun loadData(){
-        CompanyRequestListForAdmin.add(CompanyRequest("Wong", "Active"))
-        CompanyRequestListForAdmin.add(CompanyRequest("Zhi", "Inactive"))
-        CompanyRequestListForAdmin.add(CompanyRequest("hi", "Active"))
-        CompanyRequestListForAdmin.add(CompanyRequest("Zi", "Inactive"))
-        CompanyRequestListForAdmin.add(CompanyRequest("zh", "Active"))
+        CompanyRequestListForAdmin.add(CompanyRequest("Wong", "Active", "jinitaimei@gmail.com"))
+        CompanyRequestListForAdmin.add(CompanyRequest("Zhi", "Inactive", "jinitaimei@gmail.com"))
+        CompanyRequestListForAdmin.add(CompanyRequest("hi", "Active", "jinitaimei@gmail.com"))
+        CompanyRequestListForAdmin.add(CompanyRequest("Zi", "Inactive", "jinitaimei@gmail.com"))
+        CompanyRequestListForAdmin.add(CompanyRequest("zh", "Active", "jinitaimei@gmail.com"))
 
         newRecyclerView.adapter = CompanyRequestAdapterForAdmin(CompanyRequestListForAdmin)
 

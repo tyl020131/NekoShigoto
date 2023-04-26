@@ -50,7 +50,7 @@ class AdminProfileFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
-        val activity = activity as Home
+        val activity = activity as AdminHome
         activity?.showBottomNav()
     }
 

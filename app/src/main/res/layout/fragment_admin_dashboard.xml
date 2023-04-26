@@ -13,13 +13,11 @@
         android:layout_width="204dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="17dp"
         android:text="Dashboard"
         android:textAlignment="center"
         android:textColor="#F8FAFC"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +27,12 @@
         android:layout_width="166dp"
         android:layout_height="106dp"
         android:layout_marginStart="35dp"
-        android:layout_marginBottom="520dp"
         app:cardBackgroundColor="#0F1926"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -42,7 +40,7 @@
             android:layout_height="47dp"
             android:layout_marginLeft="10sp"
             android:layout_marginTop="10sp"
-            android:background="#624C28"
+            android:background="@drawable/admin_btn_blue"
             android:padding="5sp"
             app:srcCompat="@drawable/profile3" />
 
@@ -68,7 +66,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/totalUserNum"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="82sp"
@@ -84,13 +82,12 @@
         android:layout_width="166dp"
         android:layout_height="106dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="528dp"
         app:cardBackgroundColor="#0F1926"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.962">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/imageView7"
@@ -98,7 +95,7 @@
             android:layout_height="47dp"
             android:layout_marginLeft="10sp"
             android:layout_marginTop="10sp"
-            android:background="#624C28"
+            android:background="@drawable/admin_btn_blue"
             android:padding="5sp"
             app:srcCompat="@drawable/profile3" />
 
@@ -124,7 +121,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/totalCompanyNum"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="82sp"

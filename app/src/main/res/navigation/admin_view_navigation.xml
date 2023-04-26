@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_view_navigation"
     app:startDestination="@id/adminViewUserFragment2">
 
@@ -14,6 +15,9 @@
         <action
             android:id="@+id/action_adminViewUserFragment2_self"
             app:destination="@id/adminViewUserFragment2" />
+        <action
+            android:id="@+id/action_adminViewUserFragment2_to_adminUserDetailViewFragment2"
+            app:destination="@id/adminUserDetailViewFragment2" />
     </fragment>
     <fragment
         android:id="@+id/adminViewCompanyFragment2"
@@ -22,5 +26,26 @@
         <action
             android:id="@+id/action_adminViewCompanyFragment2_to_adminViewUserFragment2"
             app:destination="@id/adminViewUserFragment2" />
+        <action
+            android:id="@+id/action_adminViewCompanyFragment2_to_adminCompanyDetailViewFragment"
+            app:destination="@id/adminCompanyDetailViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUserDetailViewFragment2"
+        android:name="com.example.nekoshigoto.AdminUserDetailViewFragment"
+        android:label="fragment_admin_user_detail_view"
+        tools:layout="@layout/fragment_admin_user_detail_view" >
+        <action
+            android:id="@+id/action_adminUserDetailViewFragment2_to_adminViewUserFragment2"
+            app:destination="@id/adminViewUserFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminCompanyDetailViewFragment"
+        android:name="com.example.nekoshigoto.AdminCompanyDetailViewFragment"
+        android:label="fragment_admin_company_detail_view"
+        tools:layout="@layout/fragment_admin_company_detail_view" >
+        <action
+            android:id="@+id/action_adminCompanyDetailViewFragment_to_adminViewCompanyFragment2"
+            app:destination="@id/adminViewCompanyFragment2" />
     </fragment>
 </navigation>
