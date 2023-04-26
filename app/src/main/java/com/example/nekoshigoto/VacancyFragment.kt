@@ -176,14 +176,12 @@ class VacancyFragment : Fragment() {
                     if (document != null) {
 
                         vacancy.vacancyid = document.id
-                        val query = db.collection("Vacancy").document("${document.id}").collection("application")
+                        val query = db.collection("Vacancy").document("${document.id}").collection("Application")
                         query.get().addOnSuccessListener {
                             vacancy.numOfApp = it.size()
-                            Log.d("sohai", it.size().toString())
                             VacancyList.add(vacancy)
                             newRecyclerView.adapter = VacancyAdapter(VacancyList,navigator)
                         }
-                        Log.d("size", vacancy.numOfApp.toString())
                     }
                 }
 
@@ -191,8 +189,6 @@ class VacancyFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-
-
         }
 
 
