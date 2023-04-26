@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
+import coil.load
 import com.example.nekoshigoto.databinding.FragmentAdminUserDetailViewBinding
 import com.example.nekoshigoto.databinding.FragmentAdminViewUserBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -37,7 +39,9 @@ class AdminUserDetailViewFragment : Fragment() {
                         binding.userGender.text = userDetail?.gender
                         binding.userCountry.text = userDetail?.country
                         binding.userState.text = userDetail?.state
-                        //binding.userProfPic.setImageResource()
+
+                        val imgUri = userDetail?.profilePic?.toUri()?.buildUpon()?.scheme("https")?.build()
+                        binding.userProfPic.load(imgUri)
                     }
 
             }

@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.databinding.FragmentAdminViewBinding
 import com.example.nekoshigoto.databinding.FragmentAdminViewUserBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class AdminViewUserFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var userListForAdmin : ArrayList<UserView>
     private lateinit var binding : FragmentAdminViewUserBinding
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,27 +46,21 @@ class AdminViewUserFragment : Fragment() {
     }
 
     private fun loadData(){
-        userListForAdmin.add(UserView("PaoPao", "Active", "test@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
-        userListForAdmin.add(UserView("PaoPao", "Active", "happy@gmail.com"))
-        userListForAdmin.add(UserView("NickNick", "Inactive", "banana@gmail.com"))
+        db.collection("Job Seeker").get()
+            .addOnSuccessListener {
+                for (document in it) {
+                    val name = document.getString("fname") + " " + document.get("lname")
+                    val allJobSeeker = document.toObject<UserView>()
+                    if(allJobSeeker?.status.toString() == "A"){
+                        userListForAdmin.add(UserView(name, "Active", allJobSeeker?.email.toString()))
+                    }
+                    else{ //if user blocked
+                        userListForAdmin.add(UserView(name, "Blocked", allJobSeeker?.email.toString()))
+                    }
 
-        newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
-
+                }
+                newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
+            }
 
     }
 

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
@@ -28,14 +29,11 @@ class CompanyRequestAdapterForAdmin(private val companyRequestListForAdmin : Arr
         holder.numbering.text = (position + 1).toString()
         holder.name.text = currentItem.name
         holder.status.text = currentItem.status
+
         holder.viewDetailBtn.tag = currentItem.email
         holder.viewDetailBtn.setOnClickListener { view->
-            /*val tag = view.tag as String
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(record, tag)
-            findNavController().navigate(action)*/
-
-            //val bundle = bundleOf("dataKey" to "data")
-            view.findNavController().navigate(R.id.action_adminCompanyRequestFragment_to_adminCompanyRequestDetailViewFragment2)
+            val bundle = bundleOf("dataKey" to holder.viewDetailBtn.tag as String)
+            view.findNavController().navigate(R.id.action_adminCompanyRequestFragment_to_adminCompanyRequestDetailViewFragment2, bundle)
         }
     }
 

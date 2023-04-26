@@ -160,7 +160,7 @@ class QualificationFragment : Fragment() {
 
         }
 
-        var fieldArray =  resources.getStringArray(R.array.field_array)
+        var fieldArray =  resources.getStringArray(R.array.Fields)
         fieldArray = arrayOf("Select Select Your Field...") + fieldArray
         val fieldSpinner = binding.fieldSpinner
         val spinnerAdapter2= object : ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item, fieldArray) {

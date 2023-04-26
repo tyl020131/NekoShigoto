@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class AdminCompanyRequestFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var CompanyRequestListForAdmin : ArrayList<CompanyRequest>
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,14 +33,16 @@ class AdminCompanyRequestFragment : Fragment() {
     }
 
     private fun loadData(){
-        CompanyRequestListForAdmin.add(CompanyRequest("Wong", "Active", "jinitaimei@gmail.com"))
-        CompanyRequestListForAdmin.add(CompanyRequest("Zhi", "Inactive", "jinitaimei@gmail.com"))
-        CompanyRequestListForAdmin.add(CompanyRequest("hi", "Active", "jinitaimei@gmail.com"))
-        CompanyRequestListForAdmin.add(CompanyRequest("Zi", "Inactive", "jinitaimei@gmail.com"))
-        CompanyRequestListForAdmin.add(CompanyRequest("zh", "Active", "jinitaimei@gmail.com"))
-
-        newRecyclerView.adapter = CompanyRequestAdapterForAdmin(CompanyRequestListForAdmin)
-
+        db.collection("Company").get()
+            .addOnSuccessListener {
+                for (document in it) {
+                    val allCompanyReq = document.toObject<CompanyRequest>()
+                    if(allCompanyReq?.status.toString() == "P"){
+                        CompanyRequestListForAdmin.add(CompanyRequest(allCompanyReq?.name.toString(), "Pending", allCompanyReq?.email.toString()))
+                    }
+                }
+                newRecyclerView.adapter = CompanyRequestAdapterForAdmin(CompanyRequestListForAdmin)
+            }
 
     }
 }

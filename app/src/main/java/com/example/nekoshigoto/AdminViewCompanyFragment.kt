@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nekoshigoto.databinding.FragmentAdminViewCompanyBinding
 import com.example.nekoshigoto.databinding.FragmentAdminViewUserBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class AdminViewCompanyFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var CompanyListForAdmin : ArrayList<CompanyView>
     private lateinit var binding : FragmentAdminViewCompanyBinding
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,12 +45,18 @@ class AdminViewCompanyFragment : Fragment() {
     }
 
     private fun loadData(){
-        CompanyListForAdmin.add(CompanyView("PaoPao", "Active", "jinitaimei@gmail.com"))
-        CompanyListForAdmin.add(CompanyView("NickNick", "Inactive", "amagi@gmail.com"))
-        CompanyListForAdmin.add(CompanyView("The wong", "Active", "niganma@gmail.com"))
-
-        newRecyclerView.adapter = CompanyAdapterForAdmin(CompanyListForAdmin)
-
-
+        db.collection("Company").get()
+            .addOnSuccessListener {
+                for (document in it) {
+                    val allCompany = document.toObject<CompanyView>()
+                    if(allCompany?.status.toString() == "A"){
+                        CompanyListForAdmin.add(CompanyView(allCompany?.name.toString(), "Active", allCompany?.email.toString()))
+                    }
+                    else if(allCompany?.status.toString() == "B"){
+                        CompanyListForAdmin.add(CompanyView(allCompany?.name.toString(), "Blocked", allCompany?.email.toString()))
+                    }
+                }
+                newRecyclerView.adapter = CompanyAdapterForAdmin(CompanyListForAdmin)
+            }
     }
 }

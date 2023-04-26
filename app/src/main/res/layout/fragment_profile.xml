@@ -292,22 +292,73 @@
                     android:text="Working Mode"
                     android:textColor="@color/color5" />
 
-                <TextView
-                    android:id="@+id/textMode"
+<!--                <TextView-->
+<!--                    android:id="@+id/textMode"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginStart="@dimen/form_margin_left"-->
+<!--                    android:layout_marginEnd="@dimen/form_margin_left"-->
+<!--                    android:layout_marginBottom="@dimen/form_margin_bot"-->
+<!--                    android:background="@drawable/field_dark"-->
+<!--                    android:textColor="@color/color5"-->
+<!--                    android:ems="10"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:paddingRight="5dp"-->
+<!--                    android:text="Part-Time"-->
+<!--                    android:textAlignment="textStart"-->
+<!--                    android:textSize="18sp" />-->
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexbox_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="@dimen/form_margin_left"
-                    android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@drawable/field_dark"
-                    android:textColor="@color/color5"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="Part-Time"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameTextView">
+
+                    <TextView
+                        android:id="@+id/partTime"
+                        style="@style/button_dark"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_dark"
+                        android:gravity="center"
+                        android:text="Part-Time"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/fullTime"
+                        style="@style/button_dark"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_dark"
+                        android:gravity="center"
+                        android:text="Full-Time"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/freelance"
+                        style="@style/button_dark"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_dark"
+                        android:gravity="center"
+                        android:text="Freelance"
+                        android:visibility="gone" />
+
+                </com.google.android.flexbox.FlexboxLayout>
 
             </LinearLayout>
 

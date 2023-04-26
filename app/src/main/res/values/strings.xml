@@ -16,13 +16,6 @@
         <item>Doctor of Philosophy</item>
 
     </string-array>
-    <string-array name="field_array">
-        <item>Computing and Science</item>
-        <item>Accounting and Finance</item>
-        <item>Engineering</item>
-        <item>Biochemistry</item>
-
-    </string-array>
     <string name="title_activity_logout">Logout</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

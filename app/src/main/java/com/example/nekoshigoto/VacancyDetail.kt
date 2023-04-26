@@ -33,7 +33,7 @@ class VacancyDetail : AppCompatActivity() {
         ApplicantList.add(Applicant("Zhi", 20, imageId[0]))
         ApplicantList.add(Applicant("Hern", 20, imageId[0]))
 
-        newRecyclerView.adapter = VacancyDetailAdapter(ApplicantList)
+        //newRecyclerView.adapter = VacancyDetailAdapter(ApplicantList)
 
 
     }

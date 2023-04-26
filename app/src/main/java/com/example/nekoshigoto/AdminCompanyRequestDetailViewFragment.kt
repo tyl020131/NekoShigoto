@@ -5,18 +5,47 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
+import coil.load
+import com.example.nekoshigoto.databinding.FragmentAdminCompanyDetailViewBinding
+import com.example.nekoshigoto.databinding.FragmentAdminCompanyRequestDetailViewBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class AdminCompanyRequestDetailViewFragment : Fragment() {
+    private lateinit var binding : FragmentAdminCompanyRequestDetailViewBinding
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(
-            R.layout.fragment_admin_company_request_detail_view,
-            container,
-            false
-        )
+        binding = FragmentAdminCompanyRequestDetailViewBinding.inflate(inflater, container, false)
+
+        val companyEmail = arguments?.getString("dataKey").toString()
+        //binding.textView17.text = companyEmail
+
+        db.collection("User").document(companyEmail).get()
+            .addOnSuccessListener {
+                val company = it.toObject<CompanyDetailView>()
+                val emailForDetailView = company?.email.toString()
+
+                db.collection("Company").document(emailForDetailView).get()
+                    .addOnSuccessListener {
+                        val companyDetail = it.toObject<Company>()
+                        binding.companyName.text = companyDetail?.name
+                        binding.companyBusiness.text = companyDetail?.business
+                        binding.companyEmail.text = companyDetail?.email
+                        binding.companyAddress.text = companyDetail?.address
+                        binding.companyContactNo.text = companyDetail?.contactNo
+                        binding.companyCountry.text = companyDetail?.country
+                        binding.companyState.text = companyDetail?.state
+
+                        val imgUri = companyDetail?.profilePic?.toUri()?.buildUpon()?.scheme("https")?.build()
+                        binding.companyPic.load(imgUri)
+                    }
+            }
+
+        return binding.root
     }
 
 }

@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
-            android:text="Cai Xu Kun"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="30sp"
-            android:text="021122-07-0481"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="60sp"
-            android:text="wongjijamades@gmail.com"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="90sp"
-            android:text="999-9999999"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="120sp"
-            android:text="Male"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -139,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="150sp"
-            android:text="Malaysia"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="180sp"
-            android:text="Penang"
+            android:text=""
             android:textColor="#FFFFFF" />
 
 
@@ -159,8 +159,7 @@
             android:layout_marginLeft="150sp"
             android:layout_marginTop="230sp"
             android:background="@drawable/circle"
-            android:clipToOutline="true"
-            app:srcCompat="@drawable/kunkun" />
+            android:clipToOutline="true"/>
 
         <Button
             android:id="@+id/button5"

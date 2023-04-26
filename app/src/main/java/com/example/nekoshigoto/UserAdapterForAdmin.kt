@@ -36,8 +36,6 @@ class UserAdapterForAdmin(private val userListForAdmin : ArrayList<UserView>) :
 
         holder.viewDetailBtn.tag = currentItem.email
         holder.viewDetailBtn.setOnClickListener { view->
-            //val tag = view.tag as String
-
             val bundle = bundleOf("dataKey" to holder.viewDetailBtn.tag as String)
             view.findNavController().navigate(R.id.action_adminViewUserFragment2_to_adminUserDetailViewFragment2, bundle)
         }
