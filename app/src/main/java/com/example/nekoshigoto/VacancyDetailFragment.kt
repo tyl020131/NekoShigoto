@@ -33,6 +33,7 @@ class VacancyDetailFragment : Fragment() {
         val vacID = arguments?.getString("jobname").toString()
 
         emailList = ArrayList<String>()
+        userList = ArrayList<JobSeeker>()
 //        db.collection("Vacancy").document(vacID).collection("Application").get()
         db.collection("Vacancy").document(vacID).get()
             .addOnSuccessListener {
@@ -60,6 +61,7 @@ class VacancyDetailFragment : Fragment() {
                 }
             }
 
+        loadData()
 
         return view
     }
