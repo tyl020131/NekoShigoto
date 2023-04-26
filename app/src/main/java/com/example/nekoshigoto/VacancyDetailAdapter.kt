@@ -5,11 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import com.example.nekoshigoto.Applicant
 import com.example.nekoshigoto.R
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 
-class VacancyDetailAdapter(private val applicantList : ArrayList<Applicant>) :
+class VacancyDetailAdapter(private val applicantList : ArrayList<JobSeeker>) :
     RecyclerView.Adapter<VacancyDetailAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -23,9 +28,16 @@ class VacancyDetailAdapter(private val applicantList : ArrayList<Applicant>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = applicantList[position];
-        holder.applicantName.text = currentItem.name
-        holder.applicantAge.text = currentItem.age.toString()
-        holder.applicantImage.setImageResource(currentItem.image)
+        holder.applicantName.text = currentItem.fname + " " + currentItem.lname
+
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val dob = LocalDate.parse(currentItem.dob, formatter)
+        val currentDate: LocalDate = LocalDate.now()
+        val age: Int = Period.between(dob, currentDate).getYears()
+        holder.applicantAge.text = age.toString()
+
+        val imgUri = currentItem.profilePic.toUri().buildUpon().scheme("https").build()
+        holder.applicantImage.load(imgUri)
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
