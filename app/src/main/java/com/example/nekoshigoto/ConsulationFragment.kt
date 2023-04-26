@@ -11,7 +11,10 @@ import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,9 +51,10 @@ class ConsulationFragment : Fragment() {
 
     ): View? {
         setHasOptionsMenu(true)
-        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
-
-        val userid : String = sh.getString("userid","").toString()
+        val viewModel : JobSeekerViewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        val jobSeeker : JobSeeker = viewModel.getJobSeeker()
+        val seekername = String.format("%s %s",jobSeeker.lname,jobSeeker.fname)
+        val username : String = seekername
         database = Firebase.database.getReference("chat")
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_consulation, container, false)
@@ -73,15 +77,10 @@ class ConsulationFragment : Fragment() {
         sendBtn.setOnClickListener {
             var content = chatMessage.text.toString()
             val receiver: TextView = view.findViewById(R.id.chat_receipient)
-            var receiver_id = receiver.tag.toString()
-            if(userid!="tyl99"){
-                receiver_id = "tyl99"
-            }
-            else{
-                receiver_id = "consultant"
-            }
+            val receiver_id = "consultant"
 
-            val sender_id = userid
+
+            val sender_id = seekername
             val chat = Chat(sender_id,receiver_id,content,Date())
             database.child(String.format("%s%s%s",Date(),sender_id,receiver_id)).setValue(chat)
             chatMessage.text.clear()
@@ -95,15 +94,16 @@ class ConsulationFragment : Fragment() {
                     val chat = childSnapshot.getValue(Chat::class.java)
                     if (chat != null) {
                         if(!chatList.contains(chat)){
-                            if(chat.receiver == userid){
+                            if(chat.receiver==seekername) {
                                 chatList.add(chat)
-                                messageAdapter.add(ReceiveMessageItem(chatList.get(chatList.size-1)))
-                                newRecyclerView.scrollToPosition(chatList.size-1);
+                                messageAdapter.add(ReceiveMessageItem(chatList.get(chatList.size - 1)))
+                                newRecyclerView.scrollToPosition(chatList.size - 1);
                             }
-                            else{
+                            else if(chat.sender == seekername) {
                                 chatList.add(chat)
-                                messageAdapter.add(SendMessageItem(chatList.get(chatList.size-1)))
-                                newRecyclerView.scrollToPosition(chatList.size-1);
+                                messageAdapter.add(SendMessageItem(chatList.get(chatList.size - 1)))
+                                newRecyclerView.scrollToPosition(chatList.size - 1);
+
                             }
 
 

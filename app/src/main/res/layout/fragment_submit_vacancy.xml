@@ -2,6 +2,13 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.nekoshigoto.CompanyViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,27 +42,26 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="28dp"
-                            android:text="Submit Vacancy"
+                            android:text="@{viewModel.company.name}"
                             android:textColor="@color/color5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="170dp"
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/vacancyCompanyPropic"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="165dp"
                             android:layout_marginTop="28dp"
-                            android:layout_marginEnd="170dp"
+                            android:layout_marginEnd="165dp"
                             android:background="@drawable/border_radius"
-                            android:src="@mipmap/kunkun"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView10"
+                            app:shapeAppearanceOverlay="@style/circleImageView" />
 
                         <TextView
-                            android:id="@+id/textView13"
+                            android:id="@+id/vacancyCompanyName"
                             style="@style/filter_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -66,19 +72,18 @@
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                            app:layout_constraintTop_toBottomOf="@+id/vacancyCompanyPropic" />
 
                         <TextView
                             style="@style/filter_choice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
                             android:layout_marginTop="23dp"
                             android:text="What Are You looking For ?"
                             android:textColor="@color/color5"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                            app:layout_constraintTop_toBottomOf="@+id/vacancyCompanyName" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
@@ -127,17 +132,18 @@
                                 android:layout_marginTop="8dp"
                                 android:text="Field" />
 
-                            <EditText
-                                android:id="@+id/enter_field"
+                            <Spinner
+                                android:id="@+id/fieldspinner"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
+                                android:layout_marginTop="8dp"
                                 android:layout_marginEnd="16dp"
-                                android:ems="10"
-                                android:hint="Field..."
-                                android:inputType="textPersonName"
-                                android:textColor="@color/white"
-                                android:textColorHint="@color/color2" />
+                                android:background="@drawable/border_radius"
+                                android:backgroundTint="#0328F4"
+                                android:foregroundTint="@color/color5"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp" />
 
                         </LinearLayout>
 

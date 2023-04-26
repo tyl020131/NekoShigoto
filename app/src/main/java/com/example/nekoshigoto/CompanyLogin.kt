@@ -1,5 +1,6 @@
 package com.example.nekoshigoto
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import com.example.nekoshigoto.databinding.ActivityCompanyLoginBinding
 import com.google.android.material.snackbar.Snackbar
@@ -78,18 +80,27 @@ class CompanyLogin : AppCompatActivity() {
                                                         Toast.LENGTH_SHORT).show()
                                                     val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
                                                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
-                                                    db.collection("Company").document(email).get().addOnSuccessListener {
-                                                        val company = it.toObject<Company>()  //convert the doc into object
-                                                        myEdit.putString("userid", email)
-                                                        myEdit.putString("type", "company")
-                                                        myEdit.putBoolean("loggedIn", true)
-                                                        myEdit.commit()
+                                                    myEdit.putString("userid", email)
+                                                    myEdit.putString("type", "company")
+                                                    myEdit.putBoolean("loggedIn", true)
+                                                    myEdit.commit()
 
-                                                        val intent = Intent(this, CompanyHome::class.java)
-                                                        startActivity(intent)
-                                                    }
+                                                    val intent = Intent(this, CompanyHome::class.java)
+                                                    startActivity(intent)
 
+                                                }
+                                                "C" -> {
+                                                    Toast.makeText(baseContext, "Please change your password",
+                                                        Toast.LENGTH_SHORT).show()
+                                                    val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+                                                    val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                                                    myEdit.putString("userid", email)
+                                                    myEdit.putString("type", "company")
 
+                                                    myEdit.commit()
+                                                    val intent = Intent(this, ForgotPassword::class.java)
+                                                    intent.putExtra("email", email)
+                                                    startActivity(intent)
                                                 }
                                                 else -> {
                                                     val message = "This account has been banned"
@@ -125,6 +136,21 @@ class CompanyLogin : AppCompatActivity() {
             }
         }
 
+        binding.forgotPassword.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Forgot Password")
+            val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+            val username = view.findViewById<EditText>(R.id.et_email)
+            builder.setView(view)
+            builder.setPositiveButton("Reset"){dialogInterface,it->
+                forgotPassword(username.text.toString())
+
+            }.setNegativeButton("Cancel"){dialogInterface,it->
+
+            }
+            builder.show()
+        }
+
     }
 
     private fun validation(email: String, password: String):Boolean
@@ -136,6 +162,38 @@ class CompanyLogin : AppCompatActivity() {
             true
         }
     }
+
+    private fun forgotPassword(email: String)
+    {
+        if(email == "") {
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show()
+            return
+        }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Toast.makeText(this, "Invalid email", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else{
+            progressDialog = ProgressDialog(this)
+            progressDialog.setMessage("Sending email...")
+            progressDialog.show()
+            auth.sendPasswordResetEmail(email).addOnSuccessListener {
+                db.collection("User").document(email).update("status", "C")
+                    .addOnSuccessListener {
+                        progressDialog.dismiss()
+                        Toast.makeText(this, "Successfully sent a reset email", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        progressDialog.dismiss()
+                        Toast.makeText(this, "Error updating document", Toast.LENGTH_SHORT).show()
+                    }
+            }.addOnFailureListener{
+                progressDialog.dismiss()
+                Toast.makeText(this, "This email hasn't registered an account", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

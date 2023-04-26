@@ -8,6 +8,8 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.util.Log
@@ -19,6 +21,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +38,10 @@ class HomeFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var jobList : ArrayList<Vacancy>
     private lateinit var djobList : ArrayList<Vacancy>
+    private lateinit var viewModel: JobSeekerViewModel
+    private var mysaved : ArrayList<Save> = ArrayList<Save>()
+    private var email : String= ""
+
 
     lateinit var imageId : Array<Int>
 
@@ -46,6 +53,11 @@ class HomeFragment : Fragment() {
     ): View? {
         // Disable the up button
         setHasOptionsMenu(true)
+        viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+        email = sh.getString("userid","").toString()
+
+
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -58,7 +70,8 @@ class HomeFragment : Fragment() {
         newRecyclerView.setHasFixedSize(true)
 
         jobList = arrayListOf<Vacancy>()
-        loadData()
+
+        loadData(email)
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
@@ -124,30 +137,41 @@ class HomeFragment : Fragment() {
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
 
-        newRecyclerView.adapter = VacancyAdapter(filteredJobs)
+        newRecyclerView.adapter = JobAdapter(filteredJobs,email,mysaved)
 
 
     }
 
 
-    private fun loadData(){
+    private fun loadData(email:String){
 
+        mysaved = ArrayList<Save>()
+        db.collection("Job Seeker").document(email).collection("saves")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
 
+                    val save = document.toObject(Save::class.java)
+                    mysaved.add(save)
+                }
 
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents: ", exception)
+            }
 
         db.collection("Vacancy")
-            .whereEqualTo("companyName", "Ikun Studio")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
                     val vacancy = document.toObject(Vacancy::class.java)
-
+                    vacancy.vacancyid = document.id
                     jobList.add(vacancy)
 
 
                 }
-                newRecyclerView.adapter = JobAdapter(jobList)
+                newRecyclerView.adapter = JobAdapter(jobList, email,mysaved)
 
             }
             .addOnFailureListener { exception ->

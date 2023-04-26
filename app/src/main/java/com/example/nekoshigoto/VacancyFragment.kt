@@ -17,6 +17,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -44,6 +45,7 @@ class VacancyFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
 
+        val viewModel: CompanyViewModel = ViewModelProvider(requireActivity()).get(CompanyViewModel::class.java)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_vacancy, container, false)
 
@@ -55,7 +57,7 @@ class VacancyFragment : Fragment() {
         newRecyclerView.setHasFixedSize(true)
 
         VacancyList = arrayListOf<Vacancy>()
-        loadData()
+        loadData(viewModel.getCompany().name)
 
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
@@ -75,11 +77,11 @@ class VacancyFragment : Fragment() {
     }
 
 
-    private fun loadData() {
+    private fun loadData(name:String) {
 
 
         db.collection("Vacancy")
-            .whereEqualTo("companyName", "Ikun Studio")
+            .whereEqualTo("companyName", name)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {

@@ -263,6 +263,7 @@ class QualificationFragment : Fragment() {
             textField.text = qualification?.field
 
             editTextExp.setText(qualification?.workingExp)
+            //editTextExp.setText(data.toString())
 
             editTextResume.tag = qualification?.resumeURl
         }
@@ -302,10 +303,7 @@ class QualificationFragment : Fragment() {
                         if(chgPDF){
                             uploadPdf { pdf ->
                                 var newQuali = Qualification(selectedField, binding.editTextExp.text.toString(), selectedEdu, pdf)
-                                val oldPDF = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
                                 db.collection("Qualification").document(email).set(newQuali)
-                                val pdfRef = FirebaseStorage.getInstance().getReference().child("Resume/$oldPDF")
-                                pdfRef.delete()
                                 viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
                                 requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)

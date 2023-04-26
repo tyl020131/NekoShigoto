@@ -14,4 +14,9 @@ class AdminDashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_admin_dashboard, container, false)
     }
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as AdminHome
+        activity?.showBottomNav()
+    }
 }

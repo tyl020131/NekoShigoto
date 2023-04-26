@@ -1,6 +1,7 @@
 package com.example.nekoshigoto
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -19,5 +20,19 @@ class AdminHome : AppCompatActivity() {
         val navController = this.findNavController(R.id.Container)
         bottomNav.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this,navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.Container)
+        return navController.navigateUp()
+    }
+    
+    fun hideBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.GONE
+    }
+    fun showBottomNav(){
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.visibility = View.VISIBLE
     }
 }

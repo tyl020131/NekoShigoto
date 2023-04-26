@@ -19,6 +19,7 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -141,6 +142,7 @@ class ProfileFragment : Fragment() {
             val number = user?.salary
             val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
             textSalary.text = "RM $formattedNumber"
+            textMode.text = user?.workingMode
 
             //insert data for edit layout
             editTextFName.setText(user?.fname)
@@ -151,6 +153,7 @@ class ProfileFragment : Fragment() {
             editTextCountry.text = user?.country
             editTextState.setText(user?.state)
             editTextSalary.setText(user?.salary.toString())
+            val list = user?.workingMode?.split(", ")
             if(user?.gender == "Male")
                 male.isChecked = true
             else
@@ -167,6 +170,14 @@ class ProfileFragment : Fragment() {
 
             binding.uploadImage.tag = user?.profilePic
 
+            list?.forEach {
+                if(it == binding.myCheckBox1.text.toString())
+                    binding.myCheckBox1.isChecked = true
+                else if(it == binding.myCheckBox2.text.toString())
+                    binding.myCheckBox2.isChecked = true
+                else if(it == binding.myCheckBox3.text.toString())
+                binding.myCheckBox3.isChecked = true
+            }
         }
 
         binding.editButton.setOnClickListener {
@@ -191,6 +202,7 @@ class ProfileFragment : Fragment() {
                 errorTextState.visibility = View.GONE
                 errorTextProfile.visibility = View.GONE
                 errorTextSalary.visibility = View.GONE
+                errorTextMode.visibility = View.GONE
             }
         }
 
@@ -208,6 +220,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.qualificationButton.setOnClickListener {
+            //val bundle = bundleOf("test" to "test")
             it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
             //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
         }
@@ -304,7 +317,7 @@ class ProfileFragment : Fragment() {
             checkCountry(countryT.text.toString())
             checkState(stateT.text.toString())
             checkSalary(salaryT.text.toString())
-
+            checkMode()
             if(error)
             {
                 Toast.makeText(requireContext(), "Please check the error message", Toast.LENGTH_SHORT).show()
@@ -328,11 +341,30 @@ class ProfileFragment : Fragment() {
                         val country = countryT.text.toString()
                         val state = stateT.text.toString()
                         val salary = salaryT.text.toString().toInt()
+                        var workingMode = ""
+                        val partTime = binding.myCheckBox1
+                        val fullTime = binding.myCheckBox2
+                        val freelance = binding.myCheckBox3
+                        if(partTime.isChecked){
+                            workingMode += partTime.text.toString()
+                        }
+                        if(fullTime.isChecked){
+                            workingMode += if(workingMode == "")
+                                fullTime.text.toString()
+                            else
+                                ", " + fullTime.text.toString()
+                        }
+                        if(freelance.isChecked){
+                            workingMode += if(workingMode == "")
+                                freelance.text.toString()
+                            else
+                                ", " + freelance.text.toString()
+                        }
 
                         if(chgImg){
                             //after changing profile pic
                             uploadImage { imageUrl ->
-                                val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary)
+                                val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode)
                                 val imageName = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
                                 db.collection("Job Seeker").document(email).set(user)
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Employee/$imageName")
@@ -342,7 +374,7 @@ class ProfileFragment : Fragment() {
                         }
                         else{
                             //no chg profile pic
-                            val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary)
+                            val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary, workingMode)
                             db.collection("Job Seeker").document(email).set(user)
                             viewModel.setJobSeeker(user)
                         }
@@ -390,6 +422,16 @@ class ProfileFragment : Fragment() {
         }
         else{
             binding.errorTextLname.visibility = View.GONE
+        }
+    }
+
+    private fun checkMode(){
+        return if (!binding.myCheckBox1.isChecked && !binding.myCheckBox2.isChecked && !binding.myCheckBox3.isChecked) {
+            binding.errorTextMode.visibility = View.VISIBLE
+            binding.errorTextMode.text = "Please select your working mode"
+            error = true
+        } else {
+            binding.errorTextMode.visibility = View.GONE
         }
     }
 
@@ -672,7 +714,6 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
