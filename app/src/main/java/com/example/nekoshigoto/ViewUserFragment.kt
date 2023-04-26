@@ -52,9 +52,6 @@ class ViewUserFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = binding.root
 
-        imageId = arrayOf(
-            R.drawable.kunkun
-        )
         newRecyclerView = binding.vacancies
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -126,7 +123,6 @@ class ViewUserFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
                     val jobSeeker = document.toObject(JobSeeker::class.java)
 
                     userList.add(jobSeeker)

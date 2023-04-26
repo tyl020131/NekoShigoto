@@ -98,7 +98,7 @@ class SavedFragment : Fragment() {
         val seeall : TextView = view.findViewById(R.id.home_seeall)
 
         seeall.setOnClickListener{
-            newRecyclerView.adapter = SavedAdapter(jobList, viewModel)
+            newRecyclerView.adapter = SavedAdapter(jobList, viewModel,navigator)
         }
 
         return view
