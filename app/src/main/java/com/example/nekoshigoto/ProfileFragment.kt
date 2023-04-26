@@ -1,5 +1,6 @@
 package com.example.nekoshigoto
 
+import FilterJobSeekerDialog
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -13,10 +14,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.ScrollView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.bundleOf
@@ -142,7 +140,15 @@ class ProfileFragment : Fragment() {
             val number = user?.salary
             val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
             textSalary.text = "RM $formattedNumber"
-            textMode.text = user?.workingMode
+            var workingMode = user?.workingMode?.split(", ")
+            workingMode?.forEach {
+                if(it == binding.freelance.text.toString())
+                    binding.freelance.visibility = View.VISIBLE
+                else if(it == binding.partTime.text.toString())
+                    binding.partTime.visibility = View.VISIBLE
+                else if(it == binding.fullTime.text.toString())
+                    binding.fullTime.visibility = View.VISIBLE
+            }
 
             //insert data for edit layout
             editTextFName.setText(user?.fname)
@@ -220,9 +226,10 @@ class ProfileFragment : Fragment() {
         }
 
         binding.qualificationButton.setOnClickListener {
-            //val bundle = bundleOf("test" to "test")
+
             it.findNavController().navigate(R.id.action_profileFragment_to_qualificationFragment)
             //it.findNavController().navigate(R.id.action_profileFragment_to_userDetailFragment)
+
         }
 
         binding.uploadImage.setOnClickListener{
@@ -364,19 +371,19 @@ class ProfileFragment : Fragment() {
                         if(chgImg){
                             //after changing profile pic
                             uploadImage { imageUrl ->
-                                val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode)
+                                val userEdit = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode, user.status)
                                 val imageName = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
-                                db.collection("Job Seeker").document(email).set(user)
+                                db.collection("Job Seeker").document(email).set(userEdit)
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Employee/$imageName")
                                 imgRef.delete()
-                                viewModel.setJobSeeker(user)
+                                viewModel.setJobSeeker(userEdit)
                             }
                         }
                         else{
                             //no chg profile pic
-                            val user = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary, workingMode)
-                            db.collection("Job Seeker").document(email).set(user)
-                            viewModel.setJobSeeker(user)
+                            val userEdit = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary, workingMode, user.status)
+                            db.collection("Job Seeker").document(email).set(userEdit)
+                            viewModel.setJobSeeker(userEdit)
                         }
                         requireView().findNavController().navigate(R.id.action_profileFragment_self)
                         Toast.makeText(requireContext(), "Successfully Edit Profile", Toast.LENGTH_SHORT).show()

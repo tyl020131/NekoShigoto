@@ -1,3 +1,5 @@
 package com.example.nekoshigoto
 
-data class User(val image:Int, val name:String, val position: String,val location:String)
+data class User(val email : String = "",
+                val userType : String = "",
+                val status : String = "",)

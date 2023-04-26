@@ -10,6 +10,12 @@
         android:icon="@drawable/view"
         android:id="@+id/adminViewFragment" />
 
+    <item
+        android:id="@+id/chatRoomFragment"
+        android:icon="@drawable/consultation"
+        android:title="Consultation" />
+
+
     <item android:title="Request"
         android:icon="@drawable/request"
         android:id="@+id/adminCompanyRequestMainFragment" />

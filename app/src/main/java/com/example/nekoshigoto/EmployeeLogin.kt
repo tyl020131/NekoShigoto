@@ -61,7 +61,7 @@ class EmployeeLogin : AppCompatActivity() {
                             progressDialog.dismiss()
                             db.collection("User").document(email).get()
                                 .addOnSuccessListener {
-                                    val user = it.toObject<Customer>()  //convert the doc into object
+                                    val user = it.toObject<User>()  //convert the doc into object
                                     when(user?.userType){
                                         "jobSeeker" -> {
 

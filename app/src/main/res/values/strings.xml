@@ -5,6 +5,7 @@
 
     <string name="vacancyDetailJobDesc">blablabla</string>
     <string name="default_salary_range">RM0.00 - RM100000.00</string>
+    <string name="default_age_range">15 - 100</string>
     <string-array name="education_array">
         <item>Select Your Education Level...</item>
         <item>High School</item>
@@ -13,13 +14,6 @@
         <item>Master\'s degree</item>
         <item>Doctoral\'s degree</item>
         <item>Doctor of Philosophy</item>
-
-    </string-array>
-    <string-array name="field_array">
-        <item>Computing and Science</item>
-        <item>Accounting and Finance</item>
-        <item>Engineering</item>
-        <item>Biochemistry</item>
 
     </string-array>
     <string name="title_activity_logout">Logout</string>

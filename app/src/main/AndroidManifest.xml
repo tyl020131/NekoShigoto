@@ -19,13 +19,13 @@
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.NekoShigoto.NoActionBar" />
-        <!--
+
         <activity
             android:name=".AdminHome"
             android:exported="false"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/Theme.NekoShigoto.NoActionBar" />
-        -->
+
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
@@ -56,9 +56,6 @@
             android:name=".SetupProfile"
             android:exported="false" />
         <activity
-            android:name=".UploadResume"
-            android:exported="false" />
-        <activity
             android:name=".EmployeeRegister"
             android:exported="false" />
         <activity
@@ -67,7 +64,6 @@
         <activity
             android:name=".GetStarted"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true" >
@@ -78,10 +74,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AdminHome"
-            android:exported="true" >
-        </activity>
         <activity
             android:name=".Home"
             android:exported="false"

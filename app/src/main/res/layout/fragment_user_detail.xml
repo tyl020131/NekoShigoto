@@ -31,42 +31,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <!--            <com.google.android.material.imageview.ShapeableImageView-->
-            <!--                android:id="@+id/profilePic"-->
-            <!--                android:layout_width="250dp"-->
-            <!--                android:layout_height="250dp"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:layout_marginTop="28dp"-->
-            <!--                android:src="@drawable/upload"-->
-            <!--                app:shapeAppearanceOverlay="@style/roundBorder"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintHorizontal_bias="0.521"-->
-            <!--                android:background="@drawable/button_dark"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-
-<!--            <com.google.android.material.imageview.ShapeableImageView-->
-<!--                android:id="@+id/profilePic"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="250dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="28dp"-->
-<!--                android:background="@drawable/button_dark"-->
-<!--                android:src="@drawable/upload"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.521"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/textView"-->
-<!--                app:shapeAppearanceOverlay="@style/circleImageView" />-->
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="28dp"
-                android:src="@drawable/upload"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.521"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +77,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_dark"
                     android:gravity="center"
-                    android:text="Part-time"
+                    android:text="Part-Time"
                     android:visibility="gone" />
 
                 <TextView
@@ -118,7 +88,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_dark"
                     android:gravity="center"
-                    android:text="Full-time"
+                    android:text="Full-Time"
                     android:visibility="gone" />
 
                 <TextView
@@ -407,7 +377,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="Study / Working Experience:"
+                    android:text="Study / Working Experience :"
                     android:textColor="@color/color5"
                     android:textSize="13dp" />
 
@@ -420,7 +390,7 @@
                     android:fontFamily="@font/montserrat"
                     android:minHeight="120dp"
                     android:padding="4dp"
-                    android:text="全民制作人们 大家好 我是练习时长两年半的个人练习生 蔡徐坤 喜欢 唱， 跳， rap， 篮球，music"
+                    android:text=""
                     android:textColor="@color/color5"
                     android:textSize="13dp" />
 

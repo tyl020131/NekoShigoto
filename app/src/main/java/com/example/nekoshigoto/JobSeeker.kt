@@ -13,6 +13,7 @@ data class JobSeeker(
     val country : String = "",
     val state : String = "",
     val salary : Int = 0,
-    val workingMode : String = ""
+    val workingMode : String = "",
+    val status : String = "A"
 
 )

@@ -1,11 +1,14 @@
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.Job
@@ -15,7 +18,7 @@ import com.example.nekoshigoto.Vacancy
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SavedAdapter(private val jobList : ArrayList<Vacancy>, private val viewModel: JobSeekerViewModel) :
+class SavedAdapter(private val jobList : ArrayList<Vacancy>, private val viewModel: JobSeekerViewModel,private val navigator : NavController) :
     RecyclerView.Adapter<SavedAdapter.MyViewHolder>() {
     private lateinit var itemView :View
     private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -33,6 +36,13 @@ class SavedAdapter(private val jobList : ArrayList<Vacancy>, private val viewMod
         holder.location.text = currentItem.location
         holder.mode.text = currentItem.mode
 
+        holder.cont.setOnClickListener {
+
+            val bundle = Bundle()
+            bundle.putString("jobname",currentItem.vacancyid)
+            navigator.navigate(R.id.action_savedFragment_to_jobDetailFragment,bundle)
+        }
+
         holder.fav.setImageResource(R.drawable.favorite);
         holder.fav.setOnClickListener {
             jobList.removeAt(position)
@@ -46,11 +56,17 @@ class SavedAdapter(private val jobList : ArrayList<Vacancy>, private val viewMod
 
         };
     }
+
+    fun getCurrentData() : ArrayList<Vacancy>{
+        return this.jobList
+    }
+
     override fun getItemCount(): Int {
         return jobList.size
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val cont : ConstraintLayout = itemView.findViewById(R.id.jobb)
         val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)
         val company : TextView = itemView.findViewById(R.id.company_name)
         val vacancy : TextView = itemView.findViewById(R.id.vacancy)

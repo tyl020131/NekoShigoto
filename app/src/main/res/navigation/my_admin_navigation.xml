@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_adminDashboardFragment_self"
             app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminViewFragment"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_adminViewFragment_self"
             app:destination="@id/adminViewFragment" />
+        <action
+            android:id="@+id/action_adminViewFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminCompanyRequestMainFragment"
@@ -74,5 +80,33 @@
         <action
             android:id="@+id/action_adminProfileFragment_self"
             app:destination="@id/adminProfileFragment" />
+        <action
+            android:id="@+id/action_adminProfileFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.example.nekoshigoto.ChatRoomFragment"
+        android:label="ChatRoomFragment" >
+        <action
+            android:id="@+id/action_chatRoomFragment_to_adminViewFragment"
+            app:destination="@id/adminViewFragment" />
+        <action
+            android:id="@+id/action_chatRoomFragment_to_adminCompanyRequestMainFragment"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_chatRoomFragment_to_adminDashboardFragment"
+            app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_chatRoomFragment_to_consultantConsultationFragment"
+            app:destination="@id/consultantConsultationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/consultantConsultationFragment"
+        android:name="com.example.nekoshigoto.ConsultantConsultationFragment"
+        android:label="ConsultantConsultationFragment" >
+        <action
+            android:id="@+id/action_consultantConsultationFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
 </navigation>

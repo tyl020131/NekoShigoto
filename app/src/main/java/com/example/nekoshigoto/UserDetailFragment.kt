@@ -35,7 +35,7 @@ class UserDetailFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
-        val email = "tankc2002@gmail.com"
+        val email = arguments?.getString("dataKey").toString()
         db.collection("Job Seeker").document(email).get()
             .addOnSuccessListener{
                 val user = it.toObject<JobSeeker>()
@@ -43,6 +43,8 @@ class UserDetailFragment : Fragment() {
                     Glide.with(requireContext())
                         .load(user?.profilePic)
                         .into(profilePic)
+
+                    downloadCVButton.tag = ""
 
                     nameTextView.text = user?.fname + " " + user?.lname
                     textEmail.text = email
@@ -70,10 +72,16 @@ class UserDetailFragment : Fragment() {
             .addOnSuccessListener{
                 val qualification = it.toObject<Qualification>()
                 binding.apply {
-                    textField.text = qualification?.field
-                    textEducation.text = qualification?.education
-                    textExp.text = qualification?.workingExp
-                    downloadCVButton.tag = qualification?.resumeURl
+                    if(qualification == null) {
+                        linearLayout3.visibility = View.GONE
+                        textView36.text = "Qualification Not Found"
+                    }else{
+                        textField.text = qualification.field
+                        textEducation.text = qualification.education
+                        textExp.text = qualification.workingExp
+                        downloadCVButton.tag = qualification.resumeURl
+                    }
+
                 }
 
             }.addOnFailureListener {
@@ -116,8 +124,6 @@ class UserDetailFragment : Fragment() {
             startActivity(Intent.createChooser(emailIntent, "Send email using"))
         }
 
-
-
         return binding.root
     }
 
@@ -139,5 +145,11 @@ class UserDetailFragment : Fragment() {
             .addOnFailureListener {
 
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as CompanyHome
+        activity?.hideBottomNav()
     }
 }

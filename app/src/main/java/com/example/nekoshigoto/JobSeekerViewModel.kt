@@ -3,7 +3,7 @@ package com.example.nekoshigoto
 import androidx.lifecycle.ViewModel
 
 class JobSeekerViewModel : ViewModel(){
-    private var jobSeeker = JobSeeker("","","","","","","","","","","" ,0, "")
+    private var jobSeeker = JobSeeker("","","","","","","","","","","" ,0, "", "")
     private var qualification = Qualification("","","","")
 
     fun getJobSeeker():JobSeeker{
