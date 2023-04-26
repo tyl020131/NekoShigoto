@@ -1,44 +1,39 @@
 package com.example.nekoshigoto
 
-import FieldAdapter
 import JobAdapter
-import ModeAdapter
-import VacancyAdapter
-import android.app.Dialog
-import android.content.Intent
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.*
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.material.slider.RangeSlider
-import com.google.android.material.slider.Slider
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 class HomeFragment : Fragment() {
     private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var navigator : NavController
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var jobList : ArrayList<Vacancy>
     private lateinit var djobList : ArrayList<Vacancy>
     private lateinit var viewModel: JobSeekerViewModel
+    private lateinit var jobAdapter : JobAdapter
     private var mysaved : ArrayList<Save> = ArrayList<Save>()
     private var email : String= ""
 
@@ -57,7 +52,7 @@ class HomeFragment : Fragment() {
         var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
         email = sh.getString("userid","").toString()
 
-
+        navigator = findNavController()
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -65,6 +60,25 @@ class HomeFragment : Fragment() {
         imageId = arrayOf(
             R.drawable.kunkun
         )
+
+        val homesearch = view.findViewById<EditText>(R.id.home_search)
+        homesearch.addTextChangedListener {
+            if(jobAdapter!=null){
+
+                val newlist = ArrayList<Vacancy>()
+                val text = homesearch.text.toString()
+                for(job in jobList){
+                    if(job.position.contains(text,ignoreCase = true)){
+                        newlist.add(job)
+                    }
+                }
+                Log.d(TAG,"hehehehehhbe")
+                jobAdapter = JobAdapter(newlist, email,mysaved,navigator)
+                newRecyclerView.adapter = jobAdapter
+
+            }
+
+        }
         newRecyclerView = view.findViewById(R.id.jobs)
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -137,7 +151,9 @@ class HomeFragment : Fragment() {
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
 
-        newRecyclerView.adapter = JobAdapter(filteredJobs,email,mysaved)
+        jobAdapter = JobAdapter(jobList, email,mysaved,navigator)
+        newRecyclerView.adapter = jobAdapter
+
 
 
     }
@@ -171,7 +187,8 @@ class HomeFragment : Fragment() {
 
 
                 }
-                newRecyclerView.adapter = JobAdapter(jobList, email,mysaved)
+                jobAdapter = JobAdapter(jobList, email,mysaved,navigator)
+                newRecyclerView.adapter = jobAdapter
 
             }
             .addOnFailureListener { exception ->

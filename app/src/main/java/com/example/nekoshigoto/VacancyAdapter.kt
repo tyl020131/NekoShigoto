@@ -1,10 +1,13 @@
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.Job
@@ -12,7 +15,7 @@ import com.example.nekoshigoto.R
 import com.example.nekoshigoto.Vacancy
 import com.google.android.material.imageview.ShapeableImageView
 
-class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>) :
+class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>,private val navigator:NavController) :
     RecyclerView.Adapter<VacancyAdapter.MyViewHolder>() {
 
 
@@ -33,9 +36,20 @@ class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>) :
         holder.company.text = currentItem.companyName
         holder.vacancy.text = currentItem.position
         holder.numOfApp.text = "${currentItem.numOfApp} people has applied for this vacancy"
+
+        holder.cont.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("jobname",currentItem.vacancyid)
+            navigator.navigate(R.id.action_vacancyFragment_to_vacancyDetail,bundle)
+        }
+    }
+
+    fun getCurrentData() : ArrayList<Vacancy>{
+        return this.vacancyList
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val cont : ConstraintLayout = itemView.findViewById(R.id.jobb)
         val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)
         val company : TextView = itemView.findViewById(R.id.company_name)
         val vacancy : TextView = itemView.findViewById(R.id.vacancy)
