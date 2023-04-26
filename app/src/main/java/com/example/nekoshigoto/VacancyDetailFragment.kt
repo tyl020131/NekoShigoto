@@ -1,6 +1,5 @@
 package com.example.nekoshigoto
 
-import UserAdapter
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
@@ -13,26 +12,27 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentVacancyDetailBinding
+import com.example.nekoshigoto.databinding.FragmentVacancyDetailsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 
-
 class VacancyDetailFragment : Fragment() {
-    private lateinit var binding: FragmentVacancyDetailBinding
     private lateinit var newRecyclerView: RecyclerView
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var emailList : ArrayList<String>
-    private lateinit var userList : ArrayList<JobSeeker>
+    private lateinit var emailList: ArrayList<String>
+    private lateinit var userList: ArrayList<JobSeeker>
+    private lateinit var binding: FragmentVacancyDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
-        var view = binding.root
         // Inflate the layout for this fragment
+        binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val vacID = arguments?.getString("jobname").toString()
 
+        emailList = ArrayList<String>()
 //        db.collection("Vacancy").document(vacID).collection("Application").get()
         db.collection("Vacancy").document(vacID).get()
             .addOnSuccessListener {
@@ -41,7 +41,7 @@ class VacancyDetailFragment : Fragment() {
                 binding.apply {
                     val imgUri = vacancy?.image?.toUri()?.buildUpon()?.scheme("https")?.build()
                     binding.jobImage.load(imgUri)
-                    textDesc.text = vacancy?.description
+                    JobDesc.text = vacancy?.description
                     jobPosition.text = vacancy?.position
                     tag.text = vacancy?.gender
                     tag1.text = vacancy?.mode
@@ -52,24 +52,25 @@ class VacancyDetailFragment : Fragment() {
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             }
 
-        db.collection("Vacancy").document(vacID).collection("Application").get().addOnSuccessListener { documents->
-            for(document in documents){
-                var email = document.id
-                emailList.add(email)
+        db.collection("Vacancy").document(vacID).collection("Application").get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var email = document.id
+                    emailList.add(email)
+                }
             }
-        }
 
 
         return view
     }
 
-    private fun loadData(){
+    private fun loadData() {
         db.collection("Job Seeker")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val jobSeeker = document.toObject(JobSeeker::class.java)
-                    if(emailList.contains(document.getString("email"))){
+                    if (emailList.contains(document.getString("email"))) {
                         userList.add(jobSeeker)
                     }
                     if (userList.size == emailList.size) {

@@ -18,6 +18,9 @@
             android:id="@+id/action_vacancyFragment_to_companyProfileFragment"
             app:destination="@id/companyProfileFragment" />
         <action
+            android:id="@+id/action_vacancyFragment_to_vacancyDetail"
+            app:destination="@id/vacancyDetail" />
+        <action
             android:id="@+id/action_vacancyFragment_to_vacancyDetailFragment"
             app:destination="@id/vacancyDetailFragment" />
     </fragment>
