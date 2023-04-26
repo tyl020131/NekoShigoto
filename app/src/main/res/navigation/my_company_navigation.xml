@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_vacancyFragment_to_vacancyDetail"
             app:destination="@id/vacancyDetail" />
+        <action
+            android:id="@+id/action_vacancyFragment_to_vacancyDetailFragment"
+            app:destination="@id/vacancyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/submitVacancyFragment"
@@ -74,4 +77,8 @@
         android:id="@+id/userDetailFragment"
         android:name="com.example.nekoshigoto.UserDetailFragment"
         android:label="UserDetailFragment" />
+    <fragment
+        android:id="@+id/vacancyDetailFragment"
+        android:name="com.example.nekoshigoto.VacancyDetailFragment"
+        android:label="VacancyDetailFragment" />
 </navigation>

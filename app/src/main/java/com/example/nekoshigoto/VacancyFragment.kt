@@ -175,16 +175,17 @@ class VacancyFragment : Fragment() {
                     val vacancy = document.toObject(Vacancy::class.java)
                     if (document != null) {
 
+                        vacancy.vacancyid = document.id
                         val query = db.collection("Vacancy").document("${document.id}").collection("application")
                         query.get().addOnSuccessListener {
-                            vacancy.numOfApp = it.documents.size
+                            vacancy.numOfApp = it.size()
+                            Log.d("sohai", it.size().toString())
+                            VacancyList.add(vacancy)
+                            newRecyclerView.adapter = VacancyAdapter(VacancyList,navigator)
                         }
-
-
+                        Log.d("size", vacancy.numOfApp.toString())
                     }
-                    VacancyList.add(vacancy)
                 }
-                newRecyclerView.adapter = VacancyAdapter(VacancyList,navigator)
 
             }
             .addOnFailureListener { exception ->
