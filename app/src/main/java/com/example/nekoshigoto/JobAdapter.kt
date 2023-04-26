@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.*
@@ -62,6 +63,9 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>,private val email:Stri
                 Toast.makeText(itemView.context, "Job Removed from Saved Successfully", Toast.LENGTH_SHORT).show()
             }
         };
+        holder.jobb.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_jobDetailsUser)
+        }
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -71,5 +75,6 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>,private val email:Stri
         val location : TextView = itemView.findViewById(R.id.location)
         val mode : TextView = itemView.findViewById(R.id.mode)
         val fav : ImageButton = itemView.findViewById(R.id.fav)
+        val jobb : androidx.constraintlayout.widget.ConstraintLayout = itemView.findViewById(R.id.jobb)
     }
 }
