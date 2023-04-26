@@ -175,6 +175,7 @@ class VacancyFragment : Fragment() {
                     val vacancy = document.toObject(Vacancy::class.java)
                     if (document != null) {
 
+                        vacancy.vacancyid=document.id
                         val query = db.collection("Vacancy").document("${document.id}").collection("application")
                         query.get().addOnSuccessListener {
                             vacancy.numOfApp = it.documents.size
