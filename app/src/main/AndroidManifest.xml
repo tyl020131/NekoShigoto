@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NekoShigoto"
         tools:targetApi="31" >
-        <!--<activity
+        <activity
             android:name=".ForgotPassword"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
-            android:theme="@style/Theme.NekoShigoto.NoActionBar" />-->
+            android:theme="@style/Theme.NekoShigoto.NoActionBar" />
         <!--
         <activity
             android:name=".AdminHome"

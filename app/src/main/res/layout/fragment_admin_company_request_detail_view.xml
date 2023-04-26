@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="match_parent"
         app:cardBackgroundColor="#0F1926"
         app:contentPadding="17sp"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,11 +26,20 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/textView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-            android:text="Business"
+            android:text="Business:"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60sp"
+            android:text="Email:"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
@@ -38,8 +47,8 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60sp"
-            android:text="Email Address:"
+            android:layout_marginTop="90sp"
+            android:text="Address:"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
@@ -47,8 +56,26 @@
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90sp"
+            android:layout_marginTop="160sp"
             android:text="Contact No.:"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190sp"
+            android:text="Country:"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView242"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220sp"
+            android:text="State:"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
@@ -56,60 +83,86 @@
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120sp"
-            android:text="Profile Picture:"
+            android:layout_marginTop="270sp"
+            android:text="Company Picture:"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/companyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
-            android:text="Paoger.sdn bhd"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/companyBusiness"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="30sp"
-            android:text="Software Production"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/companyEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="60sp"
-            android:text="wongjijamades@gmail.com"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/companyAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150sp"
             android:layout_marginTop="90sp"
-            android:text="999-9999999"
+            android:text=""
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/companyContactNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150sp"
+            android:layout_marginTop="160sp"
+            android:text=""
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/companyCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150sp"
+            android:layout_marginTop="190sp"
+            android:text=""
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/companyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150sp"
+            android:layout_marginTop="220sp"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/companyPic"
             android:layout_width="123dp"
             android:layout_height="124dp"
             android:layout_marginLeft="150sp"
-            android:layout_marginTop="120sp"
-            android:clipToOutline="true"
-            app:srcCompat="@drawable/kunkun" />
+            android:layout_marginTop="270sp"
+            android:clipToOutline="true"/>
 
         <Button
             android:id="@+id/button5"
             android:layout_width="170sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270sp"
+            android:layout_marginTop="410sp"
             android:backgroundTint="@color/color10"
             android:text="Approve"
             app:cornerRadius="15sp" />
@@ -119,7 +172,7 @@
             android:layout_width="170sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="190sp"
-            android:layout_marginTop="270sp"
+            android:layout_marginTop="410sp"
             android:backgroundTint="@color/color8"
             android:text="Reject"
             app:cornerRadius="15sp" />
