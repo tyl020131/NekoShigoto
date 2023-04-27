@@ -22,6 +22,7 @@ class VacancyDetailFragment : Fragment() {
     private lateinit var emailList: ArrayList<String>
     private lateinit var userList: ArrayList<JobSeeker>
     private lateinit var binding: FragmentVacancyDetailBinding
+    private lateinit var vacID : String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +31,7 @@ class VacancyDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        val vacID = arguments?.getString("jobname").toString()
+        vacID = arguments?.getString("jobname").toString()
         newRecyclerView = binding.vacDetailRecycle
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -84,7 +85,7 @@ class VacancyDetailFragment : Fragment() {
                     }
 
                 }
-                newRecyclerView.adapter = VacancyDetailAdapter(userList)
+                newRecyclerView.adapter = VacancyDetailAdapter(userList,vacID)
 
             }
             .addOnFailureListener { exception ->
