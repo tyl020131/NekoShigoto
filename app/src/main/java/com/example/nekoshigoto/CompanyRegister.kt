@@ -9,6 +9,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -166,7 +167,7 @@ class CompanyRegister : AppCompatActivity() {
 
         if(email.isEmpty()){
             binding.errorTextEmail.visibility = View.VISIBLE
-            binding.errorTextEmail.text = "Please enter your State"
+            binding.errorTextEmail.text = "Please enter your email"
             error = true
         }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             binding.errorTextEmail.visibility = View.VISIBLE
@@ -174,7 +175,18 @@ class CompanyRegister : AppCompatActivity() {
             error = true
         }
         else{
-            binding.errorTextEmail.visibility = View.GONE
+            db.collection("Company").document(email).get().addOnSuccessListener { documents ->
+                if (documents.exists()) {
+                    binding.errorTextEmail.visibility = View.VISIBLE
+                    binding.errorTextEmail.text = "This email has already been registered for an account"
+                    error = true
+                } else {
+                    binding.errorTextEmail.visibility = View.GONE
+                }
+            }.addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+
         }
     }
 

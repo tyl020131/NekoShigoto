@@ -23,8 +23,8 @@
         <activity
             android:name=".AdminHome"
             android:exported="false"
-            android:label="@string/title_activity_admin_home"
-            android:theme="@style/Theme.NekoShigoto.NoActionBar" />
+            android:label="@string/title_activity_admin_home" />
+
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
@@ -62,7 +62,6 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

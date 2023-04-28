@@ -22,6 +22,8 @@ class VacancyDetailFragment : Fragment() {
     private lateinit var emailList: ArrayList<String>
     private lateinit var userList: ArrayList<JobSeeker>
     private lateinit var binding: FragmentVacancyDetailBinding
+    private lateinit var vacID : String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +31,7 @@ class VacancyDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        val vacID = arguments?.getString("jobname").toString()
+        vacID = arguments?.getString("jobname").toString()
         newRecyclerView = binding.vacDetailRecycle
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
         newRecyclerView.setHasFixedSize(true)
@@ -43,7 +45,7 @@ class VacancyDetailFragment : Fragment() {
                 binding.apply {
                     val imgUri = vacancy?.image?.toUri()?.buildUpon()?.scheme("https")?.build()
                     binding.jobImage.load(imgUri)
-                    textDesc.text = vacancy?.description
+                    JobDesc.text = vacancy?.description
                     jobPosition.text = vacancy?.position
                     tag.text = vacancy?.gender
                     tag1.text = vacancy?.mode
