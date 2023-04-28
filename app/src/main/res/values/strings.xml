@@ -49,4 +49,10 @@
         <item>Food</item>
         <item>Others</item>
     </string-array>
+
+    <string-array name="admin_filter_category">
+        <item>All</item>
+        <item>Active</item>
+        <item>Blocked</item>
+    </string-array>
 </resources>

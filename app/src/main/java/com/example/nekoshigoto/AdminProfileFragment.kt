@@ -1,6 +1,7 @@
 package com.example.nekoshigoto
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,11 @@ class AdminProfileFragment : Fragment() {
             .addOnFailureListener {
                 Log.e("error", it.message.toString())
             }
+
+        binding.button7.setOnClickListener {
+            val intent = Intent(requireActivity(), Logout::class.java)
+            startActivity(intent)
+        }
 
         return binding.root
     }

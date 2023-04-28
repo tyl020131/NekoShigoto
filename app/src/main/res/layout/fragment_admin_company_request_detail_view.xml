@@ -159,7 +159,7 @@
             android:clipToOutline="true"/>
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/approveBtn"
             android:layout_width="170sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="410sp"
@@ -168,7 +168,7 @@
             app:cornerRadius="15sp" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/rejectBtn"
             android:layout_width="170sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="190sp"
@@ -176,6 +176,14 @@
             android:backgroundTint="@color/color8"
             android:text="Reject"
             app:cornerRadius="15sp" />
+
+        <Button
+            android:id="@+id/closeBtn"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:layout_gravity="right"
+            android:background="@drawable/close"
+            app:backgroundTint="@color/white"/>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

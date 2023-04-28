@@ -19,5 +19,8 @@
         <action
             android:id="@+id/action_adminCompanyRequestDetailViewFragment_to_adminCompanyRequestFragment2"
             app:destination="@id/adminCompanyRequestFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestDetailViewFragment_self"
+            app:destination="@id/adminCompanyRequestDetailViewFragment" />
     </fragment>
 </navigation>

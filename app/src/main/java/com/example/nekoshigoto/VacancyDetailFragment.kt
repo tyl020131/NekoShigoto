@@ -36,7 +36,7 @@ class VacancyDetailFragment : AppCompatActivity() {
         ApplicantList.add(Applicant("Wong", 10, imageId[0]))
         ApplicantList.add(Applicant("Zhi", 20, imageId[0]))
 
-        newRecyclerView.adapter = VacancyDetailAdapter(ApplicantList)
+        //newRecyclerView.adapter = VacancyDetailAdapter(ApplicantList)
 
 
     }

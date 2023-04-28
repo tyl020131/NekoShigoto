@@ -14,7 +14,7 @@
 
             <TextView
                 android:id="@+id/textView41"
-                android:layout_width="61dp"
+                android:layout_width="63dp"
                 android:layout_height="wrap_content"
                 android:text="No."
                 android:textAlignment="center"
@@ -34,7 +34,7 @@
                 android:id="@+id/textView43"
                 android:layout_width="80sp"
                 android:layout_height="wrap_content"
-                android:text="Req. Date"
+                android:text="Status"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toEndOf="@+id/textView42"
