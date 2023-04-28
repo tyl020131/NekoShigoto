@@ -23,10 +23,10 @@ class VacancyDetailFragment : Fragment() {
     private lateinit var userList: ArrayList<JobSeeker>
     private lateinit var binding: FragmentVacancyDetailBinding
     private lateinit var vacID : String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentVacancyDetailBinding.inflate(inflater, container, false)
@@ -45,7 +45,7 @@ class VacancyDetailFragment : Fragment() {
                 binding.apply {
                     val imgUri = vacancy?.image?.toUri()?.buildUpon()?.scheme("https")?.build()
                     binding.jobImage.load(imgUri)
-                    JobDesc.text = vacancy?.description
+                    textDesc.text = vacancy?.description
                     jobPosition.text = vacancy?.position
                     tag.text = vacancy?.gender
                     tag1.text = vacancy?.mode
@@ -80,11 +80,12 @@ class VacancyDetailFragment : Fragment() {
                         userList.add(jobSeeker)
                     }
                     else if (userList.size == emailList.size) {
+                        // Stop the loop once we have 10 users
                         break
                     }
 
                 }
-                newRecyclerView.adapter = VacancyDetailAdapter(userList)
+                newRecyclerView.adapter = VacancyDetailAdapter(userList,vacID)
 
             }
             .addOnFailureListener { exception ->

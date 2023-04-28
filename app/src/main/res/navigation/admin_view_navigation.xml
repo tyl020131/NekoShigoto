@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_adminUserDetailViewFragment2_to_adminViewUserFragment2"
             app:destination="@id/adminViewUserFragment2" />
+        <action
+            android:id="@+id/action_adminUserDetailViewFragment2_self"
+            app:destination="@id/adminUserDetailViewFragment2" />
     </fragment>
     <fragment
         android:id="@+id/adminCompanyDetailViewFragment"
@@ -47,5 +50,8 @@
         <action
             android:id="@+id/action_adminCompanyDetailViewFragment_to_adminViewCompanyFragment2"
             app:destination="@id/adminViewCompanyFragment2" />
+        <action
+            android:id="@+id/action_adminCompanyDetailViewFragment_self"
+            app:destination="@id/adminCompanyDetailViewFragment" />
     </fragment>
 </navigation>

@@ -40,6 +40,11 @@ class AdminViewCompanyFragment : Fragment() {
         CompanyListForAdmin = arrayListOf<CompanyView>()
         loadData()
 
+        binding.comfirmFilterBtn.setOnClickListener {
+            val selectedFilterItem = binding.filterCategorySpinner.selectedItemPosition.toString()
+            loadFilteredDate(selectedFilterItem)
+        }
+
         return view
 
     }
@@ -58,5 +63,34 @@ class AdminViewCompanyFragment : Fragment() {
                 }
                 newRecyclerView.adapter = CompanyAdapterForAdmin(CompanyListForAdmin)
             }
+    }
+
+    private fun loadFilteredDate(selectedFilterItem : String){
+        if(selectedFilterItem == "1") { //1 --> Active
+            CompanyListForAdmin.clear()
+            db.collection("Company").whereEqualTo("status", "A").get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val allCompany = document.toObject<CompanyView>()
+                        CompanyListForAdmin.add(CompanyView(allCompany?.name.toString(), "Active", allCompany?.email.toString()))
+                    }
+                    newRecyclerView.adapter = CompanyAdapterForAdmin(CompanyListForAdmin)
+                }
+        }
+        else if(selectedFilterItem == "2") { //2 --> Blocked
+            CompanyListForAdmin.clear()
+            db.collection("Company").whereEqualTo("status", "B").get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val allCompany = document.toObject<CompanyView>()
+                        CompanyListForAdmin.add(CompanyView(allCompany?.name.toString(), "Blocked", allCompany?.email.toString()))
+                    }
+                    newRecyclerView.adapter = CompanyAdapterForAdmin(CompanyListForAdmin)
+                }
+        }
+        else{ //0 --> All
+            CompanyListForAdmin.clear()
+            loadData()
+        }
     }
 }

@@ -80,5 +80,13 @@
     <fragment
         android:id="@+id/vacancyDetailFragment"
         android:name="com.example.nekoshigoto.VacancyDetailFragment"
-        android:label="VacancyDetailFragment" />
+        android:label="VacancyDetailFragment" >
+        <action
+            android:id="@+id/action_vacancyDetailFragment_to_companyApplicationDetailFragment"
+            app:destination="@id/companyApplicationDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyApplicationDetailFragment"
+        android:name="com.example.nekoshigoto.CompanyApplicationDetailFragment"
+        android:label="CompanyApplicationDetailFragment" />
 </navigation>

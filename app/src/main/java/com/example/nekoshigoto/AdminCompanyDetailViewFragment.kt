@@ -1,11 +1,17 @@
 package com.example.nekoshigoto
 
+import android.app.AlertDialog
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentAdminCompanyDetailViewBinding
 import com.example.nekoshigoto.databinding.FragmentAdminUserDetailViewBinding
@@ -21,8 +27,11 @@ class AdminCompanyDetailViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAdminCompanyDetailViewBinding.inflate(inflater, container, false)
-
         val companyEmail = arguments?.getString("dataKey").toString()
+
+        binding.closeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_adminCompanyDetailViewFragment_to_adminViewCompanyFragment2)
+        }
         //binding.companyName.text = companyEmail.toString()
         db.collection("User").document(companyEmail).get()
             .addOnSuccessListener {
@@ -42,8 +51,64 @@ class AdminCompanyDetailViewFragment : Fragment() {
 
                         val imgUri = companyDetail?.profilePic?.toUri()?.buildUpon()?.scheme("https")?.build()
                         binding.companyPic.load(imgUri)
+
+                        if(companyDetail?.status.toString() == "A"){ //if company is active
+                            binding.decisionBtn.setText("Block")
+                            binding.decisionBtn.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.color8)));
+                        }
+                        else{
+                            binding.decisionBtn.setText("Activate") //if company is blocked
+                            binding.decisionBtn.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.color9)));
+                        }
                     }
             }
+
+        binding.decisionBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            if(binding.decisionBtn.text == "Block"){
+                builder.setTitle("Block Company")
+                builder.setMessage("Do you want to BLOCK this company?")
+
+                builder.setPositiveButton("OK") { dialog, which ->
+                    db.collection("User").document(companyEmail).update("status", "B")
+                        .addOnSuccessListener {
+                            db.collection("Company").document(companyEmail).update("status", "B")
+                                .addOnSuccessListener {
+                                    val bundle = bundleOf("dataKey" to companyEmail)
+                                    view?.findNavController()?.navigate(R.id.action_adminCompanyDetailViewFragment_self, bundle)
+                                    Toast.makeText(context, "Company Blocked Successfully!", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                }
+                builder.setNegativeButton("Cancel") { dialog, which ->
+                    val bundle = bundleOf("dataKey" to companyEmail)
+                    view?.findNavController()?.navigate(R.id.action_adminCompanyDetailViewFragment_self, bundle)
+                }
+            }
+            else{
+                builder.setTitle("Activate Company")
+                builder.setMessage("Do you want to ACTIVATE this company?")
+
+                builder.setPositiveButton("OK") { dialog, which ->
+                    db.collection("User").document(companyEmail).update("status", "A")
+                        .addOnSuccessListener {
+                            db.collection("Company").document(companyEmail).update("status", "A")
+                                .addOnSuccessListener {
+                                    val bundle = bundleOf("dataKey" to companyEmail)
+                                    view?.findNavController()?.navigate(R.id.action_adminCompanyDetailViewFragment_self, bundle)
+                                    Toast.makeText(context, "Company Activated Successfully!", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                }
+                builder.setNegativeButton("Cancel") { dialog, which ->
+                    val bundle = bundleOf("dataKey" to companyEmail)
+                    view?.findNavController()?.navigate(R.id.action_adminCompanyDetailViewFragment_self, bundle)
+                }
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
 
         return binding.root
     }

@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
@@ -41,8 +44,12 @@ class AdminViewUserFragment : Fragment() {
         userListForAdmin = arrayListOf<UserView>()
         loadData()
 
-        return view
+        binding.comfirmFilterBtn.setOnClickListener {
+            val selectedFilterItem = binding.filterCategorySpinner.selectedItemPosition.toString()
+            loadFilteredDate(selectedFilterItem)
+        }
 
+        return view
     }
 
     private fun loadData(){
@@ -64,4 +71,35 @@ class AdminViewUserFragment : Fragment() {
 
     }
 
+
+    private fun loadFilteredDate(selectedFilterItem : String){
+        if(selectedFilterItem == "1"){ //1 --> Active
+            userListForAdmin.clear()
+            db.collection("Job Seeker").whereEqualTo("status", "A").get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val name = document.getString("fname") + " " + document.get("lname")
+                        val allJobSeeker = document.toObject<UserView>()
+                        userListForAdmin.add(UserView(name, "Active", allJobSeeker?.email.toString()))
+                    }
+                    newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
+                }
+        }
+        else if(selectedFilterItem == "2"){ //2 --> Blocked
+            userListForAdmin.clear()
+            db.collection("Job Seeker").whereEqualTo("status", "B").get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val name = document.getString("fname") + " " + document.get("lname")
+                        val allJobSeeker = document.toObject<UserView>()
+                        userListForAdmin.add(UserView(name, "Blocked", allJobSeeker?.email.toString()))
+                    }
+                    newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
+                }
+        }
+        else{ //0 --> All
+            userListForAdmin.clear()
+            loadData()
+        }
+    }
 }
