@@ -40,7 +40,7 @@ class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>,private val na
         holder.cont.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("jobname",currentItem.vacancyid)
-            navigator.navigate(R.id.action_vacancyFragment_to_vacancyDetail,bundle)
+            navigator.navigate(R.id.action_vacancyFragment_to_vacancyDetailFragment,bundle)
         }
     }
 

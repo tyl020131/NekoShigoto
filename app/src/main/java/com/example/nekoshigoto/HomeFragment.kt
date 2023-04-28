@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
         viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
-        email = sh.getString("userid","").toString()
+        var email = sh.getString("userid","").toString()
 
         navigator = findNavController()
 
@@ -57,6 +57,8 @@ class HomeFragment : Fragment() {
         imageId = arrayOf(
             R.drawable.kunkun
         )
+
+
 
         val homesearch = view.findViewById<EditText>(R.id.home_search)
         homesearch.addTextChangedListener {

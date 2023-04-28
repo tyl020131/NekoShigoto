@@ -44,8 +44,8 @@ class SubmitVacancyFragment : Fragment() {
         context?.let {
             ArrayAdapter.createFromResource(
                 it,
-                //R.array.Fields,
                 R.array.Fields,
+
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 // Specify the layout to use when the list of choices appears
@@ -60,7 +60,7 @@ class SubmitVacancyFragment : Fragment() {
         val salary_val: TextView = view.salaryVal
         val normalContinuousSlider: Slider = view.normalContinuousSlider
         normalContinuousSlider.addOnChangeListener { slider, value, fromUser ->
-            salary_val.text = "RM${String.format("%.2f",value)}}"
+            salary_val.text = "RM${String.format("%d",value)}"
         }
 
         val submit_button:Button = view.submitVacancyButton

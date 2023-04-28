@@ -57,12 +57,9 @@ class EmployeeRegister : AppCompatActivity() {
                         val intent = Intent(this, SetupProfile::class.java)
                         intent.putExtra("email", email)
                         startActivity(intent)
-
                         Toast.makeText(this, "Successfully registered", Toast.LENGTH_SHORT).show()
                     } else {
-
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-
                     }
                 }.addOnFailureListener {
                     val message = "Error occurred ${it.localizedMessage}"
