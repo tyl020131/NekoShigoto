@@ -94,7 +94,6 @@ class ViewUserFragment : Fragment() {
                 newRecyclerView.adapter = userAdapter
 
             }
-
         }
 
         binding.homeSeeall.setOnClickListener{

@@ -145,6 +145,9 @@
             app:destination="@id/profileFragment"
             app:enterAnim="@anim/fragment_slide_right_enter"
             app:exitAnim="@anim/fragment_slide_left_exit" />
+        <action
+            android:id="@+id/action_activityFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/qualificationFragment"

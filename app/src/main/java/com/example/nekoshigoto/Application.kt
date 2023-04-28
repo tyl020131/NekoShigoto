@@ -1,7 +1,8 @@
 package com.example.nekoshigoto
 
 data class Application(
-    val image:Int,
+    val id : String,
+    val image:String,
     val company:String,
     val vacancy: String,
     val location:String,
