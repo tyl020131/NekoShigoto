@@ -92,4 +92,10 @@ class VacancyDetailFragment : Fragment() {
                 Log.w(ContentValues.TAG, "Error getting documents: ", exception)
             }
     }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as CompanyHome
+        activity?.hideBottomNav()
+    }
 }

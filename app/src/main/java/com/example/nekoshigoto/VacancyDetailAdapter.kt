@@ -37,7 +37,7 @@ class VacancyDetailAdapter(private val applicantList : ArrayList<JobSeeker>,priv
         val dob = LocalDate.parse(currentItem.dob, formatter)
         val currentDate: LocalDate = LocalDate.now()
         val age: Int = Period.between(dob, currentDate).getYears()
-        holder.applicantAge.text = age.toString()
+        holder.applicantAge.text = age.toString() + " Years Old"
 
         val imgUri = currentItem.profilePic.toUri().buildUpon().scheme("https").build()
         holder.applicantImage.load(imgUri)

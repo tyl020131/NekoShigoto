@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/jobImage"
-            android:layout_width="85dp"
-            android:layout_height="78dp"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
             android:layout_marginStart="142dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="142dp"
@@ -38,8 +38,8 @@
             android:id="@+id/tag1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="173dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/border_radius"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/inter_medium"
@@ -49,16 +49,19 @@
             android:paddingBottom="5dp"
             android:text="Freelance"
             android:textColor="@color/color4"
-            android:textSize="10sp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/view3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tag" />
 
         <View
             android:id="@+id/view3"
-            android:layout_width="430dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.526"
@@ -67,9 +70,11 @@
 
         <View
             android:id="@+id/view5"
-            android:layout_width="430dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="196dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
@@ -81,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/button_dark"
             android:backgroundTint="#1051F8"
@@ -132,6 +137,7 @@
             android:layout_marginEnd="186dp"
             android:text="kunkun"
             android:textColor="@color/grey1"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/jobPosition" />
@@ -154,8 +160,8 @@
             android:id="@+id/vacDetailRecycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/jobDesc" />
 

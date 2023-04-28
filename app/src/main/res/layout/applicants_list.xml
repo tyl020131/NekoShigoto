@@ -27,8 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
         <Button
             android:id="@+id/viewButton"
             android:layout_width="88dp"
@@ -43,12 +41,12 @@
             android:id="@+id/applicantName"
             android:layout_width="147dp"
             android:layout_height="32dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:shadowColor="#FFFFFF"
+            android:text="TextView"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/applicantImage"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,11 +54,11 @@
             android:id="@+id/applicantAge"
             android:layout_width="148dp"
             android:layout_height="18dp"
-            android:textColor="#40577D"
-            android:textSize="16sp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="TextView"
+            android:textColor="#40577D"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/applicantImage"
             app:layout_constraintTop_toBottomOf="@+id/applicantName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
