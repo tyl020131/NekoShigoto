@@ -7,3 +7,6 @@ data class AppDetails(
     val status : String
 
 )
+{
+    constructor() : this("", "", "", "")
+}
