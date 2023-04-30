@@ -1,9 +1,17 @@
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.nekoshigoto.Application
 import com.example.nekoshigoto.R
 import com.google.android.material.imageview.ShapeableImageView
@@ -18,10 +26,18 @@ class ApplicationAdapter(private val applicationList : ArrayList<Application>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = applicationList[position];
-        holder.propic.setImageResource(currentItem.image)
+        val imgUri = currentItem.image.toUri().buildUpon().scheme("https").build()
+        holder.propic.load(imgUri)
         holder.company.text = currentItem.company
         holder.vacancy.text = currentItem.vacancy
         holder.mode.text = currentItem.status
+        if(currentItem.status == "Rejected")
+            holder.mode.setTextColor(ContextCompat.getColor(holder.mode.context, R.color.color8))
+
+        holder.cont.setOnClickListener {
+            val bundle = bundleOf("jobname" to currentItem.id)
+            it.findNavController().navigate(R.id.action_activityFragment_to_jobDetailFragment, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -33,6 +49,6 @@ class ApplicationAdapter(private val applicationList : ArrayList<Application>) :
         val company : TextView = itemView.findViewById(R.id.company_name)
         val vacancy : TextView = itemView.findViewById(R.id.vacancy)
         val mode : TextView = itemView.findViewById(R.id.mode)
-
+        val cont : ConstraintLayout = itemView.findViewById(R.id.jobb)
     }
 }

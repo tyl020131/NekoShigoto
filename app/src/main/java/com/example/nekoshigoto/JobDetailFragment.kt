@@ -1,6 +1,7 @@
 package com.example.nekoshigoto
 
 import JobAdapter
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -59,15 +60,13 @@ class JobDetailFragment : Fragment() {
             }
         }
             .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-            .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents: ", exception)
             }
 
         view.button4.setOnClickListener {
             val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
             val jobSeeker = viewModel.getJobSeeker()
+            val qualification = viewModel.getQualification()
 
             db.collection("Vacancy").document(jobid)
                 .collection("Application").document(jobSeeker.email).get()
@@ -75,18 +74,41 @@ class JobDetailFragment : Fragment() {
                     if (snapshot.exists() && snapshot.getString("status") != "R") {
                         Toast.makeText(requireContext(), "Application already submitted", Toast.LENGTH_SHORT).show()
                     }else {
-                        val bundle = Bundle()
-                        bundle.putString("jobid", jobid)
-                        it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                        if(qualification.field == "" && qualification.education == "" && qualification.workingExp=="") {
+                            val dialog = AlertDialog.Builder(requireContext())
+
+                            dialog.setTitle("Qualification Missing ")
+                                .setMessage("Do you want to submit qualification?")
+                                .setCancelable(true)
+                                .setPositiveButton("Go to qualification") { dialogInterface, _ ->
+                                    val bundle = Bundle()
+                                    bundle.putString("back", "back")
+                                    it.findNavController().navigate(R.id.action_jobDetailFragment_to_qualificationFragment, bundle)
+                                }
+                                .setNegativeButton("Submit without qualification") { dialogInterface, _ ->
+                                    val bundle = Bundle()
+                                    bundle.putString("jobid", jobid)
+                                    it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                                }
+                                .setNeutralButton("Cancel") { dialogInterface, _ ->
+                                }
+                                .show()
+                        }
+                        else{
+                            val bundle = Bundle()
+                            bundle.putString("jobid", jobid)
+                            it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                        }
                     }
                 }.addOnFailureListener {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
+
+
+
         }
 
         return view.root;
-
-
     }
 
     override fun onResume() {

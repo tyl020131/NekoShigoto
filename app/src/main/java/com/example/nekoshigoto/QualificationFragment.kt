@@ -45,6 +45,8 @@ class QualificationFragment : Fragment() {
 
         binding = FragmentQualificationBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
+        val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
+        var qualification : Qualification = viewModel.getQualification()
 
         storage = FirebaseStorage.getInstance()
         email = auth.currentUser?.email.toString()
@@ -105,7 +107,7 @@ class QualificationFragment : Fragment() {
 
             }
             binding.editTextResume.setText("Click here to view resume")
-
+            binding.editTextExp.setText(qualification?.workingExp)
             binding.editTextExp.isEnabled = false
         }
 
@@ -209,40 +211,7 @@ class QualificationFragment : Fragment() {
                 }
             }
         }
-//        db.collection("Qualification").document(email).get()
-//            .addOnSuccessListener {
-//                val qualification = it.toObject<Qualification>()  //convert the doc into object
-//
-//                binding.apply {
-//                    for(i in educationArray.indices){
-//                        if(qualification?.education == educationArray[i]){
-//                            educationLevelSpinner.setSelection(i)
-//                            selectedEdu = educationArray[i]
-//                            break
-//                        }
-//                    }
-//                    textEducation.text = qualification?.education
-//
-//                    for (i in fieldArray.indices) {
-//                        if (fieldArray[i] == qualification?.field) {
-//                            fieldSpinner.setSelection(i)
-//                            selectedField = fieldArray[i]
-//                            break
-//                        }
-//                    }
-//                    textField.text = qualification?.field
-//
-//                    editTextExp.setText(qualification?.workingExp)
-//
-//                    editTextResume.tag = qualification?.resumeURl
-//                }
-//            }
-//            .addOnFailureListener{
-//                Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
-//            }
 
-        val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
-        var qualification : Qualification = viewModel.getQualification()
         binding.apply {
             for(i in educationArray.indices){
                 if(qualification?.education == educationArray[i]){
@@ -263,7 +232,6 @@ class QualificationFragment : Fragment() {
             textField.text = qualification?.field
 
             editTextExp.setText(qualification?.workingExp)
-            //editTextExp.setText(data.toString())
 
             editTextResume.tag = qualification?.resumeURl
         }
@@ -306,7 +274,13 @@ class QualificationFragment : Fragment() {
                                 db.collection("Qualification").document(email).set(newQuali)
                                 viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                                requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                                val back = arguments?.getString("back").toString()
+                                if(back == "back"){
+                                    requireView().findNavController().navigate(R.id.action_qualificationFragment_self)
+                                } else{
+                                    requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                                }
+
                             }
                         }else{
                             //check is there any file
@@ -448,6 +422,7 @@ class QualificationFragment : Fragment() {
                             }
                             chgPDF = true
                             binding.editTextResume.text = pdfName
+                            binding.editTextResume.tag = pdfName
                         }
                     } finally {
                         myCursor?.close()

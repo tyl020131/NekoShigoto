@@ -73,8 +73,6 @@ class SavedFragment : Fragment() {
         jobList = arrayListOf<Vacancy>()
         loadData(viewModel)
 
-
-
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
         filterBtn.setOnClickListener {
@@ -91,8 +89,6 @@ class SavedFragment : Fragment() {
                 filterArray(gender,sort, salaryRange,fields, modes)
                 myDialog.dialog.dismiss()
             }
-
-
         }
 
         val seeall : TextView = view.findViewById(R.id.home_seeall)

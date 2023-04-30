@@ -62,7 +62,7 @@ class EmployeeRegister : AppCompatActivity() {
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     }
                 }.addOnFailureListener {
-                    val message = "Error occurred ${it.localizedMessage}"
+                    val message = "${it.localizedMessage}"
                     val snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
                     snackbar.setAction("Dismiss") { snackbar.dismiss() }
                     snackbar.show()
