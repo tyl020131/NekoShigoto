@@ -9,6 +9,7 @@ import com.example.nekoshigoto.databinding.FragmentAdminDashboardBinding
 import com.example.nekoshigoto.databinding.FragmentAdminViewUserBinding
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 
@@ -25,10 +26,11 @@ class AdminDashboardFragment : Fragment() {
         /*val userRef = db.collection("Job Seeker")
         val userCount = await getCountFromServer(userRef);*/
 
-        val userRef = db.collection("Job Seeker")
+        val userRef = db.collection("User").whereEqualTo("userType", "jobSeeker")
         val userCount = runBlocking { getCountFromServer(userRef) }
 
-        val companyRef = db.collection("Company")
+        //val companyRef = db.collection("Company")
+        val companyRef = db.collection("User").whereEqualTo("userType", "company")
         val companyCount = runBlocking { getCountFromServer(companyRef) }
 
         binding.totalUserNum.text = userCount.toString()
@@ -42,9 +44,9 @@ class AdminDashboardFragment : Fragment() {
         activity?.showBottomNav()
     }
 
-    suspend fun getCountFromServer(collection: CollectionReference): Long {
-        val query = collection
-        val result = query.get().await()
-        return result.size().toLong()
+    suspend fun getCountFromServer(query: Query): Long {
+        val snapshot = query.get().await()
+
+        return snapshot.size().toLong()
     }
 }

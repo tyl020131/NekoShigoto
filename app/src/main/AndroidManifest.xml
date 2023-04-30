@@ -23,8 +23,7 @@
         <activity
             android:name=".AdminHome"
             android:exported="false"
-            android:label="@string/title_activity_admin_home"
-            android:theme="@style/Theme.NekoShigoto.NoActionBar" />
+            android:label="@string/title_activity_admin_home"/>
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
