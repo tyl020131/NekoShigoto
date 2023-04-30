@@ -52,8 +52,6 @@ class SetupProfile : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar!!.title = "Setup Profile"
 
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding.apply {
             errorTextFname.visibility = View.GONE
             errorTextLname.visibility = View.GONE

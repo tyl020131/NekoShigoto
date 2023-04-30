@@ -9,53 +9,13 @@
         android:id="@+id/consulationFragment"
         android:name="com.example.nekoshigoto.ConsulationFragment"
         android:label="ConsulationFragment">
-        <action
-            android:id="@+id/action_consulationFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_consulationFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_consulationFragment_to_activityFragment2"
-            app:destination="@id/activityFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_consulationFragment_to_profileFragment2"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
+
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.nekoshigoto.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_savedFragment"
-            app:destination="@id/savedFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-
-        <action
-            android:id="@+id/action_homeFragment_to_consulationFragment"
-            app:destination="@id/consulationFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_homeFragment_to_activityFragment2"
-            app:destination="@id/activityFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
         <action
             android:id="@+id/action_homeFragment_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
@@ -65,26 +25,6 @@
         android:name="com.example.nekoshigoto.SavedFragment"
         android:label="SavedFragment">
         <action
-            android:id="@+id/action_savedFragment_to_consulationFragment"
-            app:destination="@id/consulationFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_savedFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_savedFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_savedFragment_to_activityFragment2"
-            app:destination="@id/activityFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
             android:id="@+id/action_savedFragment_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
     </fragment>
@@ -93,30 +33,8 @@
         android:name="com.example.nekoshigoto.ProfileFragment"
         android:label="ProfileFragment">
         <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_profileFragment_to_savedFragment"
-            app:destination="@id/savedFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_profileFragment_to_consulationFragment"
-            app:destination="@id/consulationFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_profileFragment_to_activityFragment2"
-            app:destination="@id/activityFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
             android:id="@+id/action_profileFragment_to_qualificationFragment"
-            app:destination="@id/qualificationFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
+            app:destination="@id/qualificationFragment" />
         <action
             android:id="@+id/action_profileFragment_self"
             app:destination="@id/profileFragment" />
@@ -125,26 +43,6 @@
         android:id="@+id/activityFragment"
         android:name="com.example.nekoshigoto.ActivityFragment"
         android:label="ActivityFragment">
-        <action
-            android:id="@+id/action_activityFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_slide_left_enter"
-            app:exitAnim="@anim/fragment_slide_right_exit" />
-        <action
-            android:id="@+id/action_activityFragment_to_savedFragment"
-            app:destination="@id/savedFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_activityFragment_to_consulationFragment"
-            app:destination="@id/consulationFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
-        <action
-            android:id="@+id/action_activityFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/fragment_slide_right_enter"
-            app:exitAnim="@anim/fragment_slide_left_exit" />
         <action
             android:id="@+id/action_activityFragment_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
@@ -179,6 +77,9 @@
         <action
             android:id="@+id/action_jobDetailFragment_to_submitApplicationFragment"
             app:destination="@id/submitApplicationFragment" />
+        <action
+            android:id="@+id/action_jobDetailFragment_to_qualificationFragment"
+            app:destination="@id/qualificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/submitApplicationFragment"

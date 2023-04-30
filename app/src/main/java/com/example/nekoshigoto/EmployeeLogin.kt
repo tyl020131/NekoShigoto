@@ -125,8 +125,7 @@ class EmployeeLogin : AppCompatActivity() {
 
                         }else {
                             progressDialog.dismiss()
-                            val error = task.exception?.message
-                            Toast.makeText(baseContext, error ?: "Email and password do not match",
+                            Toast.makeText(baseContext, "Email and password do not match",
                                 Toast.LENGTH_SHORT).show()
                         }
                     }

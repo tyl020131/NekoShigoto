@@ -829,7 +829,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="@dimen/form_margin_left"
                     android:text="TextView"
                     android:textColor="@android:color/holo_red_light" />
 
@@ -841,8 +840,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/button_dark"
                 android:backgroundTint="@color/color2"
                 android:text="Edit" />
@@ -853,8 +851,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/button_dark"
                 android:backgroundTint="@color/color2"
                 android:text="Save" />
@@ -867,7 +864,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -878,10 +875,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"/>
-
-
         </LinearLayout>
 
     </ScrollView>
