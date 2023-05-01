@@ -32,7 +32,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="60sp"
+            android:layout_marginTop="50sp"
+            android:padding="15sp">
+
+            <SearchView
+                android:id="@+id/searchUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color5"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search User..."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="110sp"
             android:padding="15sp">
 
             <TextView
@@ -75,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="140sp">
+            android:layout_marginTop="185sp">
 
             <TextView
                 android:id="@+id/textView41"
@@ -113,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="150sp"
+            android:layout_marginTop="195sp"
             android:padding="15sp">
 
             <ScrollView
@@ -131,7 +147,5 @@
 
             </ScrollView>
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
