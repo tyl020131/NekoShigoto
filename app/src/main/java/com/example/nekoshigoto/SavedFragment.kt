@@ -154,38 +154,39 @@ class SavedFragment : Fragment() {
                     val save = document.toObject(Save::class.java)
                     mysaved.add(save)
                 }
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w(ContentValues.TAG, "Error getting documents: ", exception)
-            }
-        db.collection("Vacancy")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
-                    val vacancy = document.toObject(Vacancy::class.java)
-                    vacancy.vacancyid = document.id
-                    for(save in mysaved){
-                        if(save.vacancy==document.id){
-                            jobList.add(vacancy)
-                            Log.w(ContentValues.TAG, "vacancy:"+
-                                    vacancy)
+                db.collection("Vacancy")
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        for (document in documents) {
+                            Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
+                            val vacancy = document.toObject(Vacancy::class.java)
+                            vacancy.vacancyid = document.id
+                            for(save in mysaved){
+                                if(save.vacancy==document.id){
+                                    jobList.add(vacancy)
+                                    Log.w(ContentValues.TAG, "vacancy:"+
+                                            vacancy)
+                                }
+                            }
                         }
+                        newRecyclerView.adapter = SavedAdapter(jobList, viewModel,navigator)
                     }
-                }
-                newRecyclerView.adapter = SavedAdapter(jobList, viewModel,navigator)
+                    .addOnFailureListener { exception ->
+                        Log.w(ContentValues.TAG, "Error getting documents: ", exception)
+                    }
 
             }
             .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents: ", exception)
             }
+
     }
 
     override fun onResume() {
         super.onResume()
         val activity = activity as Home
         activity?.showBottomNav()
+        activity?.chgTitle("My Saved Vacancy")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

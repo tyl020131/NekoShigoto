@@ -113,7 +113,8 @@ class JobDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val activity = activity as Home?
+        val activity = activity as Home
         activity?.hideBottomNav()
+        activity?.chgTitle("Job Detail")
     }
 }

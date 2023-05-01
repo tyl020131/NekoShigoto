@@ -46,10 +46,11 @@
             <TextView
                 android:id="@+id/nameTextView"
                 android:layout_width="243dp"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
+                android:minHeight="51dp"
                 android:fontFamily="@font/lexend"
                 android:gravity="center"
-                android:text="Cai Xu Kun"
+                android:text="Cai Xu Kun Cai Xu Kun"
                 android:textColor="#F8F8F8"
                 android:textSize="26dp"
                 app:layout_constraintEnd_toEndOf="parent"

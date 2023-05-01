@@ -32,15 +32,15 @@ class AdminProfileFragment : Fragment() {
 
         var email = sharedPreferences.getString("userid", "").toString()
 
-        db.collection("Admin").document(email).get()
-            .addOnSuccessListener {
-                if(it != null){
-//                    Glide.with(requireContext())
-//                        .load(company?.profilePic)
-//                        .into(binding.profileImage)
-                    binding.editTextTextAdminName.setText(it.getString("username"))
-                    binding.editTextTextAdminEmail.setText(email)
-
+        db.collection("Admin").get()
+            .addOnSuccessListener { documents->
+                for(document in documents)
+                {
+                    if(document.getString("email") == email){
+                        binding.editTextTextAdminName.setText(document.getString("username"))
+                        binding.editTextTextAdminEmail.setText(email)
+                        break
+                    }
                 }
             }
             .addOnFailureListener {

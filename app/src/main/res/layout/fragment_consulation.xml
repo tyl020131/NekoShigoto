@@ -85,8 +85,8 @@
             android:backgroundTint="#20212C">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="130pt"
-                android:layout_height="47dp"
+                android:layout_width="403dp"
+                android:layout_height="46dp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="17dp"
                 android:layout_marginBottom="21dp"
@@ -98,7 +98,7 @@
 
                 <EditText
                     android:id="@+id/chat_message"
-                    android:layout_width="110pt"
+                    android:layout_width="140pt"
                     android:layout_height="48dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="1dp"
@@ -109,19 +109,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/send_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="#2684FF"
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/material_symbols_arrow_forward_ios_rounded" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageButton
+                android:id="@+id/send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle"
+                android:backgroundTint="#2684FF"
+                android:padding="5dp"
+                app:srcCompat="@drawable/material_symbols_arrow_forward_ios_rounded"
+                tools:layout_editor_absoluteX="355dp"
+                tools:layout_editor_absoluteY="16dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

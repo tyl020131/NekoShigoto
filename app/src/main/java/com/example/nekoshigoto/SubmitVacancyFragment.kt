@@ -117,17 +117,12 @@ class SubmitVacancyFragment : Fragment() {
 
 
         }
-
-
-
-
         return view.root;
-
-
     }
-
-
-
-
-
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as CompanyHome
+        activity?.hideBottomNav()
+        activity?.chgTitle("Create New Vacancy")
+    }
 }

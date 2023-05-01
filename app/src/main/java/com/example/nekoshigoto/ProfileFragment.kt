@@ -21,6 +21,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.example.nekoshigoto.databinding.FragmentProfileBinding
@@ -60,65 +62,15 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        val activity = activity as Home
+        activity?.showBottomNav()
+        activity?.chgTitle("My Profile")
+
         binding.apply {
             saveButton.visibility = View.GONE
             editLayout.visibility = View.GONE
             cancelButton.visibility = View.GONE
         }
-
-//        email = sh.getString("userid","").toString()
-//        db.collection("Job Seeker").document(email).get()
-//            .addOnSuccessListener {
-//                val user = it.toObject<JobSeeker>()  //convert the doc into object
-//                binding.apply {
-//                    //insert data for view layout
-//                    textName.text = user?.fname + " " + user?.lname
-//                    textGender.text = user?.gender
-//                    textNationality.text = user?.nationality
-//                    Glide.with(requireContext())
-//                    .load(user?.profilePic)
-//                    .into(binding.profileImage)
-//                    textDOB.text = user?.dob
-//                    textContact.text = user?.contactNo
-//                    textIcNo.text = user?.icPassport
-//                    textCountry.text = user?.country
-//                    textState.text = user?.state
-//                    val number = user?.salary
-//                    val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
-//                    textSalary.text = "RM $formattedNumber"
-//
-//                    //insert data for edit layout
-//                    editTextFName.setText(user?.fname)
-//                    editTextLName.setText(user?.lname)
-//                    editTextDob.text = user?.dob
-//                    editTextContact.setText(user?.contactNo)
-//                    editTextIcno.setText(user?.icPassport)
-//                    editTextCountry.text = user?.country
-//                    editTextState.setText(user?.state)
-//                    editTextSalary.setText(user?.salary.toString())
-//                    if(user?.gender == "Male")
-//                        male.isChecked = true
-//                    else
-//                        female.isChecked = true
-//
-//                    if(user?.nationality == "Malaysian")
-//                        radioButton.isChecked = true
-//                    else
-//                        radioButton2.isChecked = true
-//
-//                    Glide.with(requireContext())
-//                        .load(user?.profilePic)
-//                        .into(binding.uploadImage)
-//
-//                    binding.uploadImage.tag = user?.profilePic
-//
-//                }
-//
-//
-//            }
-//            .addOnFailureListener{
-//                Log.e("SearchUser", it.message.toString())
-//            }
 
         val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         var user : JobSeeker = viewModel.getJobSeeker()
@@ -699,12 +651,6 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val activity = activity as Home
-        activity?.showBottomNav()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

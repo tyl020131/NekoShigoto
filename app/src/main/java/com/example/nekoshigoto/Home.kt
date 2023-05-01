@@ -16,6 +16,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
@@ -49,7 +50,10 @@ class Home : AppCompatActivity() {
                     viewModel.setJobSeeker(user)
                     val navController = this.findNavController(R.id.Container)
                     bottomNav.setupWithNavController(navController)
-                    NavigationUI.setupActionBarWithNavController(this,navController)
+                    val appBarConfiguration = AppBarConfiguration(navController.graph)
+                    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+                    supportActionBar?.setTitle("My Home")
+//                    NavigationUI.setupActionBarWithNavController(this,navController)
 
                 }
 
@@ -133,6 +137,10 @@ class Home : AppCompatActivity() {
         bottomNav.visibility = View.VISIBLE
     }
 
+    fun chgTitle(title:String){
+        supportActionBar?.setTitle(title)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.Container)
         return navController.navigateUp()
@@ -165,29 +173,4 @@ class Home : AppCompatActivity() {
 
         return false;
     }
-
-//    override fun onBackPressed() {
-//
-//        val fm: FragmentManager = supportFragmentManager
-//        if (fm.backStackEntryCount > 0) {
-//            Log.i("MainActivity", "popping backstack")
-//            fm.popBackStack()
-//        } else {
-//            Log.i("MainActivity", "nothing on backstack, calling super")
-//            super.onBackPressed()
-//        }
-//    }
-
-//    override fun onBackPressed() {
-//
-//        val fragmentManager = supportFragmentManager
-//        if (fragmentManager.backStackEntryCount > 1) {
-//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
-//            fragmentManager.popBackStackImmediate()
-//        } else {
-//            Toast.makeText(this, fragmentManager.backStackEntryCount.toString(), Toast.LENGTH_SHORT).show()
-//            super.onBackPressed()
-//        }
-//    }
-//
 }

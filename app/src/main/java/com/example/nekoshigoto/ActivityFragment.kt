@@ -111,6 +111,13 @@ class ActivityFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+        activity?.chgTitle("My Activity")
+    }
+
     private fun loadData(){
         db.collection("Vacancy")
             .get()
@@ -149,12 +156,6 @@ class ActivityFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents: ", exception)
             }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val activity = activity as Home
-        activity?.showBottomNav()
     }
 
 }

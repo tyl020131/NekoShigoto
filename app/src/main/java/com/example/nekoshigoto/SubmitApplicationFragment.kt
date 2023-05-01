@@ -201,6 +201,7 @@ class SubmitApplicationFragment : Fragment() {
         super.onResume()
         val activity = activity as Home?
         activity?.hideBottomNav()
+        activity?.chgTitle("Submit Application")
     }
 
 }

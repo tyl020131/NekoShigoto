@@ -18,9 +18,6 @@
             android:id="@+id/action_vacancyFragment_to_companyProfileFragment"
             app:destination="@id/companyProfileFragment" />
         <action
-            android:id="@+id/action_vacancyFragment_to_vacancyDetail"
-            app:destination="@id/vacancyDetail" />
-        <action
             android:id="@+id/action_vacancyFragment_to_vacancyDetailFragment"
             app:destination="@id/vacancyDetailFragment" />
     </fragment>
@@ -69,10 +66,6 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.nekoshigoto.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
-    <activity
-        android:id="@+id/vacancyDetail"
-        android:name="com.example.nekoshigoto.VacancyDetail"
-        android:label="VacancyDetail" />
     <fragment
         android:id="@+id/userDetailFragment"
         android:name="com.example.nekoshigoto.UserDetailFragment"

@@ -17,9 +17,20 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="142dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/kunkun" />
+
+        <ImageView
+            android:id="@+id/activeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="29dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/deactivate" />
 
         <TextView
             android:id="@+id/jobPosition"
@@ -59,9 +70,9 @@
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="12dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.526"
@@ -72,14 +83,14 @@
             android:id="@+id/view5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="196dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tag1" />
+            app:layout_constraintTop_toBottomOf="@+id/textDesc" />
 
         <TextView
             android:id="@+id/textView11"
@@ -96,7 +107,7 @@
             android:text="Description"
             android:textAlignment="center"
             android:textColor="@color/color5"
-            android:textSize="24sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,9 +116,9 @@
         <TextView
             android:id="@+id/JobDesc"
             android:layout_width="241dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/inter_bold"
             android:text="Job Description"
             android:textColor="@color/color5"
@@ -118,15 +129,15 @@
         <TextView
             android:id="@+id/jobDesc"
             android:layout_width="241dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/inter_bold"
             android:text="Applicants"
             android:textColor="@color/color5"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
 
         <TextView
             android:id="@+id/tag"
@@ -144,10 +155,11 @@
 
         <TextView
             android:id="@+id/textDesc"
-            android:layout_width="376dp"
-            android:layout_height="86dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="30dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="15dp"
             android:text="TextView"
             android:textColor="@color/color5"
@@ -160,9 +172,12 @@
             android:id="@+id/vacDetailRecycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/jobDesc" />
 
 

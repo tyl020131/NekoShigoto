@@ -103,5 +103,4 @@ class ChangePasswordFragment : Fragment() {
             snackbar.show()
         }
     }
-
 }

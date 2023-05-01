@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -27,7 +28,9 @@ class CompanyHome : AppCompatActivity() {
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         val navController = this.findNavController(R.id.Container)
         bottomNav.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this,navController)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+        supportActionBar?.setTitle("My Company")
         var sh : SharedPreferences = this.getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
         var email = sh.getString("userid","").toString()
         viewModel = ViewModelProvider(this).get(CompanyViewModel::class.java)
@@ -84,36 +87,12 @@ class CompanyHome : AppCompatActivity() {
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.visibility = View.VISIBLE
     }
+    fun chgTitle(title:String){
+        supportActionBar?.setTitle(title)
+    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.Container)
         return navController.navigateUp()
     }
 
-//    private fun loadFragment(fragment: Fragment): Boolean {
-//        if(fragment != null) {
-//            if(startingPosition == newPosition){
-//                getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.Container, fragment).commit();
-//            }
-//            if(startingPosition > newPosition) {
-//                getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_right_exit )
-//                    .replace(R.id.Container, fragment).commit();
-//
-//            }
-//            if(startingPosition < newPosition) {
-//                getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_left_exit)
-//                    .replace(R.id.Container, fragment).commit();
-//
-//            }
-//            startingPosition = newPosition;
-//            return true;
-//        }
-//
-//        return false;
-//    }
 }

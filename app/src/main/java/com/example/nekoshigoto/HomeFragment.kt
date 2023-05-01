@@ -199,6 +199,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         val activity = activity as Home
         activity?.showBottomNav()
+        activity?.chgTitle("My Home")
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

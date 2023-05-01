@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -17,7 +19,7 @@ import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
 
-class VacancyDetailAdapter(private val applicantList : ArrayList<JobSeeker>,private val vacID:String) :
+class VacancyDetailAdapter(private val applicantList : ArrayList<Applicant>,private val vacID:String) :
     RecyclerView.Adapter<VacancyDetailAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -31,16 +33,21 @@ class VacancyDetailAdapter(private val applicantList : ArrayList<JobSeeker>,priv
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = applicantList[position];
-        holder.applicantName.text = currentItem.fname + " " + currentItem.lname
+//        holder.applicantName.text = currentItem.fname + " " + currentItem.lname
+        holder.applicantName.text = currentItem.name
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val dob = LocalDate.parse(currentItem.dob, formatter)
-        val currentDate: LocalDate = LocalDate.now()
-        val age: Int = Period.between(dob, currentDate).getYears()
-        holder.applicantAge.text = age.toString() + " Years Old"
+//        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+//        val dob = LocalDate.parse(currentItem.dob, formatter)
+//        val currentDate: LocalDate = LocalDate.now()
+//        val age: Int = Period.between(dob, currentDate).getYears()
+        holder.applicantAge.text = currentItem.age.toString() + " Years Old"
 
-        val imgUri = currentItem.profilePic.toUri().buildUpon().scheme("https").build()
+        val imgUri = currentItem.image.toUri().buildUpon().scheme("https").build()
         holder.applicantImage.load(imgUri)
+
+        holder.appStatus.text = currentItem.status
+        if(currentItem.status == "Rejected")
+            holder.appStatus.setTextColor(ContextCompat.getColor(holder.appStatus.context, R.color.color8))
 
         holder.viewButton.setOnClickListener {
             val bundle = bundleOf("email" to currentItem.email, "vacID" to vacID)
@@ -53,13 +60,15 @@ class VacancyDetailAdapter(private val applicantList : ArrayList<JobSeeker>,priv
         var applicantImage: ImageView
         var applicantName: TextView
         var applicantAge: TextView
-        var viewButton : Button
+        var viewButton : AppCompatButton
+        var appStatus : TextView
 
         init{
             applicantImage = itemView.findViewById(R.id.applicantImage)
             applicantName = itemView.findViewById(R.id.applicantName)
             applicantAge = itemView.findViewById(R.id.applicantAge)
             viewButton = itemView.findViewById(R.id.viewButton)
+            appStatus = itemView.findViewById(R.id.status)
         }
     }
 }

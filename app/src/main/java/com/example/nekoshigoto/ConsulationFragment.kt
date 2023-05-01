@@ -195,7 +195,9 @@ class ConsulationFragment : Fragment() {
         super.onResume()
         val activity = activity as Home
         activity?.showBottomNav()
+        activity?.chgTitle("My Consultation")
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu, menu)

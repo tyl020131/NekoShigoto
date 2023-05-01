@@ -36,7 +36,9 @@ class UserAdapter(private val userList : ArrayList<JobSeeker>) :
         val currentItem = userList[position];
         val imgUri = currentItem.profilePic.toUri().buildUpon().scheme("https").build()
         holder.propic.load(imgUri)
-        holder.name.text = currentItem.fname + " " + currentItem.lname
+        val name = currentItem.fname + " " + currentItem.lname
+        val display_name = name.takeIf { it.length <= 25 } ?: name.take(25) + "..."
+        holder.name.text = display_name
 
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val dob = LocalDate.parse(currentItem.dob, formatter)

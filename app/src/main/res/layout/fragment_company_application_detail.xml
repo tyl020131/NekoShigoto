@@ -3,307 +3,398 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color1"
-        tools:context=".EmployeeLogin">
+        android:background="@color/color1">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/view_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="Applying for:"
-            android:textColor="@color/color5"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/view_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Applying for:"
+                android:textColor="@color/color5"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="394dp"
-            android:layout_height="147dp"
-            android:background="@drawable/button_dark"
-            android:backgroundTint="@color/color3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_text" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/jobPic"
-            android:layout_width="62dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="76dp"
-            app:layout_constraintEnd_toStartOf="@+id/company_name"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/circleImageView"
-            app:srcCompat="@drawable/kunkun" />
-
-        <TextView
-            android:id="@+id/company_name"
-            android:layout_width="176dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="76dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Kunkun Company"
-            android:textColor="@color/color2"
-            android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/jobPic"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/vacancyName"
-            android:layout_width="294dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="Product Designer"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@+id/jobPic"
-            app:layout_constraintTop_toBottomOf="@+id/company_name" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="364dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Penang, Malaysia"
-            android:textColor="@color/color2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.304"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobPic" />
-
-        <TextView
-            android:id="@+id/mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/border_radius"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/inter_medium"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="Freelance"
-            android:textColor="@color/color4"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location" />
-
-        <TextView
-            android:id="@+id/mode2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/border_radius"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/inter_medium"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="Freelance"
-            android:textColor="@color/color4"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.249"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location" />
-
-        <TextView
-            android:id="@+id/view_text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="Cover Letter:"
-            android:textColor="@color/color5"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-        <TextView
-            android:id="@+id/view_text4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="CV:"
-            android:textColor="@color/color5"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.041"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coverLetter" />
-
-        <TextView
-            android:id="@+id/view_text3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="212dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="Application:"
-            android:textColor="@color/color5"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="394dp"
-            android:layout_height="147dp"
-            app:cardBackgroundColor="#00FFFFFF"
-            app:contentPaddingTop="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_text3">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/jobb"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="0dp"
-                android:background="@drawable/border_radius"
+            <View
+                android:id="@+id/view"
+                android:layout_width="394dp"
+                android:layout_height="147dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_dark"
                 android:backgroundTint="@color/color3"
-                android:paddingBottom="10dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_text" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profilepic1"
-                    android:layout_width="69dp"
-                    android:layout_height="71dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toStartOf="@+id/applicantNamee"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/circleImageView"
-                    app:srcCompat="@drawable/kunkun" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/jobPic"
+                android:layout_width="62dp"
+                android:layout_height="59dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/company_name"
+                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:srcCompat="@drawable/kunkun" />
 
-                <TextView
-                    android:id="@+id/applicantNamee"
-                    android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="176dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Kunkun Company"
+                android:textColor="@color/color2"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/jobPic"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/vacancyName"
+                android:layout_width="294dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Product Designer"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/jobPic"
+                app:layout_constraintTop_toBottomOf="@+id/company_name" />
+
+            <TextView
+                android:id="@+id/noOfApply"
+                android:layout_width="364dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Penang, Malaysia"
+                android:textColor="@color/color2"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/jobPic" />
+
+            <TextView
+                android:id="@+id/mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/inter_medium"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="Freelance"
+                android:textColor="@color/color4"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/noOfApply" />
+
+            <TextView
+                android:id="@+id/view_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Cover Letter:"
+                android:textColor="@color/color5"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <TextView
+                android:id="@+id/view_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="CV:"
+                android:textColor="@color/color5"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coverLetter" />
+
+            <TextView
+                android:id="@+id/view_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Application:"
+                android:textColor="@color/color5"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="394dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#00FFFFFF"
+                app:contentPaddingTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.529"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_text3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/jobb"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="Wong Zhi Hern"
-                    android:textColor="@color/color2"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/location1"
-                    app:layout_constraintStart_toEndOf="@+id/profilepic1"
-                    app:layout_constraintTop_toBottomOf="@+id/position" />
+                    android:layout_margin="0dp"
+                    android:background="@drawable/border_radius"
+                    android:backgroundTint="@color/color3"
+                    android:paddingBottom="10dp">
 
-                <TextView
-                    android:id="@+id/position"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="153dp"
-                    android:fontFamily="@font/inter_bold"
-                    android:text="Product Designer"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/profilepic1"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/profilepic"
+                        android:layout_width="62dp"
+                        android:layout_height="59dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toStartOf="@+id/age"
+                        app:layout_constraintHorizontal_bias="0.118"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circleImageView"
+                        app:srcCompat="@drawable/kunkun" />
 
-                <TextView
-                    android:id="@+id/location1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="34dp"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="Penang, Malaysia"
-                    android:textColor="@color/color2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/profilepic1"
-                    app:layout_constraintTop_toBottomOf="@+id/applicantNamee" />
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="21 Years Old, Malaysian"
+                        android:textColor="@color/color2"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/profilepic"
+                        app:layout_constraintTop_toBottomOf="@+id/name" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:maxWidth="220dp"
+                        android:text="Tan Khai Chin"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/profilepic"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button1"
-            android:layout_width="136dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/button_dark"
-            android:backgroundTint="@color/color8"
-            android:fontFamily="sans-serif-medium"
-            android:text="Reject"
-            android:textColor="@color/color5"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.112"
-            app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Penang, Malaysia"
+                        android:textColor="@color/color2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView9"
+                        app:layout_constraintTop_toBottomOf="@+id/age"
+                        app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
-            android:layout_width="136dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/button_dark"
-            android:backgroundTint="@color/color10"
-            android:fontFamily="sans-serif-medium"
-            android:text="Approve"
-            android:textColor="@color/color5"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.93"
-            app:layout_constraintStart_toStartOf="parent" />
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/flexbox_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="24dp"
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button11"
-            android:layout_width="138dp"
-            android:layout_height="48dp"
-            android:background="@drawable/button_dark"
-            android:backgroundTint="@color/color4"
-            android:fontFamily="sans-serif-medium"
-            android:text="View PDF"
-            android:textColor="@color/color5"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_text4" />
+                        android:layout_marginBottom="5dp"
+                        app:alignItems="stretch"
+                        app:flexWrap="wrap"
+                        app:justifyContent="flex_start"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/location">
 
-        <TextView
-            android:id="@+id/coverLetter"
-            android:layout_width="339dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/color5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.44"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_text2" />
+                        <TextView
+                            android:id="@+id/partTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/border_radius"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="Part-Time"
+                            android:textColor="@color/color4"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/fullTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/border_radius"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="Full-Time"
+                            android:textColor="@color/color4"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/freelance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/border_radius"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="Freelance"
+                            android:textColor="@color/color4"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                    </com.google.android.flexbox.FlexboxLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageButton
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="28dp"
+                        android:backgroundTint="#00D60B0B"
+                        android:foregroundTintMode="multiply"
+                        android:tag="R.drawable.saved"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/male" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="21dp"
+                        android:layout_height="19dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/age"
+                        app:srcCompat="@drawable/map_pin" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button1"
+                android:layout_width="136dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/button_dark"
+                android:backgroundTint="@color/color8"
+                android:fontFamily="@font/montserrat"
+                android:text="Reject"
+                android:textColor="@color/color5"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.112"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button2"
+                android:layout_width="136dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/button_dark"
+                android:backgroundTint="@color/color10"
+                android:fontFamily="@font/montserrat"
+                android:text="Approve"
+                android:textColor="@color/color5"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.93"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button11"
+                android:layout_width="138dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/color4"
+                android:fontFamily="sans-serif-medium"
+                android:text="View PDF"
+                android:textColor="@color/color5"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_text4" />
+
+            <TextView
+                android:id="@+id/coverLetter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/color5"
+                android:background="@drawable/border"
+                android:fontFamily="@font/montserrat"
+                android:minHeight="120dp"
+                android:padding="6dp"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_text2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>

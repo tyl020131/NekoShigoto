@@ -3,24 +3,29 @@ package com.example.nekoshigoto
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentVacancyDetailBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 
 class VacancyDetailFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var emailList: ArrayList<String>
+    private lateinit var emailList : ArrayList<String>
+    private lateinit var statusList : ArrayList<String>
     private lateinit var userList: ArrayList<JobSeeker>
+    private lateinit var appList: ArrayList<Applicant>
     private lateinit var binding: FragmentVacancyDetailBinding
     private lateinit var vacID : String
     override fun onCreateView(
@@ -34,9 +39,11 @@ class VacancyDetailFragment : Fragment() {
         vacID = arguments?.getString("jobname").toString()
         newRecyclerView = binding.vacDetailRecycle
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
+        newRecyclerView.setNestedScrollingEnabled(true);
         newRecyclerView.setHasFixedSize(true)
 
         emailList = ArrayList<String>()
+        statusList = ArrayList<String>()
 //        db.collection("Vacancy").document(vacID).collection("Application").get()
         db.collection("Vacancy").document(vacID).get()
             .addOnSuccessListener {
@@ -51,25 +58,35 @@ class VacancyDetailFragment : Fragment() {
                     tag1.text = vacancy?.mode
 
                 }
+                db.collection("Vacancy").document(vacID).collection("Application").get()
+                    .addOnSuccessListener { documents ->
+                        for (document in documents) {
+                            var email = document.id
+                            var status = ""
+                            if(document.getString("status") == "P")
+                                status = "Pending"
+                            else if(document.getString("status") == "A")
+                                status = "Approved"
+                            else
+                                status = "Rejected"
+
+                            emailList.add(email)
+                            statusList.add(status)
+                        }
+                        loadData()
+                    }
+
 
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             }
-
-        db.collection("Vacancy").document(vacID).collection("Application").get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    var email = document.id
-                    emailList.add(email)
-                }
-            }
-        loadData()
         return view
 
     }
 
     private fun loadData() {
         userList = ArrayList<JobSeeker>()
+        appList = ArrayList<Applicant>()
 
         db.collection("Job Seeker")
             .get()
@@ -77,6 +94,14 @@ class VacancyDetailFragment : Fragment() {
                 for (document in documents) {
                     val jobSeeker = document.toObject(JobSeeker::class.java)
                     if (emailList.contains(document.getString("email"))) {
+                        val position: Int = emailList.indexOf(document.getString("email"))
+                        var status = statusList[position]
+                        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                        val dob = LocalDate.parse(jobSeeker.dob, formatter)
+                        val currentDate: LocalDate = LocalDate.now()
+                        val age: Int = Period.between(dob, currentDate).getYears()
+                        val applicant = Applicant(jobSeeker.fname+" "+jobSeeker.lname, age, jobSeeker.profilePic, status, jobSeeker.email)
+                        appList.add(applicant)
                         userList.add(jobSeeker)
                     }
                     else if (userList.size == emailList.size) {
@@ -85,7 +110,8 @@ class VacancyDetailFragment : Fragment() {
                     }
 
                 }
-                newRecyclerView.adapter = VacancyDetailAdapter(userList,vacID)
+                //newRecyclerView.adapter = VacancyDetailAdapter(userList,vacID)
+                newRecyclerView.adapter = VacancyDetailAdapter(appList,vacID)
 
             }
             .addOnFailureListener { exception ->
@@ -97,5 +123,6 @@ class VacancyDetailFragment : Fragment() {
         super.onResume()
         val activity = activity as CompanyHome
         activity?.hideBottomNav()
+        activity?.chgTitle("Vacancy Detail")
     }
 }

@@ -151,5 +151,6 @@ class UserDetailFragment : Fragment() {
         super.onResume()
         val activity = activity as CompanyHome
         activity?.hideBottomNav()
+        activity?.setTitle("User Profile Detail")
     }
 }

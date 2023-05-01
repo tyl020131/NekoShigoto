@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             else if(sharedPreferences.getString("type", "").toString() == "admin"){
-                startActivity(Intent(this, AdminLogin::class.java))
+                startActivity(Intent(this, AdminHome::class.java))
                 finish()
             }
             else {

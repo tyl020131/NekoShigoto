@@ -42,7 +42,6 @@ class QualificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding = FragmentQualificationBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         val viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
@@ -329,6 +328,7 @@ class QualificationFragment : Fragment() {
         super.onResume()
         val activity = activity as Home?
         activity?.hideBottomNav()
+        activity?.chgTitle("My Qualification")
     }
 
     private fun selectPdf() {

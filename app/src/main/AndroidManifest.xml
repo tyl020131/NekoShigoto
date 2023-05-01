@@ -29,9 +29,6 @@
             android:name=".AdminLogin"
             android:exported="false" />
         <activity
-            android:name=".VacancyDetail"
-            android:exported="false" />
-        <activity
             android:name=".Logout"
             android:exported="false"
             android:label="@string/title_activity_logout"
