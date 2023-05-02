@@ -68,7 +68,7 @@
 
                 <Spinner
                     android:id="@+id/filterCategorySpinner"
-                    android:layout_width="250dp"
+                    android:layout_width="220dp"
                     android:layout_height="35sp"
                     android:background="@color/color5"
                     android:entries="@array/admin_filter_category"
@@ -77,7 +77,7 @@
 
                 <Button
                     android:id="@+id/comfirmFilterBtn"
-                    android:layout_width="110sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
                     android:backgroundTint="@color/color10"
@@ -95,16 +95,16 @@
 
             <TextView
                 android:id="@+id/textView41"
-                android:layout_width="63dp"
+                android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:text="No."
-                android:textAlignment="center"
+                android:text="No.   "
+                android:textAlignment="viewEnd"
                 android:textColor="#FFFFFF"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView42"
-                android:layout_width="172dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="#FFFFFF"

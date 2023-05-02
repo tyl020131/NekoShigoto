@@ -31,16 +31,16 @@
 
             <TextView
                 android:id="@+id/textView41"
-                android:layout_width="63dp"
+                android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:text="No."
-                android:textAlignment="center"
+                android:text="No.   "
+                android:textAlignment="viewEnd"
                 android:textColor="#FFFFFF"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView42"
-                android:layout_width="172dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="#FFFFFF"
