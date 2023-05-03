@@ -3,6 +3,11 @@
     <item
         android:id="@+id/changePasswordFragment"
         android:title="Change Password" />
+
+    <item
+        android:id="@+id/companyEmailTemplateFragment"
+        android:title="Email Template" />
+
     <item
         android:id="@+id/logout"
         android:title="Logout" />

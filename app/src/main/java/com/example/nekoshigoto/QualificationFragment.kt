@@ -16,6 +16,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.nekoshigoto.databinding.FragmentQualificationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,6 +42,7 @@ class QualificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         binding = FragmentQualificationBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
@@ -428,6 +430,23 @@ class QualificationFragment : Fragment() {
             }
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
 }

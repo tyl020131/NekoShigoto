@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/viewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Approach Email"
+                    android:textAlignment="center"
+                    android:textColor="@color/color5"
+                    android:textSize="30dp"/>
+
+                <TextView
+                    android:id="@+id/textSubject1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Subject"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextApproachSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/textBody1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Body"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextApproachBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Write Something..."
+                    android:minHeight="80dp"
+                    android:layout_weight="3"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|start"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Approve Email"
+                    android:textAlignment="center"
+                    android:textColor="@color/color5"
+                    android:textSize="30dp"/>
+
+                <TextView
+                    android:id="@+id/textSubject2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Subject"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextApproveSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Body"
+                    android:textColor="@color/color5" />
+
+                <EditText
+                    android:id="@+id/editTextApproveBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Write Something..."
+                    android:minHeight="80dp"
+                    android:layout_weight="3"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|start"
+                    android:layout_marginStart="@dimen/form_margin_left"
+                    android:layout_marginEnd="@dimen/form_margin_left"
+                    android:layout_marginBottom="@dimen/form_margin_bot"
+                    android:background="@color/color5"
+                    android:ems="10"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/saveBtn"
+                    style="@style/button_dark"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_dark"
+                    android:backgroundTint="@color/color2"
+                    android:text="Save" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/removeButton"
+                    style="@style/button_dark"
+                    android:background="@drawable/button_dark"
+                    android:backgroundTint="@color/color1"
+                    android:text="Back to Default"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
+
+

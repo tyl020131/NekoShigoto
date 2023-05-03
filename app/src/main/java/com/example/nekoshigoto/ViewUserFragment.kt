@@ -156,7 +156,7 @@ class ViewUserFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.options_menu, menu)
+        inflater.inflate(R.menu.company_options, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -167,6 +167,10 @@ class ViewUserFragment : Fragment() {
             }
             R.id.logout -> {
                 startActivity(Intent(requireContext(), Logout::class.java))
+            }
+            R.id.companyEmailTemplateFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
             }
         }
 

@@ -5,13 +5,12 @@ import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -19,6 +18,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentJobDetailBinding
@@ -36,6 +36,7 @@ class JobDetailFragment : Fragment() {
 
 
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         view = FragmentJobDetailBinding.inflate(layoutInflater)
 
@@ -123,4 +124,24 @@ class JobDetailFragment : Fragment() {
         activity?.hideBottomNav()
         activity?.chgTitle("Job Detail")
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }

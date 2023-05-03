@@ -81,5 +81,17 @@
     <fragment
         android:id="@+id/companyApplicationDetailFragment"
         android:name="com.example.nekoshigoto.CompanyApplicationDetailFragment"
-        android:label="CompanyApplicationDetailFragment" />
+        android:label="CompanyApplicationDetailFragment" >
+        <action
+            android:id="@+id/action_companyApplicationDetailFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyEmailTemplateFragment"
+        android:name="com.example.nekoshigoto.CompanyEmailTemplateFragment"
+        android:label="CompanyEmailTemplateFragment" >
+        <action
+            android:id="@+id/action_companyEmailTemplateFragment_self"
+            app:destination="@id/companyEmailTemplateFragment" />
+    </fragment>
 </navigation>

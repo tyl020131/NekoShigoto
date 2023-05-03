@@ -6,13 +6,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.example.nekoshigoto.databinding.FragmentUserDetailBinding
 import com.example.testemail.SendEmail
@@ -27,13 +28,15 @@ class UserDetailFragment : Fragment() {
     private lateinit var storage : FirebaseStorage
     private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var dialog : AlertDialog.Builder
+    private lateinit var viewModel : CompanyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
+        setHasOptionsMenu(true)
+        viewModel = ViewModelProvider(requireActivity()).get(CompanyViewModel::class.java)
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         val email = arguments?.getString("dataKey").toString()
         db.collection("Job Seeker").document(email).get()
@@ -98,25 +101,26 @@ class UserDetailFragment : Fragment() {
 
         binding.approachButton.setOnClickListener {
 
-            val company = "Ikun Studio"
+            val company = viewModel.getCompany().name
             val sendEmail = email
-            val subject = "Selected as Potential Candidate"
-            val message = "Greeting from $company, we are impressed with " +
-                    "your profile and would like to express our interest in " +
-                    "you as a potential candidate for a job opportunity, " +
-                    "kindly respond to this email so that we can arrange an " +
-                    "interview with you\n\nThank you.\n\nBest regards,\n$company"
+            db.collection("Company").document(viewModel.getCompany().email).collection("Email").document("Approach").get()
+                .addOnSuccessListener {
+                    val subject = it.getString("subject")
+                    val message = it.getString("body") +
+                            "\n\nThank you.\n\nBest regards,\n$company"
 
-            val emailIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "text/plain"
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(sendEmail))
-                putExtra(Intent.EXTRA_SUBJECT, subject)
-                putExtra(Intent.EXTRA_TEXT, message)
+                    val emailIntent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_EMAIL, arrayOf(sendEmail))
+                        putExtra(Intent.EXTRA_SUBJECT, subject)
+                        putExtra(Intent.EXTRA_TEXT, message)
 
-                //setPackage("com.google.android.gm") // set Gmail as the email app
+                        //setPackage("com.google.android.gm") // set Gmail as the email app
+                    }
+
+                    startActivity(Intent.createChooser(emailIntent, "Send email using"))
             }
 
-            startActivity(Intent.createChooser(emailIntent, "Send email using"))
         }
 
         return binding.root
@@ -146,7 +150,29 @@ class UserDetailFragment : Fragment() {
         super.onResume()
         val activity = activity as CompanyHome
         activity?.hideBottomNav()
-        activity?.setTitle("User Profile Detail")
-        activity?.chgTitle("User Detail")
+        activity?.chgTitle("User Profile Detail")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.company_options, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+            R.id.companyEmailTemplateFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

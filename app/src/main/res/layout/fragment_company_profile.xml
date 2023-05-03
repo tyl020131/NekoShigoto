@@ -290,17 +290,6 @@
                     android:textColor="@android:color/holo_red_light" />
 
                 <TextView
-                    android:id="@+id/errorTextEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="@dimen/form_margin_left"
-                    android:text="TextView"
-                    android:textColor="@android:color/holo_red_light" />
-
-                <TextView
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

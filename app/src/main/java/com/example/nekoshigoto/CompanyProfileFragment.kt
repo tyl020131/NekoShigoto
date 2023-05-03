@@ -56,7 +56,6 @@ class CompanyProfileFragment : Fragment() {
         binding.apply {
             editLayout.visibility = View.GONE
             errorTextName.visibility = View.GONE
-            errorTextEmail.visibility = View.GONE
             errorTextContact.visibility = View.GONE
             errorTextAddress.visibility = View.GONE
             errorTextCountry.visibility = View.GONE
@@ -335,7 +334,7 @@ class CompanyProfileFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.options_menu, menu)
+        inflater.inflate(R.menu.company_options, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -346,6 +345,10 @@ class CompanyProfileFragment : Fragment() {
             }
             R.id.logout -> {
                 startActivity(Intent(requireContext(), Logout::class.java))
+            }
+            R.id.companyEmailTemplateFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
             }
         }
 
@@ -358,4 +361,5 @@ class CompanyProfileFragment : Fragment() {
         activity?.showBottomNav()
         activity?.chgTitle("My Profile")
     }
+
 }

@@ -1,9 +1,11 @@
 package com.example.nekoshigoto
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -12,7 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentSubmitVacancyBinding
 import com.google.android.material.imageview.ShapeableImageView
@@ -30,7 +34,7 @@ class SubmitVacancyFragment : Fragment() {
 
 
     ): View? {
-
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         view = FragmentSubmitVacancyBinding.inflate(layoutInflater)
 
@@ -124,5 +128,23 @@ class SubmitVacancyFragment : Fragment() {
         val activity = activity as CompanyHome
         activity?.hideBottomNav()
         activity?.chgTitle("Create New Vacancy")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changePasswordFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+            R.id.logout -> {
+                startActivity(Intent(requireContext(), Logout::class.java))
+            }
+            R.id.companyEmailTemplateFragment -> {
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
