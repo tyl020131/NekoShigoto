@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import coil.load
@@ -26,7 +27,6 @@ import java.time.format.DateTimeFormatter
 
 class CompanyApplicationDetailFragment : Fragment() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var userList: ArrayList<JobSeeker>
     private lateinit var binding: FragmentCompanyApplicationDetailBinding
     private lateinit var vacID : String
     private lateinit var email : String
@@ -36,7 +36,6 @@ class CompanyApplicationDetailFragment : Fragment() {
     ): View? {
         binding = FragmentCompanyApplicationDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        var id : String = ""
         vacID = arguments?.getString("vacID").toString()
         email = arguments?.getString("email").toString()
         // Inflate the layout for this fragment
@@ -54,6 +53,7 @@ class CompanyApplicationDetailFragment : Fragment() {
                         vacancyName.text = vacancy?.position
                         noOfApply.text = "${vacancy?.numOfApp} people has applied for this vacancy"
                         mode.text = vacancy?.mode
+
                     }
                 }
             }.addOnFailureListener {
@@ -66,6 +66,11 @@ class CompanyApplicationDetailFragment : Fragment() {
                 binding.apply {
                     coverLetter.text = app?.coverLetter
                     button11.tag = app?.resumeUrl
+                    if(app?.status!="P")
+                    {
+                        binding.reject.visibility=View.GONE
+                        binding.approve.visibility=View.GONE
+                    }
                 }
 
                 }.addOnFailureListener {
@@ -112,6 +117,60 @@ class CompanyApplicationDetailFragment : Fragment() {
             viewPdf()
         }
 
+        binding.approve.setOnClickListener {
+
+            val dialog = AlertDialog.Builder(requireContext())
+            val eDialog = AlertDialog.Builder(requireContext())
+            dialog.setTitle("Approve Confirmation")
+                .setMessage("Do you want to approve this application?")
+                .setCancelable(true)
+                .setPositiveButton("Approve") { dialogInterface, _ ->
+                    val query = db.collection("Vacancy").document(vacID).collection("Application").document(email)
+                    query.update("status", "A").addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Successfully approve the application", Toast.LENGTH_SHORT).show()
+
+                        eDialog.setTitle("Send Email")
+                            .setMessage("Successfully approved, do you want to send an email to the applicant?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes") { dialogInterface, _ ->
+                                sendEmail(email)
+                            }
+                            .setNegativeButton("No") { dialogInterface, _ ->
+                                val activity = activity as CompanyHome?
+                                activity?.onSupportNavigateUp()
+                            }
+                            .show()
+
+                    }
+                }
+                .setNegativeButton("Cancel") { dialogInterface, _ ->
+
+                }
+
+                .show()
+        }
+
+        binding.reject.setOnClickListener {
+            val dialog = AlertDialog.Builder(requireContext())
+
+            dialog.setTitle("Reject Confirmation")
+                .setMessage("Do you want to reject this application?")
+                .setCancelable(true)
+                .setPositiveButton("Reject") { dialogInterface, _ ->
+                    val query = db.collection("Vacancy").document(vacID).collection("Application").document(email)
+                    query.update("status", "R").addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Successfully reject the application", Toast.LENGTH_SHORT).show()
+                        val activity = activity as CompanyHome?
+                        activity?.onSupportNavigateUp()
+                    }
+                }
+                .setNegativeButton("Cancel") { dialogInterface, _ ->
+
+                }
+
+                .show()
+        }
+
         return view
     }
     override fun onResume() {
@@ -139,5 +198,28 @@ class CompanyApplicationDetailFragment : Fragment() {
             .addOnFailureListener {
 
             }
+    }
+
+    private fun sendEmail(email: String){
+        val company = "Ikun Studio"
+        val subject = "Selected as Potential Candidate"
+        val message = "Greeting from $company, we are impressed with " +
+                "your profile and would like to express our interest in " +
+                "you as a potential candidate for a job opportunity, " +
+                "kindly respond to this email so that we can arrange an " +
+                "interview with you\n\nThank you.\n\nBest regards,\n$company"
+
+        val emailIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, message)
+
+            //setPackage("com.google.android.gm") // set Gmail as the email app
+        }
+
+        startActivity(Intent.createChooser(emailIntent, "Send email using"))
+        val activity = activity as CompanyHome?
+        activity?.onSupportNavigateUp()
     }
 }

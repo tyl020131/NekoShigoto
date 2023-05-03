@@ -41,7 +41,6 @@ class JobDetailFragment : Fragment() {
 
         val jobid = arguments?.getString("jobname").toString()
 
-
         db.collection("Vacancy").document(jobid).get()
             .addOnSuccessListener { document ->
             if (document != null) {
@@ -53,6 +52,7 @@ class JobDetailFragment : Fragment() {
                     view.detailCompany.text = vacancy.companyName
                     view.detailMode.text = vacancy.mode
                     view.detailDescription.text = vacancy.description
+                    view.detailImg.tag = vacancy.status
                 }
 
             } else {
@@ -68,41 +68,47 @@ class JobDetailFragment : Fragment() {
             val jobSeeker = viewModel.getJobSeeker()
             val qualification = viewModel.getQualification()
 
-            db.collection("Vacancy").document(jobid)
-                .collection("Application").document(jobSeeker.email).get()
-                .addOnSuccessListener { snapshot ->
-                    if (snapshot.exists() && snapshot.getString("status") != "R") {
-                        Toast.makeText(requireContext(), "Application already submitted", Toast.LENGTH_SHORT).show()
-                    }else {
-                        if(qualification.field == "" && qualification.education == "" && qualification.workingExp=="") {
-                            val dialog = AlertDialog.Builder(requireContext())
+            val jobStatus = view.detailImg.tag as String
+            if(jobStatus=="Active"){
+                db.collection("Vacancy").document(jobid)
+                    .collection("Application").document(jobSeeker.email).get()
+                    .addOnSuccessListener { snapshot ->
+                        if (snapshot.exists() && snapshot.getString("status") != "R") {
+                            Toast.makeText(requireContext(), "Application already submitted", Toast.LENGTH_SHORT).show()
+                        }else {
+                            if(qualification.field == "" && qualification.education == "" && qualification.workingExp=="") {
+                                val dialog = AlertDialog.Builder(requireContext())
 
-                            dialog.setTitle("Qualification Missing ")
-                                .setMessage("Do you want to submit qualification?")
-                                .setCancelable(true)
-                                .setPositiveButton("Go to qualification") { dialogInterface, _ ->
-                                    val bundle = Bundle()
-                                    bundle.putString("back", "back")
-                                    it.findNavController().navigate(R.id.action_jobDetailFragment_to_qualificationFragment, bundle)
-                                }
-                                .setNegativeButton("Submit without qualification") { dialogInterface, _ ->
-                                    val bundle = Bundle()
-                                    bundle.putString("jobid", jobid)
-                                    it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
-                                }
-                                .setNeutralButton("Cancel") { dialogInterface, _ ->
-                                }
-                                .show()
+                                dialog.setTitle("Qualification Missing ")
+                                    .setMessage("Do you want to submit qualification?")
+                                    .setCancelable(true)
+                                    .setPositiveButton("Go to qualification") { dialogInterface, _ ->
+                                        val bundle = Bundle()
+                                        bundle.putString("back", "back")
+                                        it.findNavController().navigate(R.id.action_jobDetailFragment_to_qualificationFragment, bundle)
+                                    }
+                                    .setNegativeButton("Submit without qualification") { dialogInterface, _ ->
+                                        val bundle = Bundle()
+                                        bundle.putString("jobid", jobid)
+                                        it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                                    }
+                                    .setNeutralButton("Cancel") { dialogInterface, _ ->
+                                    }
+                                    .show()
+                            }
+                            else{
+                                val bundle = Bundle()
+                                bundle.putString("jobid", jobid)
+                                it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
+                            }
                         }
-                        else{
-                            val bundle = Bundle()
-                            bundle.putString("jobid", jobid)
-                            it.findNavController().navigate(R.id.action_jobDetailFragment_to_submitApplicationFragment, bundle)
-                        }
+                    }.addOnFailureListener {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
-                }.addOnFailureListener {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
+            }else{
+                Toast.makeText(requireContext(), "This job is not available right now", Toast.LENGTH_SHORT).show()
+            }
+
 
 
 

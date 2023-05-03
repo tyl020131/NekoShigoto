@@ -181,8 +181,10 @@ class HomeFragment : Fragment() {
                 for (document in documents) {
                     Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
                     val vacancy = document.toObject(Vacancy::class.java)
-                    vacancy.vacancyid = document.id
-                    jobList.add(vacancy)
+                    if(vacancy.status=="Active") {
+                        vacancy.vacancyid = document.id
+                        jobList.add(vacancy)
+                    }
                 }
                 jobAdapter = JobAdapter(jobList, email,mysaved,navigator)
                 newRecyclerView.adapter = jobAdapter

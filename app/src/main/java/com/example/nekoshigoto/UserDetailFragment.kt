@@ -97,14 +97,9 @@ class UserDetailFragment : Fragment() {
         }
 
         binding.approachButton.setOnClickListener {
-//            try {
-//                SendEmail(requireActivity()).execute("tankc2002@gmail.com", "This is from Neko Shigoto\nHappy Happy Happy", "Weak Chicken")
-//
-//            } catch (e: MessagingException) {
-//                Log.e("fail", e.stackTraceToString())
-//            }
+
             val company = "Ikun Studio"
-            val email = "khaichin2002@gmail.com"
+            val sendEmail = email
             val subject = "Selected as Potential Candidate"
             val message = "Greeting from $company, we are impressed with " +
                     "your profile and would like to express our interest in " +
@@ -114,7 +109,7 @@ class UserDetailFragment : Fragment() {
 
             val emailIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(sendEmail))
                 putExtra(Intent.EXTRA_SUBJECT, subject)
                 putExtra(Intent.EXTRA_TEXT, message)
 
@@ -152,5 +147,6 @@ class UserDetailFragment : Fragment() {
         val activity = activity as CompanyHome
         activity?.hideBottomNav()
         activity?.setTitle("User Profile Detail")
+        activity?.chgTitle("User Detail")
     }
 }

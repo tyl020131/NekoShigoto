@@ -162,7 +162,7 @@ class SavedFragment : Fragment() {
                             val vacancy = document.toObject(Vacancy::class.java)
                             vacancy.vacancyid = document.id
                             for(save in mysaved){
-                                if(save.vacancy==document.id){
+                                if(save.vacancy==document.id && document.getString("status") == "Active"){
                                     jobList.add(vacancy)
                                     Log.w(ContentValues.TAG, "vacancy:"+
                                             vacancy)

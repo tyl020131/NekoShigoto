@@ -65,45 +65,6 @@ class CompanyProfileFragment : Fragment() {
             errorTextProfile.visibility = View.GONE
         }
 
-//        email = sh.getString("userid","").toString()
-//        db.collection("Company").document(email).get()
-//            .addOnSuccessListener {
-//                val company = it.toObject<Company>()  //convert the doc into object
-//                binding.apply {
-//                    //insert data for view layout
-//                    textName.text = company?.name
-//                    textEmail.text = company?.email
-//                    textAddress.text = company?.address
-//                    textContact.text = company?.contactNo
-//                    textCountry.text = company?.country
-//                    textState.text = company?.state
-//                    textBusiness.text = company?.business
-//                    Glide.with(requireContext())
-//                        .load(company?.profilePic)
-//                        .into(binding.profileImage)
-//
-//                    //insert data for edit layout
-//                    editTextName.setText(company?.name)
-//                    editTextContact.setText(company?.contactNo)
-//                    editTextCountry.text = company?.country
-//                    editTextState.setText(company?.state)
-//                    editTextAddress.setText(company?.address)
-//                    editTextBusiness.setText(company?.business)
-//
-//                    Glide.with(requireContext())
-//                        .load(company?.profilePic)
-//                        .into(binding.uploadImage)
-//
-//                    binding.uploadImage.tag = company?.profilePic
-//
-//                }
-//
-//
-//            }
-//            .addOnFailureListener{
-//                Log.e("SearchUser", it.message.toString())
-//            }
-
         val viewModel = ViewModelProvider(requireActivity()).get(CompanyViewModel::class.java)
         var company : Company = viewModel.getCompany()
 
@@ -395,5 +356,6 @@ class CompanyProfileFragment : Fragment() {
         super.onResume()
         val activity = activity as CompanyHome
         activity?.showBottomNav()
+        activity?.chgTitle("My Profile")
     }
 }

@@ -177,5 +177,6 @@ class ViewUserFragment : Fragment() {
         super.onResume()
         val activity = activity as CompanyHome
         activity?.showBottomNav()
+        activity?.chgTitle("All User")
     }
 }

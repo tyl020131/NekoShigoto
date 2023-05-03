@@ -273,13 +273,8 @@ class QualificationFragment : Fragment() {
                                 db.collection("Qualification").document(email).set(newQuali)
                                 viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                                val back = arguments?.getString("back").toString()
-                                if(back == "back"){
-                                    requireView().findNavController().navigate(R.id.action_qualificationFragment_self)
-                                } else{
-                                    requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
-                                }
-
+                                val activity = activity as Home?
+                                activity?.onSupportNavigateUp()
                             }
                         }else{
                             //check is there any file
@@ -294,7 +289,8 @@ class QualificationFragment : Fragment() {
                                         db.collection("Qualification").document(email).set(newQuali)
                                         viewModel.setQualification(newQuali)
                                         Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                                        requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                                        val activity = activity as Home?
+                                        activity?.onSupportNavigateUp()
                                     }
                                     .setNegativeButton("Cancel"){dialogInterface,it->
                                         Toast.makeText(requireContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show()
@@ -306,7 +302,8 @@ class QualificationFragment : Fragment() {
                                 db.collection("Qualification").document(email).set(newQuali)
                                 viewModel.setQualification(newQuali)
                                 Toast.makeText(requireContext(), "Successfully update your qualification", Toast.LENGTH_SHORT).show()
-                                requireView().findNavController().navigate(R.id.action_qualificationFragment_to_profileFragment)
+                                val activity = activity as Home?
+                                activity?.onSupportNavigateUp()
                             }
                         }
                     }
