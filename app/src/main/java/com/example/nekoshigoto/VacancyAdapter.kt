@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,9 @@ class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>,private val na
         holder.company.text = currentItem.companyName
         holder.vacancy.text = currentItem.position
         holder.numOfApp.text = "${currentItem.numOfApp} people has applied for this vacancy"
+        holder.status.text = currentItem.status
+        if(currentItem.status == "Inactive")
+            holder.status.setTextColor(ContextCompat.getColor(holder.status.context, R.color.color8))
 
         holder.cont.setOnClickListener {
             val bundle = Bundle()
@@ -53,6 +57,7 @@ class VacancyAdapter(private val vacancyList : ArrayList<Vacancy>,private val na
         val propic :ShapeableImageView = itemView.findViewById(R.id.profilepic)
         val company : TextView = itemView.findViewById(R.id.company_name)
         val vacancy : TextView = itemView.findViewById(R.id.vacancy)
+        val status : TextView = itemView.findViewById(R.id.status)
         val numOfApp : TextView = itemView.findViewById(R.id.numOfApp)
     }
 }

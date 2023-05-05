@@ -128,7 +128,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="#0355F3"
-                        android:checked="true"
                         android:fontFamily="@font/inter_bold"
                         android:text="Male"
                         android:textColor="@color/white" />
@@ -142,6 +141,75 @@
                         android:checked="false"
                         android:fontFamily="@font/inter_bold"
                         android:text="Female"
+                        android:textColor="@color/white" />
+
+                    <RadioButton
+                        android:id="@+id/gender_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:buttonTint="#0355F3"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="All"
+                        android:checked="true"
+                        android:textColor="@color/white" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/status"
+                    style="@style/filter_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Status" />
+
+                <RadioGroup
+                    android:id="@+id/grp_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|left"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/active_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#0355F3"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Active"
+                        android:textColor="@color/white" />
+
+                    <RadioButton
+                        android:id="@+id/inactive_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:buttonTint="#0355F3"
+                        android:checked="false"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Inactive"
+                        android:textColor="@color/white" />
+
+                    <RadioButton
+                        android:id="@+id/status_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#0355F3"
+                        android:checked="true"
+                        android:layout_marginStart="26dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="All"
                         android:textColor="@color/white" />
 
                 </RadioGroup>
@@ -212,9 +280,13 @@
                         android:id="@+id/salary_high"
                         android:layout_width="315dp"
                         android:layout_height="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="13dp"
                         android:text="Expected Salary : High To Low"
                         android:textColor="@color/color5"
-                        tools:layout_editor_absoluteY="10dp" />
+                        app:layout_constraintEnd_toStartOf="@+id/salhigh_tick"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/salhigh_tick"
@@ -238,9 +310,11 @@
                         android:id="@+id/salary_low"
                         android:layout_width="312dp"
                         android:layout_height="21dp"
+                        android:layout_marginTop="8dp"
                         android:text="Expected Salary : To Low High"
                         android:textColor="@color/color5"
-                        tools:layout_editor_absoluteY="8dp" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/sallow_tick"

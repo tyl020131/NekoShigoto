@@ -22,6 +22,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -89,7 +91,7 @@ class VacancyFragment : Fragment() {
         val filterBtn : ImageButton = view.findViewById(R.id.filter_home)
 
         filterBtn.setOnClickListener {
-            var myDialog : FilterJobDialog = FilterJobDialog(requireContext())
+            var myDialog : VacancyFilterDialog = VacancyFilterDialog(requireContext())
             myDialog.dialog.show()
             val filter : Button = myDialog.dialog.findViewById<Button>(R.id.filter_btn)
             filter.setOnClickListener {
@@ -99,7 +101,8 @@ class VacancyFragment : Fragment() {
                 val fields = myDialog.fields
                 val modes = myDialog.modes
                 val gender = myDialog.gender
-                filterArray(gender,sort, salaryRange,fields, modes)
+                val status = myDialog.status
+                filterArray(gender,sort, salaryRange,fields, modes, status)
                 myDialog.dialog.dismiss()
             }
 
@@ -116,33 +119,130 @@ class VacancyFragment : Fragment() {
 
     }
 
-    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Float>,fields:ArrayList<String>, modes:ArrayList<String>){
+    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Float>,fields:ArrayList<String>, modes:ArrayList<String>, status:String){
 
         val filteredJobs : ArrayList<Vacancy> = ArrayList<Vacancy>();
 
 
         VacancyList.forEach { vacancy->
-            if(vacancy.gender == gender && vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1]){
-                if(fields.size!=0){
-                    if(!fields.contains(vacancy.field)){
-                        return@forEach
+            if(gender != "All")
+            {
+                //gender is male or female
+                if(status != "All")
+                {
+                    //status is active or inactive
+                    if(vacancy.gender == gender && vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1] && vacancy.status == status){
+                        if(fields.size!=0){
+                            if(!fields.contains(vacancy.field)){
+                                return@forEach
+
+                            }
+                        }
+                        if(modes.size!=0){
+                            if(modes.contains(vacancy.mode)){
+                                filteredJobs.add(vacancy)
+                            }
+                        }
+                        else{
+                            filteredJobs.add(vacancy)
+                        }
+                        if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
+                            Log.d(ContentValues.TAG,"Filtered")
+
+                        }
+                    }
+                    else{
 
                     }
+
                 }
-                if(modes.size!=0){
-                    if(modes.contains(vacancy.mode)){
-                        filteredJobs.add(vacancy)
+                else
+                {
+                    //status is all
+                    if(vacancy.gender == gender && vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1]){
+                        if(fields.size!=0){
+                            if(!fields.contains(vacancy.field)){
+                                return@forEach
+
+                            }
+                        }
+                        if(modes.size!=0){
+                            if(modes.contains(vacancy.mode)){
+                                filteredJobs.add(vacancy)
+                            }
+                        }
+                        else{
+                            filteredJobs.add(vacancy)
+                        }
+                        if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
+                            Log.d(ContentValues.TAG,"Filtered")
+
+                        }
                     }
-                }
-                else{
-                    filteredJobs.add(vacancy)
-                }
-                if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
-                    Log.d(ContentValues.TAG,"Filtered")
+                    else{
+
+                    }
 
                 }
             }
-            else{
+            else
+            {
+                //gender is all
+                if(status != "All")
+                {
+                    //status is active or inactive
+                    if(vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1] && vacancy.status == status){
+                        if(fields.size!=0){
+                            if(!fields.contains(vacancy.field)){
+                                return@forEach
+
+                            }
+                        }
+                        if(modes.size!=0){
+                            if(modes.contains(vacancy.mode)){
+                                filteredJobs.add(vacancy)
+                            }
+                        }
+                        else{
+                            filteredJobs.add(vacancy)
+                        }
+                        if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
+                            Log.d(ContentValues.TAG,"Filtered")
+
+                        }
+                    }
+                    else{
+
+                    }
+
+                }
+                else
+                {
+                    //status is all
+                    if(vacancy.salary > salaryRange[0] && vacancy.salary< salaryRange[1]){
+                        if(fields.size!=0){
+                            if(!fields.contains(vacancy.field)){
+                                return@forEach
+
+                            }
+                        }
+                        if(modes.size!=0){
+                            if(modes.contains(vacancy.mode)){
+                                filteredJobs.add(vacancy)
+                            }
+                        }
+                        else{
+                            filteredJobs.add(vacancy)
+                        }
+                        if(fields.contains(vacancy.field) && modes.contains(vacancy.mode)){
+                            Log.d(ContentValues.TAG,"Filtered")
+
+                        }
+                    }
+                    else{
+
+                    }
+                }
 
             }
         }
@@ -158,6 +258,8 @@ class VacancyFragment : Fragment() {
 
 
     }
+
+
 
     private fun loadData(name:String) {
         db.collection("Vacancy")
