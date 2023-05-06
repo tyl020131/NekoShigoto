@@ -150,7 +150,7 @@ class CompanyRegister : AppCompatActivity() {
     private fun checkName(fname:String){
         if(fname.isEmpty()){
             binding.errorTextName.visibility = View.VISIBLE
-            binding.errorTextName.text = "Please enter your first name"
+            binding.errorTextName.text = "Please enter your company name"
             error = true
         }
         else if(fname.length<5) {

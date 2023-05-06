@@ -201,7 +201,7 @@ class ConsultantConsultationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val activity = activity as AdminHome
-        activity?.showBottomNav()
+        activity?.hideBottomNav()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -221,4 +221,5 @@ class ConsultantConsultationFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
+
 }

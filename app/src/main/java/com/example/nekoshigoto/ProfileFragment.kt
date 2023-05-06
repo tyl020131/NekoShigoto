@@ -326,6 +326,10 @@ class ProfileFragment : Fragment() {
                                 val userEdit = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, imageUrl, country, state, salary, workingMode, user.status)
                                 val imageName = loadedUrl?.substringAfterLast("%2F")?.substringBefore("?alt=")
                                 db.collection("Job Seeker").document(email).set(userEdit)
+                                val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+                                val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                                myEdit.putString("name", "$fname $lname")
+                                myEdit.commit()
                                 val imgRef = FirebaseStorage.getInstance().getReference().child("Employee/$imageName")
                                 imgRef.delete()
                                 viewModel.setJobSeeker(userEdit)
@@ -334,6 +338,10 @@ class ProfileFragment : Fragment() {
                         else{
                             //no chg profile pic
                             val userEdit = JobSeeker(fname, lname, email, gender.text.toString(), dob, nationality.text.toString(), contactNo, icno, loadedUrl, country, state, salary, workingMode, user.status)
+                            val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+                            val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                            myEdit.putString("name", "$fname $lname")
+                            myEdit.commit()
                             db.collection("Job Seeker").document(email).set(userEdit)
                             viewModel.setJobSeeker(userEdit)
                         }

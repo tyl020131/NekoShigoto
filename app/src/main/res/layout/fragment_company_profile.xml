@@ -253,41 +253,6 @@
                     android:textColor="@android:color/holo_red_light"
                     android:text="Please upload an image" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/form_margin_left"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="Full Name"
-                    android:textColor="@color/color5" />
-
-                <EditText
-                    android:id="@+id/editTextName"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="@dimen/form_margin_left"
-                    android:layout_marginEnd="@dimen/form_margin_left"
-                    android:layout_marginBottom="@dimen/form_margin_bot"
-                    android:background="@color/color5"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
-
-                <TextView
-                    android:id="@+id/errorTextName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="@dimen/form_margin_left"
-                    android:text="TextView"
-                    android:textColor="@android:color/holo_red_light" />
 
                 <TextView
                     android:id="@+id/contact"

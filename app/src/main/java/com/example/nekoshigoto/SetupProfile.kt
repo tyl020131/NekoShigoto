@@ -71,27 +71,6 @@ class SetupProfile : AppCompatActivity() {
 
         binding.uploadImage.setOnClickListener{
 
-//            dialog = AlertDialog.Builder(this)
-//
-//            dialog.setTitle("Select Image ")
-//                .setMessage("Select Image From: ")
-//                .setCancelable(true)
-//                .setPositiveButton("Gallery"){dialogInterface,it->
-////                    val intent = Intent()
-////                    intent.action = Intent.ACTION_GET_CONTENT
-////                    intent.type = "image/*"
-////                    startActivityForResult(intent, 1)
-//                    ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*"))
-//                        .crop()	    			        //Crop image(Optional), Check Customization for more option
-//                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-//                        .start()
-//                }
-//                .setNegativeButton("Camera"){dialogInterface,it->
-//                    ImagePicker.with(this).cameraOnly().crop().start()
-//                }
-//                .show()
-
             val choice = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
             val myAlertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
             myAlertDialog.setTitle("Select Image")
@@ -240,6 +219,7 @@ class SetupProfile : AppCompatActivity() {
                     val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
                     myEdit.putString("userid", email)
                     myEdit.putString("type", "jobseeker")
+                    myEdit.putString("name", "$fname $lname")
                     myEdit.putBoolean("loggedIn", true)
                     myEdit.commit()
 

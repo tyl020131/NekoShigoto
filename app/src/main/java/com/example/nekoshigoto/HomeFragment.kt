@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var jobList : ArrayList<Vacancy>
     private lateinit var djobList : ArrayList<Vacancy>
-    private lateinit var viewModel: JobSeekerViewModel
     private lateinit var jobAdapter : JobAdapter
     private var mysaved : ArrayList<Save> = ArrayList<Save>()
     private var email : String= ""
@@ -45,7 +44,6 @@ class HomeFragment : Fragment() {
     ): View? {
         // Disable the up button
         setHasOptionsMenu(true)
-        viewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
         var email = sh.getString("userid","").toString()
 
@@ -57,8 +55,10 @@ class HomeFragment : Fragment() {
         imageId = arrayOf(
             R.drawable.kunkun
         )
-
-
+        var name = sh.getString("name","").toString()
+        val display_name = name.takeIf { it.length <= 25 } ?: name.take(25) + "..."
+        val homeuser = view.findViewById<TextView>(R.id.home_username)
+        homeuser.text = display_name
 
         val homesearch = view.findViewById<EditText>(R.id.home_search)
         homesearch.addTextChangedListener {
@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
             filter.setOnClickListener {
                 myDialog.updateField()
                 val sort : String = myDialog.sort
-                val salaryRange :ArrayList<Float> = myDialog.salary_range
+                val salaryRange :ArrayList<Int> = myDialog.salary_range
                 val fields = myDialog.fields
                 val modes = myDialog.modes
                 val gender = myDialog.gender
@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Float>,fields:ArrayList<String>, modes:ArrayList<String>){
+    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Int>,fields:ArrayList<String>, modes:ArrayList<String>){
 
         val filteredJobs : ArrayList<Vacancy> = ArrayList<Vacancy>();
 
