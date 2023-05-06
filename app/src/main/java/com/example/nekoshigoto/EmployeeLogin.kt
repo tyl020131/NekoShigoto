@@ -74,10 +74,15 @@ class EmployeeLogin : AppCompatActivity() {
                                                     myEdit.putString("userid", email)
                                                     myEdit.putString("type", "jobseeker")
                                                     myEdit.putBoolean("loggedIn", true)
-                                                    myEdit.commit()
+                                                    val query = db.collection("Job Seeker").document(email)
+                                                    query.get().addOnSuccessListener { documentSnapshot ->
+                                                        val name = documentSnapshot.getString("fname").toString() + " " + documentSnapshot.getString("lname").toString()
+                                                        myEdit.putString("name", name)
+                                                        myEdit.commit()
 
-                                                    val intent = Intent(this, Home::class.java)
-                                                    startActivity(intent)
+                                                        val intent = Intent(this, Home::class.java)
+                                                        startActivity(intent)
+                                                    }
                                                 }
                                                 "S" -> {
                                                     Toast.makeText(baseContext, "Login Successfully",

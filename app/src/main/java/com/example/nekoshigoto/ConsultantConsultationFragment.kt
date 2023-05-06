@@ -29,6 +29,8 @@ import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -84,7 +86,7 @@ class ConsultantConsultationFragment : Fragment() {
 
             val sender_id = "consultant"
             val chat = Chat(sender_id,receiver_id,content,Date(),"seen",email)
-            database.child(String.format("%s%s%s",Date(),sender_id,receiver_id)).setValue(chat)
+            database.child(String.format("%s%s%s",Date().toString().subSequence(4,Date().toString().length),sender_id,receiver_id)).setValue(chat)
             database.child("image").setValue(image)
             chatMessage.text.clear()
 
@@ -96,10 +98,15 @@ class ConsultantConsultationFragment : Fragment() {
 
                 for(childSnapshot: DataSnapshot in dataSnapshot.children){
                     if(childSnapshot.key.toString()!="image") {
+
                         val chat = childSnapshot.getValue(Chat::class.java)
 
-                        database.child(childSnapshot.key.toString()).child("status")
-                            .setValue("seen")
+                        if(isResumed){
+                            database.child(childSnapshot.key.toString()).child("status")
+                                .setValue("seen")
+                        }
+
+
 
 
                         if (chat != null) {
@@ -178,6 +185,7 @@ class ConsultantConsultationFragment : Fragment() {
 
         override fun bind(viewHolder: SenderChatBinding, position: Int) {
             viewHolder.message = chat
+            viewHolder.senddate.text = chat.date.toString().subSequence(0,16)
         }
 
     }
@@ -194,6 +202,7 @@ class ConsultantConsultationFragment : Fragment() {
 
         override fun bind(viewHolder: ReceiverChatBinding, position: Int) {
             viewHolder.message = chat
+            viewHolder.receiverdate.text = chat.date.toString().subSequence(0,16)
         }
 
     }
@@ -201,7 +210,7 @@ class ConsultantConsultationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val activity = activity as AdminHome
-        activity?.showBottomNav()
+        activity?.hideBottomNav()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -221,4 +230,5 @@ class ConsultantConsultationFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
+
 }

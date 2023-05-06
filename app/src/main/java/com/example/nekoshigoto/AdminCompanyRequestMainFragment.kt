@@ -19,5 +19,9 @@ class AdminCompanyRequestMainFragment : Fragment() {
         val activity = activity as Home
         activity?.showBottomNav()
     }*/
-
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as AdminHome
+        activity?.showBottomNav()
+    }
 }

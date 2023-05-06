@@ -8,9 +8,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,13 +16,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.example.nekoshigoto.databinding.FragmentCompanyProfileBinding
-import com.example.nekoshigoto.databinding.FragmentProfileBinding
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.setOnCountrySelected
 import com.fasilthottathil.countryselectiondialog.CountrySelectionDialog.Companion.show
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import kotlin.random.Random
@@ -55,7 +51,6 @@ class CompanyProfileFragment : Fragment() {
 
         binding.apply {
             editLayout.visibility = View.GONE
-            errorTextName.visibility = View.GONE
             errorTextContact.visibility = View.GONE
             errorTextAddress.visibility = View.GONE
             errorTextCountry.visibility = View.GONE
@@ -82,7 +77,6 @@ class CompanyProfileFragment : Fragment() {
                 .into(binding.profileImage)
 
             //insert data for edit layout
-            editTextName.setText(company?.name)
             editTextContact.setText(company?.contactNo)
             editTextCountry.text = company?.country
             editTextState.setText(company?.state)
@@ -145,14 +139,12 @@ class CompanyProfileFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             error = false
 
-            val nameT =  binding.editTextName
             val contactNoT = binding.editTextContact
             val addressT = binding.editTextAddress
             val countryT = binding.editTextCountry
             val stateT = binding.editTextState
             val businessT = binding.editTextBusiness
 
-            checkName(nameT.text.toString())
             checkAddress(addressT.text.toString())
             checkBusiness(businessT.text.toString())
             checkContact(contactNoT.text.toString())
@@ -172,12 +164,13 @@ class CompanyProfileFragment : Fragment() {
                     .setCancelable(true)
                     .setPositiveButton("Edit"){dialogInterface,it->
                         val loadedUrl = binding.uploadImage.tag as String
-                        val name = nameT.text.toString()
                         val contactNo = contactNoT.text.toString()
                         val country = countryT.text.toString()
                         val state = stateT.text.toString()
                         val address = addressT.text.toString()
                         val business = businessT.text.toString()
+                        var name = binding.textName.text.toString()
+
                         if(chgImg){
                             //after changing profile pic
                             uploadImage { imageUrl ->
@@ -204,22 +197,6 @@ class CompanyProfileFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    private fun checkName(fname:String){
-        if(fname.isEmpty()){
-            binding.errorTextName.visibility = View.VISIBLE
-            binding.errorTextName.text = "Please enter your first name"
-            error = true
-        }
-        else if(fname.length<5) {
-            binding.errorTextName.visibility = View.VISIBLE
-            binding.errorTextName.text = "Name must be at least 5 characters"
-            error = true
-        }
-        else{
-            binding.errorTextName.visibility = View.GONE
-        }
     }
 
     private fun checkContact(contactNo:String){

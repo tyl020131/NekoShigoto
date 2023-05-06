@@ -7,183 +7,249 @@
     android:background="@color/color1"
     android:paddingLeft="10sp"
     android:paddingEnd="10sp"
-    tools:context=".AdminCompanyRequestDetailViewFragment">
+    tools:context=".AdminCompanyDetailViewFragment">
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#0F1926"
-        app:contentPadding="17sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#0F1926"
+            app:contentPadding="17sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="1dp">
 
-        <TextView
-            android:id="@+id/textView40"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:text="Business:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60sp"
-            android:text="Email:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90sp"
-            android:text="Address:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Name:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160sp"
-            android:text="Contact No.:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/companyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text="afniwhfiahwfiahwfaiwfhaiwfawdawkfawhfuawfawfhioafwaf"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="190sp"
-            android:text="Country:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView242"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="220sp"
-            android:text="State:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Business:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="270sp"
-            android:text="Company Picture:"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/companyBusiness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/companyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/companyBusiness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="30sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Email:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/companyEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="60sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                    <TextView
+                        android:id="@+id/companyEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/companyAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="90sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/companyContactNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="160sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/companyCountry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="190sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Address:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/companyState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="220sp"
-            android:text=""
-            android:textColor="#FFFFFF" />
+                    <TextView
+                        android:id="@+id/companyAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
 
-        <ImageView
-            android:id="@+id/companyPic"
-            android:layout_width="123dp"
-            android:layout_height="124dp"
-            android:layout_marginLeft="150sp"
-            android:layout_marginTop="270sp"
-            android:clipToOutline="true"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/approveBtn"
-            android:layout_width="170sp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="410sp"
-            android:backgroundTint="@color/color10"
-            android:text="Approve"
-            app:cornerRadius="15sp" />
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Contact No.:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/rejectBtn"
-            android:layout_width="170sp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="190sp"
-            android:layout_marginTop="410sp"
-            android:backgroundTint="@color/color8"
-            android:text="Reject"
-            app:cornerRadius="15sp" />
+                    <TextView
+                        android:id="@+id/companyContactNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/closeBtn"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
-            android:layout_gravity="right"
-            android:background="@drawable/close"
-            app:backgroundTint="@color/white"/>
-    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Country:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/companyCountry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView242"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="State:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/companyState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Company Picture:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/companyPic"
+                        android:layout_width="123dp"
+                        android:layout_height="124dp"
+                        android:clipToOutline="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">>
+                    <Button
+                        android:id="@+id/approveBtn"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/color10"
+                        android:text="Approve"
+                        app:cornerRadius="15sp" />
+
+                    <Button
+                        android:id="@+id/rejectBtn"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:backgroundTint="@color/color8"
+                        android:text="Reject"
+                        app:cornerRadius="15sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/closeBtn"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_gravity="right"
+                android:background="@drawable/close"
+                app:backgroundTint="@color/white" />
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

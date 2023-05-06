@@ -54,6 +54,7 @@ class JobDetailFragment : Fragment() {
                     view.detailMode.text = vacancy.mode
                     view.detailDescription.text = vacancy.description
                     view.detailImg.tag = vacancy.status
+                    view.salary.text = "RM ${vacancy.salary}"
                 }
 
             } else {

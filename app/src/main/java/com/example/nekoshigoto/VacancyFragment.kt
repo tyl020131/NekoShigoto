@@ -60,9 +60,13 @@ class VacancyFragment : Fragment() {
 
         var name = sh.getString("name","").toString()
 
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_vacancy, container, false)
 
+        val display_name = name.takeIf { it.length <= 25 } ?: name.take(25) + "..."
+        val homeuser = view.findViewById<TextView>(R.id.home_username)
+        homeuser.text = display_name
         imageId = arrayOf(
             R.drawable.kunkun
         )
@@ -97,7 +101,7 @@ class VacancyFragment : Fragment() {
             filter.setOnClickListener {
                 myDialog.updateField()
                 val sort : String = myDialog.sort
-                val salaryRange :ArrayList<Float> = myDialog.salary_range
+                val salaryRange :ArrayList<Int> = myDialog.salary_range
                 val fields = myDialog.fields
                 val modes = myDialog.modes
                 val gender = myDialog.gender
@@ -119,7 +123,7 @@ class VacancyFragment : Fragment() {
 
     }
 
-    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Float>,fields:ArrayList<String>, modes:ArrayList<String>, status:String){
+    private fun filterArray(gender:String,sort : String, salaryRange:ArrayList<Int>,fields:ArrayList<String>, modes:ArrayList<String>, status:String){
 
         val filteredJobs : ArrayList<Vacancy> = ArrayList<Vacancy>();
 

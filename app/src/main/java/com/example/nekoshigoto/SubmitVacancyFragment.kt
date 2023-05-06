@@ -1,8 +1,6 @@
 package com.example.nekoshigoto
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,15 +9,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import coil.load
 import com.example.nekoshigoto.databinding.FragmentSubmitVacancyBinding
-import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.slider.LabelFormatter
 import com.google.android.material.slider.Slider
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -59,13 +55,17 @@ class SubmitVacancyFragment : Fragment() {
             }
         }
 
-
-
         val salary_val: TextView = view.salaryVal
         val normalContinuousSlider: Slider = view.normalContinuousSlider
         normalContinuousSlider.addOnChangeListener { slider, value, fromUser ->
-            salary_val.text = "RM${String.format("%d",value)}"
+            salary_val.text = "RM${String.format("%d", value.toInt())}"
         }
+
+        normalContinuousSlider.setLabelFormatter(object : LabelFormatter {
+            override fun getFormattedValue(value: Float): String {
+                return value.toInt().toString()
+            }
+        })
 
         val submit_button:Button = view.submitVacancyButton
         submit_button.setOnClickListener {
@@ -81,6 +81,7 @@ class SubmitVacancyFragment : Fragment() {
             val mode_val = mode.findViewById<RadioButton>(mode.checkedRadioButtonId).text.toString()
             val gender_val = gender.findViewById<RadioButton>(gender.checkedRadioButtonId).text.toString()
             val salary_val = normalContinuousSlider.value.toString()
+            val salary = salary_val.toFloat().toInt()
             val description_val = description.text.toString()
 
             if(position_val.isEmpty()){
@@ -103,7 +104,7 @@ class SubmitVacancyFragment : Fragment() {
 
             val collectionid = String.format("%s%s",position_val,companyName).lowercase()
             val company = viewModel.getCompany()
-            val vacancy = Vacancy(collectionid,viewModel.getCompany().profilePic,position_val,field_val,mode_val,gender_val,salary_val.toDouble(),description_val,companyName,String.format("%s,%s",company.state,company.country))
+            val vacancy = Vacancy(collectionid,viewModel.getCompany().profilePic,position_val,field_val,mode_val,gender_val,salary,description_val,companyName,"Active", String.format("%s,%s",company.state,company.country), 0)
 
 
             db.collection("Vacancy").document(collectionid).set(vacancy).addOnFailureListener {

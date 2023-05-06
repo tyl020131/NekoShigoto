@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
@@ -50,6 +51,11 @@ class ActivityFragment : Fragment() {
         user = viewModel.getJobSeeker()
 
         val view = binding.root
+        var name = user.fname+" "+user.lname
+
+        val display_name = name.takeIf { it.length <= 25 } ?: name.take(25) + "..."
+        val homeuser = binding.homeUsername
+        homeuser.text = display_name
 
         newRecyclerView = binding.applications
         newRecyclerView.layoutManager = LinearLayoutManager(activity);

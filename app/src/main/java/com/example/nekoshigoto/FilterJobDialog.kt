@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.material.slider.LabelFormatter
 import com.google.android.material.slider.RangeSlider
 
 
@@ -31,13 +32,13 @@ class FilterJobDialog(context : Context) {
     //Filter Variables
     var gender = "Male"
     var sort: String = "Salary High"
-    var salary_range : ArrayList<Float> = ArrayList<Float>()
+    var salary_range : ArrayList<Int> = ArrayList<Int>()
     lateinit var fields : ArrayList<String>
     lateinit var modes : ArrayList<String>
     init{
         //salary range
-        salary_range.add(0F)
-        salary_range.add(100000.0F)
+        salary_range.add(0)
+        salary_range.add(100000)
         //setup
         dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -61,12 +62,21 @@ class FilterJobDialog(context : Context) {
         //Events
         val btn : ImageButton = dialog.findViewById(R.id.back_btn)
         val salary_val: TextView = dialog.findViewById(R.id.salary_val)
-        val continuousRangeSlider: RangeSlider = dialog.findViewById(R.id.continuousRangeSlider)
+
+        val continuousRangeSlider: RangeSlider = dialog.findViewById(com.example.nekoshigoto.R.id.continuousRangeSlider)
+        continuousRangeSlider.setValues(0f, 100000f)
+        continuousRangeSlider.setLabelFormatter(object : LabelFormatter {
+            override fun getFormattedValue(value: Float): String {
+                return value.toInt().toString()
+            }
+        })
+
         continuousRangeSlider.addOnChangeListener { slider, value, fromUser ->
-            salary_val.text = "RM${String.format("%d",slider.values[0])} - RM${String.format("%d",slider.values[1])}"
-            salary_range[0] = slider.values[0]
-            salary_range[1] = slider.values[1]
+            salary_val.text = "RM${slider.values[0].toInt()} - RM${slider.values[1].toInt()}"
+            salary_range[0] = slider.values[0].toInt()
+            salary_range[1] = slider.values[1].toInt()
         }
+
         btn.setOnClickListener {
             dialog.dismiss()
         }

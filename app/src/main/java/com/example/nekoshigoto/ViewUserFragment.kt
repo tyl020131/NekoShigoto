@@ -7,7 +7,9 @@ import ModeAdapter
 import UserAdapter
 import android.app.Dialog
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -47,8 +49,15 @@ class ViewUserFragment : Fragment() {
         setHasOptionsMenu(true)
         binding = FragmentViewUserBinding.inflate(inflater, container, false)
 
+
         // Inflate the layout for this fragment
         val view = binding.root
+        var sh : SharedPreferences = requireActivity().getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
+
+        var name = sh.getString("name","").toString()
+        val display_name = name.takeIf { it.length <= 25 } ?: name.take(25) + "..."
+        val homeuser = binding.homeUsername
+        homeuser.text = display_name
 
         newRecyclerView = binding.vacancies
         newRecyclerView.layoutManager = LinearLayoutManager(activity);
