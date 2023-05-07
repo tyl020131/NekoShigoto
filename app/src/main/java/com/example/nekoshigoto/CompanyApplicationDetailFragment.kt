@@ -164,7 +164,8 @@ class CompanyApplicationDetailFragment : Fragment() {
                                 onClickMakePhoneCall()
                             }
                             .setNeutralButton("Cancel"){ dialogInterface, _ ->
-
+                                val activity = activity as CompanyHome?
+                                activity?.onSupportNavigateUp()
                             }
                             .show()
 
