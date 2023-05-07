@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_adminCompanyRequestMainFragment_self"
             app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestMainFragment_to_adminCompanyRequestDetailViewFragment2"
+            app:destination="@id/adminCompanyRequestDetailViewFragment2" />
     </fragment>
     <fragment
         android:id="@+id/adminProfileFragment"
@@ -108,5 +111,16 @@
         <action
             android:id="@+id/action_consultantConsultationFragment_to_chatRoomFragment"
             app:destination="@id/chatRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminCompanyRequestDetailViewFragment2"
+        android:name="com.example.nekoshigoto.AdminCompanyRequestDetailViewFragment"
+        android:label="AdminCompanyRequestDetailViewFragment" >
+        <action
+            android:id="@+id/action_adminCompanyRequestDetailViewFragment2_to_adminCompanyRequestMainFragment"
+            app:destination="@id/adminCompanyRequestMainFragment" />
+        <action
+            android:id="@+id/action_adminCompanyRequestDetailViewFragment2_self"
+            app:destination="@id/adminCompanyRequestDetailViewFragment2" />
     </fragment>
 </navigation>

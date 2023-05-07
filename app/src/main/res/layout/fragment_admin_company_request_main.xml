@@ -22,15 +22,81 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <fragment
-            android:id="@+id/adminViewCompanyRequestFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="70sp"
+        android:padding="15sp">
+
+        <SearchView
+            android:id="@+id/searchCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color5"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Company..."/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="150sp">
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="No.   "
+            android:textAlignment="viewEnd"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/textView41"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/textView42"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="160sp"
+        android:padding="15sp">
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100sp"
-            app:navGraph="@navigation/admin_company_request_navigation"
-            app:defaultNavHost="true" />
+            android:background="#0F1926">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/companyRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </ScrollView>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

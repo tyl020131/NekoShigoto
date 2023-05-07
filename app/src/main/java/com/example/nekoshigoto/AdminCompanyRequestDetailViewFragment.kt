@@ -39,7 +39,7 @@ class AdminCompanyRequestDetailViewFragment : Fragment() {
         val companyEmail = arguments?.getString("dataKey").toString()
 
         binding.closeBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment_to_adminCompanyRequestFragment2)
+            findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment2_to_adminCompanyRequestMainFragment)
         }
         //binding.textView17.text = companyEmail
 
@@ -80,7 +80,7 @@ class AdminCompanyRequestDetailViewFragment : Fragment() {
                                             } catch (e: MessagingException) {
                                                 Log.e("fail", e.stackTraceToString())
                                             }
-                                            findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment_to_adminCompanyRequestFragment2)
+                                            findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment2_to_adminCompanyRequestMainFragment)
                                             Toast.makeText(context, "Company APPROVED Successfully!", Toast.LENGTH_SHORT).show()
                                         }
                                 }
@@ -89,7 +89,7 @@ class AdminCompanyRequestDetailViewFragment : Fragment() {
             }
             builder.setNegativeButton("Cancel") { dialog, which ->
                 val bundle = bundleOf("dataKey" to companyEmail)
-                view?.findNavController()?.navigate(R.id.action_adminCompanyRequestDetailViewFragment_self, bundle)
+                view?.findNavController()?.navigate(R.id.action_adminCompanyRequestDetailViewFragment2_self, bundle)
             }
 
             val dialog = builder.create()
@@ -110,12 +110,12 @@ class AdminCompanyRequestDetailViewFragment : Fragment() {
                     .addOnSuccessListener {
                         it.reference.delete()
                     }
-                findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment_to_adminCompanyRequestFragment2)
+                findNavController().navigate(R.id.action_adminCompanyRequestDetailViewFragment2_to_adminCompanyRequestMainFragment)
                 Toast.makeText(context, "Company REJECTED Successfully!", Toast.LENGTH_SHORT).show()
             }
             builder.setNegativeButton("Cancel") { dialog, which ->
                 val bundle = bundleOf("dataKey" to companyEmail)
-                view?.findNavController()?.navigate(R.id.action_adminCompanyRequestDetailViewFragment_self, bundle)
+                view?.findNavController()?.navigate(R.id.action_adminCompanyRequestDetailViewFragment2_self, bundle)
             }
 
             val dialog = builder.create()
