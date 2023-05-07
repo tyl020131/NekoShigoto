@@ -23,6 +23,7 @@ class AdminViewUserFragment : Fragment() {
     private lateinit var binding : FragmentAdminViewUserBinding
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var tempName = ""
+    private var count = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +45,11 @@ class AdminViewUserFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 //binding.textView22.text = newText
-                tempName = newText.toString()
-                loadSearchData(newText.toString())
+                count++
+                if(count > 1){
+                    tempName = newText.toString()
+                    loadSearchData(newText.toString())
+                }
                 return true
             }
         })
