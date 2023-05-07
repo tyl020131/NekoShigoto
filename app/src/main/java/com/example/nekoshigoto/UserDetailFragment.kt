@@ -3,6 +3,7 @@ package com.example.nekoshigoto
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.icu.text.NumberFormat
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.util.*
+
 //import javax.mail.MessagingException
 
 class UserDetailFragment : Fragment() {
@@ -55,6 +58,9 @@ class UserDetailFragment : Fragment() {
                     textGender.text = user?.gender
                     textNationality.text = user?.nationality
                     textAddress.text = user?.state + ", " + user?.country
+                    val number = user?.salary
+                    val formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number)
+                    textSalary.text = "RM $formattedNumber.00"
 
                     val list = user?.workingMode?.split(", ")
                     list?.forEach {
