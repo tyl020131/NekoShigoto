@@ -2,6 +2,7 @@ package com.example.nekoshigoto
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -67,6 +68,8 @@ class SubmitVacancyFragment : Fragment() {
             }
         })
 
+
+
         val submit_button:Button = view.submitVacancyButton
         submit_button.setOnClickListener {
            val gender = view.myGender
@@ -88,7 +91,7 @@ class SubmitVacancyFragment : Fragment() {
                 Toast.makeText(getActivity(), "Please Enter Position Name!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            else if(normalContinuousSlider.value.equals(0.00)){
+            else if(normalContinuousSlider.value<=0){
                 Toast.makeText(getActivity(), "Please Enter Salary for your vacancy!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -98,29 +101,28 @@ class SubmitVacancyFragment : Fragment() {
             }
 
 
-
-
             val companyName = viewModel.getCompany().name
 
             val collectionid = String.format("%s%s",position_val,companyName).lowercase()
             val company = viewModel.getCompany()
             val vacancy = Vacancy(collectionid,viewModel.getCompany().profilePic,position_val,field_val,mode_val,gender_val,salary,description_val,companyName,"Active", String.format("%s,%s",company.state,company.country), 0)
 
-
-            db.collection("Vacancy").document(collectionid).set(vacancy).addOnFailureListener {
-                Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
+            db.collection("Vacancy").document(collectionid).get().addOnSuccessListener { snapshot ->
+                if (snapshot != null && snapshot.exists() && snapshot.getString("status")!="Inactive") {
+                    // Document exists, show toast message
+                    Toast.makeText(requireActivity(), "Vacancy already exists", Toast.LENGTH_SHORT).show()
+                } else if (snapshot != null && snapshot.exists() && snapshot.getString("status") == "Inactive"){
+                    db.collection("Vacancy").document(collectionid).collection("Application").get().addOnSuccessListener{documents ->
+                        for (document in documents) {
+                            db.collection("Vacancy").document(collectionid).collection("Application").document(document.id).delete()
+                        }
+                        createNewVacancy(collectionid, vacancy)
+                    }
+                }else{
+                    // Document doesn't exist, create it
+                    createNewVacancy(collectionid, vacancy)
+                }
             }
-
-
-
-            findNavController().navigate(R.id.action_submitVacancyFragment_to_vacancyFragment)
-
-            Toast.makeText(getActivity(), "Vacancy Created Successfully!", Toast.LENGTH_SHORT).show()
-
-
-
-
-
         }
         return view.root;
     }
@@ -130,6 +132,15 @@ class SubmitVacancyFragment : Fragment() {
         activity?.hideBottomNav()
         activity?.chgTitle("Create New Vacancy")
     }
+    fun createNewVacancy(collectionid:String, vacancy:Vacancy) {
+        db.collection("Vacancy").document(collectionid).set(vacancy).addOnSuccessListener {
+            findNavController().navigate(R.id.action_submitVacancyFragment_to_vacancyFragment)
+            Toast.makeText(getActivity(), "Vacancy Created Successfully!", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener { exception ->
+            Toast.makeText(requireActivity(), exception.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
