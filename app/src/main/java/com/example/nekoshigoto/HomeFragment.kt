@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
                         newlist.add(job)
                     }
                 }
-                Log.d(TAG,"hehehehehhbe")
+
                 jobAdapter = JobAdapter(newlist, email,mysaved,navigator)
                 newRecyclerView.adapter = jobAdapter
 
@@ -152,7 +152,9 @@ class HomeFragment : Fragment() {
         else{
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
-
+        val sortedJobList = filteredJobs.sortedWith(compareBy { it.position })
+        filteredJobs.clear()
+        filteredJobs.addAll(sortedJobList)
         jobAdapter = JobAdapter(filteredJobs, email,mysaved,navigator)
         newRecyclerView.adapter = jobAdapter
     }
@@ -186,6 +188,9 @@ class HomeFragment : Fragment() {
                         jobList.add(vacancy)
                     }
                 }
+                val sortedJobList = jobList.sortedWith(compareBy { it.position })
+                jobList.clear()
+                jobList.addAll(sortedJobList)
                 jobAdapter = JobAdapter(jobList, email,mysaved,navigator)
                 newRecyclerView.adapter = jobAdapter
 

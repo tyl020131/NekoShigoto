@@ -142,6 +142,10 @@ class ViewUserFragment : Fragment() {
                 Log.d(ContentValues.TAG,"fail to add")
             }
         }
+
+        val sortedUserList = filteredUser.sortedWith(compareBy ({ it.fname }, { it.lname}))
+        filteredUser.clear()
+        filteredUser.addAll(sortedUserList)
         userAdapter = UserAdapter(filteredUser)
         newRecyclerView.adapter = userAdapter
     }
@@ -154,6 +158,9 @@ class ViewUserFragment : Fragment() {
                     val jobSeeker = document.toObject(JobSeeker::class.java)
                     userList.add(jobSeeker)
                 }
+                val sortedUserList = userList.sortedWith(compareBy ({ it.fname }, { it.lname}))
+                userList.clear()
+                userList.addAll(sortedUserList)
                 userAdapter = UserAdapter(userList)
                 newRecyclerView.adapter = userAdapter
 

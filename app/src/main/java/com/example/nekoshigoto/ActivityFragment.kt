@@ -82,6 +82,9 @@ class ActivityFragment : Fragment() {
                         if(app.status == choice[item])
                             filteredApp.add(app)
                     }
+                    val sortedAppList = filteredApp.sortedWith(compareBy { it.vacancy })
+                    filteredApp.clear()
+                    filteredApp.addAll(sortedAppList)
                     appAdapter = ApplicationAdapter(filteredApp)
                     newRecyclerView.adapter = appAdapter
                 }
@@ -152,6 +155,17 @@ class ActivityFragment : Fragment() {
                                 var application = Application(document.id, image, company, vacancy, location, mode, status)
                                 appList.add(application)
                             }
+                            val sortedAppList = appList.sortedWith(compareBy(
+                                { when(it.status) {
+                                    "Approved" -> 0
+                                    "Rejected" -> 1
+                                    else -> 2
+                                } },
+                                { it.vacancy }
+
+                            ))
+                            appList.clear()
+                            appList.addAll(sortedAppList)
                             appAdapter = ApplicationAdapter(appList)
                             newRecyclerView.adapter = appAdapter
                         }

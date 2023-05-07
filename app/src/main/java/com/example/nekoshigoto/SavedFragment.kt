@@ -147,6 +147,9 @@ class SavedFragment : Fragment() {
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
 
+        val sortedJobList = filteredJobs.sortedWith(compareBy { it.position })
+        filteredJobs.clear()
+        filteredJobs.addAll(sortedJobList)
         newRecyclerView.adapter = SavedAdapter(filteredJobs, viewModel,navigator)
 
 
@@ -176,6 +179,9 @@ class SavedFragment : Fragment() {
                                 }
                             }
                         }
+                        val sortedJobList = jobList.sortedWith(compareBy { it.position })
+                        jobList.clear()
+                        jobList.addAll(sortedJobList)
                         newRecyclerView.adapter = SavedAdapter(jobList, viewModel,navigator)
                     }
                     .addOnFailureListener { exception ->
