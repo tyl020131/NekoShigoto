@@ -48,7 +48,7 @@ class ForgotPassword : AppCompatActivity() {
         if(oldP.isNotEmpty() && newP.isNotEmpty() && cPass.isNotEmpty()) {
             if(passwordPattern.matches(newP)){
                 progressDialog = ProgressDialog(this)
-                progressDialog.setMessage("Signing in...")
+                progressDialog.setMessage("Updating...")
                 progressDialog.show()
                 if(cPass==newP){
                     val user = auth.currentUser
@@ -105,6 +105,7 @@ class ForgotPassword : AppCompatActivity() {
                     }
                 }
                 else{
+                    progressDialog.dismiss()
                     var message = "New password and confirm password do not match"
                     snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
                     snackbar.setAction("Dismiss") { snackbar.dismiss() }
