@@ -33,7 +33,7 @@ class CompanyRequestAdapterForAdmin(private val companyRequestListForAdmin : Arr
         holder.viewDetailBtn.tag = currentItem.email
         holder.viewDetailBtn.setOnClickListener { view->
             val bundle = bundleOf("dataKey" to holder.viewDetailBtn.tag as String)
-            view.findNavController().navigate(R.id.action_adminCompanyRequestFragment_to_adminCompanyRequestDetailViewFragment2, bundle)
+            view.findNavController().navigate(R.id.action_adminCompanyRequestMainFragment_to_adminCompanyRequestDetailViewFragment2, bundle)
         }
     }
 
