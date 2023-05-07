@@ -196,6 +196,6 @@ class AdminViewCompanyFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val activity = activity as AdminHome
-        activity?.showBottomNav()
+        activity?.hideBottomNav()
     }
 }
