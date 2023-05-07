@@ -46,7 +46,7 @@ class ChangePasswordFragment : Fragment() {
         if(oldP.isNotEmpty() && newP.isNotEmpty() && cPass.isNotEmpty()) {
             if(passwordPattern.matches(newP)){
                 progressDialog = ProgressDialog(requireContext())
-                progressDialog.setMessage("Signing in...")
+                progressDialog.setMessage("Updating...")
                 progressDialog.show()
                 if(cPass==newP){
                     val user = auth.currentUser
@@ -82,6 +82,7 @@ class ChangePasswordFragment : Fragment() {
                     }
                 }
                 else{
+                    progressDialog.dismiss()
                     var message = "New password and confirm password do not match"
                     snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG)
                     snackbar.setAction("Dismiss") { snackbar.dismiss() }
@@ -89,6 +90,7 @@ class ChangePasswordFragment : Fragment() {
                 }
             }
             else {
+
                 var message = "Password Format: 8-15 characters with 1 uppercase, 1 lowercase, 1 digit"
                 snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG)
                 snackbar.setAction("Dismiss") { snackbar.dismiss() }
