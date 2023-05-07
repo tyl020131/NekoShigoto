@@ -22,13 +22,16 @@ class AdminViewCompanyFragment : Fragment() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var tempName = ""
     private var count = 0
+    private var savedQuery: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAdminViewCompanyBinding.inflate(inflater, container, false)
-
+        if (savedInstanceState != null) {
+            savedQuery = savedInstanceState.getString("QUERY")
+        }
         binding.userViewBtn.setOnClickListener {
             findNavController().navigate(R.id.action_adminViewCompanyFragment2_to_adminViewUserFragment2)
         }
@@ -42,11 +45,14 @@ class AdminViewCompanyFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //binding.textView22.text = newText
                 count++
                 if(count > 1){
-                    tempName = newText.toString()
-                    loadSearchData(newText.toString())
+                    val query = newText.toString().trim()
+                    if (query != savedQuery) {
+                        savedQuery = query
+                        tempName = newText.toString()
+                        loadSearchData(query)
+                    }
                 }
                 return true
             }
@@ -71,6 +77,11 @@ class AdminViewCompanyFragment : Fragment() {
 
         return view
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("QUERY", savedQuery)
     }
 
     private fun loadData(){

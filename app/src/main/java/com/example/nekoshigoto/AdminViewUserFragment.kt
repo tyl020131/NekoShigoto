@@ -24,13 +24,16 @@ class AdminViewUserFragment : Fragment() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var tempName = ""
     private var count = 0
+    private var savedQuery: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAdminViewUserBinding.inflate(inflater, container, false)
-
+        if (savedInstanceState != null) {
+            savedQuery = savedInstanceState.getString("QUERY")
+        }
         binding.companyViewBtn.setOnClickListener {
             findNavController().navigate(R.id.action_adminViewUserFragment2_to_adminViewCompanyFragment2)
         }
@@ -44,11 +47,14 @@ class AdminViewUserFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //binding.textView22.text = newText
                 count++
                 if(count > 1){
-                    tempName = newText.toString()
-                    loadSearchData(newText.toString())
+                    val query = newText.toString().trim()
+                    if (query != savedQuery) {
+                        savedQuery = query
+                        tempName = newText.toString()
+                        loadSearchData(query)
+                    }
                 }
                 return true
             }
@@ -131,6 +137,11 @@ class AdminViewUserFragment : Fragment() {
                 }
                 newRecyclerView.adapter = UserAdapterForAdmin(userListForAdmin)
             }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("QUERY", savedQuery)
     }
 
     private fun loadSearchData(query : String){
@@ -265,6 +276,6 @@ class AdminViewUserFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val activity = activity as AdminHome
-        activity?.hideBottomNav()
+        activity?.showBottomNav()
     }
 }

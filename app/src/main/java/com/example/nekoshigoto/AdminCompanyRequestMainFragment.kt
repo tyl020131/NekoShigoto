@@ -19,12 +19,15 @@ class AdminCompanyRequestMainFragment : Fragment() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var tempName = ""
     private var count = 0
+    private var savedQuery: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAdminCompanyRequestMainBinding.inflate(inflater, container, false)
-
+        if (savedInstanceState != null) {
+            savedQuery = savedInstanceState.getString("QUERY")
+        }
         binding.searchCompany.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 //binding.textView22.text = query
@@ -34,11 +37,14 @@ class AdminCompanyRequestMainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //binding.textView22.text = newText
                 count++
                 if(count > 1){
-                    tempName = newText.toString()
-                    loadSearchData(newText.toString())
+                    val query = newText.toString().trim()
+                    if (query != savedQuery) {
+                        savedQuery = query
+                        tempName = newText.toString()
+                        loadSearchData(query)
+                    }
                 }
                 return true
             }
@@ -54,6 +60,10 @@ class AdminCompanyRequestMainFragment : Fragment() {
         loadData()
 
         return view
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("QUERY", savedQuery)
     }
 
     private fun loadData(){

@@ -122,25 +122,108 @@ class ViewUserFragment : Fragment() {
             val dob = LocalDate.parse(user.dob, formatter)
             val currentDate: LocalDate = LocalDate.now()
             val age: Int = Period.between(dob, currentDate).getYears()
-            if(user.gender == gender && age > ageRange[0] && age < ageRange[1] && user.nationality == nationality){
+            if(gender != "All")
+            {
+                //select specific gender
+                if(nationality!="All")
+                {
+                    if(user.gender == gender && age > ageRange[0] && age < ageRange[1] && user.nationality == nationality){
 
-                if(modes.size!=0){
-                    var list = user.workingMode.split(", ")
+                        if(modes.size!=0){
+                            var list = user.workingMode.split(", ")
 
-                    list.forEach{
-                        if(modes.contains(it)){
-                            filteredUser.add(user)
-                            return@forEach // break out of the loop
+                            list.forEach{
+                                if(modes.contains(it)){
+                                    if(!filteredUser.contains(user)){
+                                        filteredUser.add(user)
+                                        return@forEach // break out of the loop
+                                    }
+                                }
+                            }
                         }
+                        else{
+                            filteredUser.add(user)
+                        }
+                    }else{
+                        Log.d(ContentValues.TAG,"fail to add")
                     }
                 }
-                else{
-                    Log.d(ContentValues.TAG,"Added")
-                    filteredUser.add(user)
+                else
+                {
+                    if(user.gender == gender && age > ageRange[0] && age < ageRange[1]){
+
+                        if(modes.size!=0){
+                            var list = user.workingMode.split(", ")
+
+                            list.forEach{
+                                if(modes.contains(it)){
+                                    if(!filteredUser.contains(user)){
+                                        filteredUser.add(user)
+                                        return@forEach // break out of the loop
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            filteredUser.add(user)
+                        }
+                    }else{
+                        Log.d(ContentValues.TAG,"fail to add")
+                    }
                 }
-            }else{
-                Log.d(ContentValues.TAG,"fail to add")
+
             }
+            else
+            {
+                //select all gender
+                if(nationality!="All")
+                {
+                    if(age > ageRange[0] && age < ageRange[1] && user.nationality == nationality){
+
+                        if(modes.size!=0){
+                            var list = user.workingMode.split(", ")
+
+                            list.forEach{
+                                if(modes.contains(it)){
+                                    if(!filteredUser.contains(user)){
+                                        filteredUser.add(user)
+                                        return@forEach // break out of the loop
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            filteredUser.add(user)
+                        }
+                    }else{
+                        Log.d(ContentValues.TAG,"fail to add")
+                    }
+                }
+                else
+                {
+                    if(age > ageRange[0] && age < ageRange[1]){
+
+                        if(modes.size!=0){
+                            var list = user.workingMode.split(", ")
+
+                            list.forEach{
+                                if(modes.contains(it)){
+                                    if(!filteredUser.contains(user)){
+                                        filteredUser.add(user)
+                                        return@forEach // break out of the loop
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            filteredUser.add(user)
+                        }
+                    }else{
+                        Log.d(ContentValues.TAG,"fail to add")
+                    }
+                }
+            }
+
         }
 
         val sortedUserList = filteredUser.sortedWith(compareBy ({ it.fname }, { it.lname}))
