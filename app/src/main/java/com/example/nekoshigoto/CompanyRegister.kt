@@ -131,11 +131,6 @@ class CompanyRegister : AppCompatActivity() {
                     val user = Company(name, email, contactNo, address, country, state, imageUrl, business, "P")
                     db.collection("Company").document(email).set(user)
 
-                    //this is used to change the company account to approved status
-
-                    //val test = db.collection("User").document(email)
-                    //test.update("status", "A")
-
                     val intent = Intent(this, GetStarted::class.java)
                     startActivity(intent)
 

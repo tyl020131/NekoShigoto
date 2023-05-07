@@ -54,7 +54,7 @@ class JobDetailFragment : Fragment() {
                     view.detailMode.text = vacancy.mode
                     view.detailDescription.text = vacancy.description
                     view.detailImg.tag = vacancy.status
-                    view.salary.text = "RM ${vacancy.salary}"
+                    view.salary.text = "RM ${vacancy.salary}.00"
                 }
 
             } else {
@@ -110,9 +110,6 @@ class JobDetailFragment : Fragment() {
             }else{
                 Toast.makeText(requireContext(), "This job is not available right now", Toast.LENGTH_SHORT).show()
             }
-
-
-
 
         }
 

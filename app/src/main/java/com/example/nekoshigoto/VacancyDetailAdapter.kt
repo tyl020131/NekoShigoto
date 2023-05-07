@@ -33,13 +33,9 @@ class VacancyDetailAdapter(private val applicantList : ArrayList<Applicant>,priv
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = applicantList[position];
-//        holder.applicantName.text = currentItem.fname + " " + currentItem.lname
+
         holder.applicantName.text = currentItem.name
 
-//        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-//        val dob = LocalDate.parse(currentItem.dob, formatter)
-//        val currentDate: LocalDate = LocalDate.now()
-//        val age: Int = Period.between(dob, currentDate).getYears()
         holder.applicantAge.text = currentItem.age.toString() + " Years Old"
 
         val imgUri = currentItem.image.toUri().buildUpon().scheme("https").build()

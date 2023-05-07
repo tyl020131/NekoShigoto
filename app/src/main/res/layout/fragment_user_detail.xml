@@ -154,7 +154,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/inter_medium"
                         android:text="Email : "
                         android:textColor="@color/color5"
                         android:textSize="@dimen/detailTextSize" />
@@ -163,7 +163,7 @@
                         android:id="@+id/textEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/inter_medium"
                         android:text="tankc-pm20@student.tarc.edu.my"
                         android:textColor="@color/color5"
                         android:textSize="@dimen/detailTextSize" />
@@ -182,7 +182,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/inter_medium"
                         android:text="DOB : "
                         android:textColor="@color/color5"
                         android:textSize="@dimen/detailTextSize" />
@@ -191,7 +191,7 @@
                         android:id="@+id/textDob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/inter_medium"
                         android:text="12/08/2002"
                         android:textColor="@color/color5"
                         android:textSize="@dimen/detailTextSize" />

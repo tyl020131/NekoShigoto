@@ -75,57 +75,7 @@ class Home : AppCompatActivity() {
                 val intent = Intent(this, Logout::class.java)
                 startActivity(intent)
             }
-
-        /*bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home -> {
-                    newPosition = 1
-                    loadFragment(HomeFragment())
-                    true
-                }
-                R.id.activity -> {
-                    newPosition = 2
-                    loadFragment(ActivityFragment())
-                    true
-                }
-                R.id.consultation -> {
-                    newPosition = 3
-                    loadFragment(ConsulationFragment())
-                    true
-                }
-                R.id.saved -> {
-                    newPosition = 4
-                    loadFragment(SavedFragment())
-                    true
-                }
-                else ->{
-                    newPosition = 5
-                    loadFragment(ProfileFragment())
-                    true
-                }
-            }
-        }*/
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.options_menu, menu)
-//        return true
-//    }
-//
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.changePasswordFragment -> {
-//                NavigationUI.onNavDestinationSelected(item, this.findNavController(R.id.Container))
-//                return true
-//            }
-//            R.id.logout -> {
-//                startActivity(Intent(this, Logout::class.java))
-//            }
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
 
     fun hideBottomNav(){
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)

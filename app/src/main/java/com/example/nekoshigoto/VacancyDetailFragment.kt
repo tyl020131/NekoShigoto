@@ -27,7 +27,6 @@ class VacancyDetailFragment : Fragment() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var emailList : ArrayList<String>
     private lateinit var statusList : ArrayList<String>
-    private lateinit var userList: ArrayList<JobSeeker>
     private lateinit var appList: ArrayList<Applicant>
     private lateinit var binding: FragmentVacancyDetailBinding
     private lateinit var vacID : String
@@ -48,7 +47,7 @@ class VacancyDetailFragment : Fragment() {
         var jobStatus = String()
         emailList = ArrayList<String>()
         statusList = ArrayList<String>()
-//        db.collection("Vacancy").document(vacID).collection("Application").get()
+
         db.collection("Vacancy").document(vacID).get()
             .addOnSuccessListener {
                 val vacancy = it.toObject<Vacancy>()
@@ -108,7 +107,7 @@ class VacancyDetailFragment : Fragment() {
     }
 
     private fun loadData() {
-        userList = ArrayList<JobSeeker>()
+        var i : Int = 0
         appList = ArrayList<Applicant>()
 
         db.collection("Job Seeker")
@@ -117,6 +116,7 @@ class VacancyDetailFragment : Fragment() {
                 for (document in documents) {
                     val jobSeeker = document.toObject(JobSeeker::class.java)
                     if (emailList.contains(document.getString("email"))) {
+                        i++
                         val position: Int = emailList.indexOf(document.getString("email"))
                         var status = statusList[position]
                         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
@@ -125,15 +125,22 @@ class VacancyDetailFragment : Fragment() {
                         val age: Int = Period.between(dob, currentDate).getYears()
                         val applicant = Applicant(jobSeeker.fname+" "+jobSeeker.lname, age, jobSeeker.profilePic, status, jobSeeker.email)
                         appList.add(applicant)
-                        userList.add(jobSeeker)
                     }
-                    else if (userList.size == emailList.size) {
+                    else if (i == emailList.size) {
                         // Stop the loop once we have 10 users
                         break
                     }
 
                 }
-                //newRecyclerView.adapter = VacancyDetailAdapter(userList,vacID)
+                val sortedAppList = appList.sortedWith(compareByDescending<Applicant> {
+                    when(it.status) {
+                        "Pending" -> 3
+                        "Approved" -> 2
+                        else -> 1
+                    }
+                })
+                appList.clear()
+                appList.addAll(sortedAppList)
                 newRecyclerView.adapter = VacancyDetailAdapter(appList,vacID)
 
             }

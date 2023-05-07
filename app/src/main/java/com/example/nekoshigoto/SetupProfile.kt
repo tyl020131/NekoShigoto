@@ -468,8 +468,6 @@ class SetupProfile : AppCompatActivity() {
     }
 
     private fun checkICFormatWithInput(ICNo: String, date: String, gender: String):Boolean {
-        Log.i("test", "test")
-        // The IC number and date string
         val dateString = date
 
         // Extract the birthdate from the IC number
@@ -486,12 +484,12 @@ class SetupProfile : AppCompatActivity() {
         val month = calendar.get(Calendar.MONTH) + 1
         val year = calendar.get(Calendar.YEAR) % 100
 
-        // Extract the day, month, and year components from the birthdate
+        // Extract the day, month, and year components from the IC birthdate
         val birthdateDay = birthdate.substring(4).toInt()
         val birthdateMonth = birthdate.substring(2, 4).toInt()
         val birthdateYear = birthdate.substring(0, 2).toInt()
 
-        // Compare the components
+        //Comparison
         return if (day == birthdateDay && month == birthdateMonth && year == birthdateYear) {
             Log.i("GameFragment", "Called ViewModelProvider.get")
             // The date matches the birthdate in the IC number

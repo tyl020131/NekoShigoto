@@ -14,11 +14,7 @@ class AdminCompanyRequestMainFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_admin_company_request_main, container, false)
     }
-    /*override fun onResume() {
-        super.onResume()
-        val activity = activity as Home
-        activity?.showBottomNav()
-    }*/
+
     override fun onResume() {
         super.onResume()
         val activity = activity as AdminHome

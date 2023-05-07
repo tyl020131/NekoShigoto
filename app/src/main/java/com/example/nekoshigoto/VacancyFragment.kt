@@ -257,10 +257,13 @@ class VacancyFragment : Fragment() {
         else{
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
-
+        val sortedVacancyList = filteredJobs.sortedWith(compareBy(
+            { if (it.status == "Active") 0 else if (it.status == "Inactive") 1 else 2 },
+            { it.position }
+        ))
+        filteredJobs.clear()
+        filteredJobs.addAll(sortedVacancyList)
         newRecyclerView.adapter = VacancyAdapter(filteredJobs,navigator)
-
-
     }
 
 
@@ -274,12 +277,17 @@ class VacancyFragment : Fragment() {
                     Log.d(TAG, "${document.id} => ${document.data}")
                     val vacancy = document.toObject(Vacancy::class.java)
                     if (document != null) {
-
                         vacancy.vacancyid = document.id
                         val query = db.collection("Vacancy").document("${document.id}").collection("Application")
                         query.get().addOnSuccessListener {
                             vacancy.numOfApp = it.size()
                             VacancyList.add(vacancy)
+                            val sortedVacancyList = VacancyList.sortedWith(compareBy(
+                                { if (it.status == "Active") 0 else if (it.status == "Inactive") 1 else 2 },
+                                { it.position }
+                            ))
+                            VacancyList.clear()
+                            VacancyList.addAll(sortedVacancyList)
                             newRecyclerView.adapter = VacancyAdapter(VacancyList,navigator)
                         }
                     }

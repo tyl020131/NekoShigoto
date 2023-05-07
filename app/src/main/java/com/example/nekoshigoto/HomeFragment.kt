@@ -153,7 +153,7 @@ class HomeFragment : Fragment() {
             filteredJobs.sortByDescending { vacancy -> vacancy.salary }
         }
 
-        jobAdapter = JobAdapter(jobList, email,mysaved,navigator)
+        jobAdapter = JobAdapter(filteredJobs, email,mysaved,navigator)
         newRecyclerView.adapter = jobAdapter
     }
 

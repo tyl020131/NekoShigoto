@@ -51,39 +51,11 @@ class CompanyHome : AppCompatActivity() {
                 val intent = Intent(this, Logout::class.java)
                 startActivity(intent)
             }
-        /*bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home -> {
-                    newPosition = 1
-                    loadFragment(VacancyFragment())
-                    true
-                }
-                R.id.explore -> {
-                    newPosition = 2
-                    loadFragment(ViewUserFragment())
-                    true
-                }
-               else -> {
-                    newPosition = 3
-                    loadFragment(ConsulationFragment())
-                    true
-                }
-            }
-        }*/
+
 
 
     }
 
-//    private fun setSession(){
-//        val sharedPreferences: SharedPreferences = getSharedPreferences("SessionSharedPref", Context.MODE_PRIVATE)
-//
-//        val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
-//
-//        myEdit.putString("CompanyName", "Ikun Studio")
-//        myEdit.commit()
-//
-//
-//    }
     fun hideBottomNav(){
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.visibility = View.GONE
