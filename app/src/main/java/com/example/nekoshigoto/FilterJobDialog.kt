@@ -117,7 +117,7 @@ class FilterJobDialog(context : Context) {
         fieldList.add("Agriculture")
         fieldList.add("Architecture")
         fieldList.add("Arts and Entertainment")
-        fieldList.add("Business and  Finance")
+        fieldList.add("Business and Finance")
         fieldList.add("Social Community")
         fieldList.add("Computer and IT")
         fieldList.add("Mathematics")

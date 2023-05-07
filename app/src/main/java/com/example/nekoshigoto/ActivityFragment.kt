@@ -74,7 +74,7 @@ class ActivityFragment : Fragment() {
             val filteredApp : ArrayList<Application> = ArrayList<Application>()
             val choice = arrayOf<CharSequence>("Pending", "Approved", "Rejected", "Cancel")
             val myAlertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-            myAlertDialog.setTitle("Select Image")
+            myAlertDialog.setTitle("Filter by")
             myAlertDialog.setCancelable(true)
             myAlertDialog.setItems(choice, DialogInterface.OnClickListener { dialog, item ->
                 if(choice[item] != "Cancel"){
