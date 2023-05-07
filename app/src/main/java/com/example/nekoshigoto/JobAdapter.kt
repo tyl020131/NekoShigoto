@@ -37,7 +37,7 @@ class JobAdapter(private val jobList : ArrayList<Vacancy>,private val email:Stri
         holder.propic.load(imgUri)
         holder.company.text = currentItem.companyName
         holder.vacancy.text = currentItem.position
-        holder.location.text = "Penang,Malaysia"
+        holder.location.text = currentItem.location
         holder.mode.text = currentItem.mode
         holder.fav.setTag(R.drawable.saved)
         if(mySaved.contains(Save(currentItem.vacancyid))){
