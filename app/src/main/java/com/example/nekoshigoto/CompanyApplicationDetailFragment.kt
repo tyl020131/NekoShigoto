@@ -153,7 +153,7 @@ class CompanyApplicationDetailFragment : Fragment() {
                     query.update("status", "A").addOnSuccessListener {
                         Toast.makeText(requireContext(), "Successfully approve the application", Toast.LENGTH_SHORT).show()
 
-                        eDialog.setTitle("Send Email")
+                        eDialog.setTitle("Contact applicant")
                             .setMessage("Successfully approved, do you want to contact the applicant?")
                             .setCancelable(true)
                             .setPositiveButton("Email") { dialogInterface, _ ->
