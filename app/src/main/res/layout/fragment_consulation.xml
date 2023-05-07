@@ -30,6 +30,7 @@
                 android:backgroundTint="@color/grey1"
                 android:padding="10dp"
                 android:src="@drawable/backicon"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

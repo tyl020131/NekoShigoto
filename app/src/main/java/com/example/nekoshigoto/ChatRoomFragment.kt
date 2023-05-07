@@ -1,22 +1,16 @@
 package com.example.nekoshigoto
 
 import ChatRoomAdapter
-import JobAdapter
 import android.content.ContentValues
 import android.content.ContentValues.TAG
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,12 +20,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import kotlinx.coroutines.tasks.await
+
 
 class ChatRoomFragment : Fragment() {
     private lateinit var database: DatabaseReference
@@ -49,6 +40,8 @@ class ChatRoomFragment : Fragment() {
 
     ): View? {
         navigator = findNavController()
+
+
         rooms = ArrayList<ChatRoom>()
         crAdapter = ChatRoomAdapter(rooms,navigator)
         database = Firebase.database.getReference("chat")

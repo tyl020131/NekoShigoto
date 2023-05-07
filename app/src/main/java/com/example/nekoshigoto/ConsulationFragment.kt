@@ -15,7 +15,9 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +39,7 @@ import java.util.*
 
 
 class ConsulationFragment : Fragment() {
+    private lateinit var navigator : NavController
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var chatList : ArrayList<Chat>
     private lateinit var database: DatabaseReference
@@ -50,6 +53,7 @@ class ConsulationFragment : Fragment() {
 
 
     ): View? {
+        navigator = findNavController()
         setHasOptionsMenu(true)
         val viewModel : JobSeekerViewModel = ViewModelProvider(requireActivity()).get(JobSeekerViewModel::class.java)
         val jobSeeker : JobSeeker = viewModel.getJobSeeker()
@@ -84,7 +88,7 @@ class ConsulationFragment : Fragment() {
 
             val sender_id = seekername
             val chat = Chat(sender_id,receiver_id,content,Date(),"unseen",viewModel.getJobSeeker().email)
-            database.child(String.format("%s%s%s",Date(),sender_id,receiver_id)).setValue(chat)
+            database.child(String.format("%s%s%s",Date().toString().subSequence(4,Date().toString().length),sender_id,receiver_id)).setValue(chat)
             database.child("image").setValue(viewModel.getJobSeeker().profilePic.toString())
             chatMessage.text.clear()
 
@@ -93,6 +97,7 @@ class ConsulationFragment : Fragment() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                navigator.popBackStack(R.id.consultantConsultationFragment,true)
                 for (childSnapshot: DataSnapshot in dataSnapshot.children) {
                     if (childSnapshot.key.toString() != "image") {
                         val chat = childSnapshot.getValue(Chat::class.java)
@@ -171,6 +176,7 @@ class ConsulationFragment : Fragment() {
 
         override fun bind(viewHolder: SenderChatBinding, position: Int) {
             viewHolder.message = chat
+            viewHolder.senddate.text = chat.date.toString().subSequence(0,16)
         }
 
     }
@@ -187,6 +193,7 @@ class ConsulationFragment : Fragment() {
 
         override fun bind(viewHolder: ReceiverChatBinding, position: Int) {
             viewHolder.message = chat
+            viewHolder.receiverdate.text = chat.date.toString().subSequence(0,16)
         }
 
     }

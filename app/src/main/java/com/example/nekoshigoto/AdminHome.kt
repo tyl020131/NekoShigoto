@@ -25,6 +25,7 @@ class AdminHome : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.Container)
+
         return navController.navigateUp()
     }
     
