@@ -48,7 +48,8 @@ class HomeFragment : Fragment() {
         var email = sh.getString("userid","").toString()
 
         navigator = findNavController()
-
+        val test = ArrayList<Vacancy>()
+        jobAdapter = JobAdapter(test, email,mysaved,navigator)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 

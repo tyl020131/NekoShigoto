@@ -62,10 +62,6 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        val activity = activity as Home
-        activity?.showBottomNav()
-        activity?.chgTitle("My Profile")
-
         binding.apply {
             saveButton.visibility = View.GONE
             editLayout.visibility = View.GONE
@@ -695,6 +691,13 @@ class ProfileFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as Home
+        activity?.showBottomNav()
+        activity?.chgTitle("My Profile")
     }
 
 }
